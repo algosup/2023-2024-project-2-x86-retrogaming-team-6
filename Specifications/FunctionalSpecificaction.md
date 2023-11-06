@@ -20,7 +20,9 @@ Assembly is a low-level programming language, created in 1947, closely related t
 #### 1.3 
 We have a deep appreciation for the history of video games and we are  particularly fascinated by the arcade era. We discovered Pac-Man in our childhood and became captivated by its simplicity and challenging gameplay. We are computer science students who are intrigued by the technical aspects of classic arcade games.
 We want to recreate the game in a challenging way, with Assembly. 
-We want to push ourselves and make the version of Pac-man we always dreamed of. 
+We want to push ourselves and make the version of Pac-Man® we always dreamed of.
+We want to give our best while keeping the original and timeless format of Pac-Man®
+
 
 
 ### 2 - Project Scope and Obectives
