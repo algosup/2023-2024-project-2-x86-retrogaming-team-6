@@ -17,6 +17,10 @@ But there's a twist: large flashing dots, named "Power Pellets", turn the ghosts
 #### 1.2 Assembly language
 Assembly is a low-level programming language, created in 1947, closely related to the architecture of a CPU. Each assembly language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow. Assembly is used to write programs that interact directly with a computer's hardware and control its operations. Assembly is specific to a particular CPU architecture, and code written for one type of CPU may not be compatible with another. 
 
+#### 1.3 
+We have a deep appreciation for the history of video games and we are  particularly fascinated by the arcade era. We discovered Pac-Man in our childhood and became captivated by its simplicity and challenging gameplay. We are computer science students who are intrigued by the technical aspects of classic arcade games.
+We want to recreate the game in a challenging way, with Assembly. 
+We want to push ourselves and make the version of Pac-man we always dreamed of. 
 
 
 ### 2 - Project Scope and Obectives
