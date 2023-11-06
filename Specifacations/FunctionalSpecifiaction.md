@@ -10,36 +10,32 @@
 
 ### 1 - Introduction 
 #### 1.1 Pac-Man®
-The Pac-Man video game, was published the 25th of October 1980 in the USA. It is a Maze Action Game developed by Namco, originally for arcades. 
-The player controls Pac-man who is chased down by 4 different Ghosts in a maze 
-The goal of the player is to eat every dots in the maze in order to finish the level and go on to the next one. 
+The Pac-Man video game was released on October 25, 1980, in the USA. It is a maze action game developed by Namco, originally for arcades. The player controls Pac-Man, who is chased by four different ghosts in a maze. The player's goal is to eat every dot in the maze to complete the level and move on to the next one.
 
-But there's a twist, large flashing dots named "Power Pellets" turns the ghost to blue making them vulnerable to the player's attacks, giving bonus points. 
+But there's a twist: large flashing dots, named "Power Pellets", turn the ghosts blue, making them vulnerable to the player's attacks and giving bonus points.
 
 #### 1.2 Assembly language
-Assembly is a low-level programming language, created in 1947, closely related to the architecture of a CPU. 
-Each assembly language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow.
-Assembly is used to write programs that interacts direclty with a computer's hardware and control its operations.
-Assembly is specific to a particular CPU architecture, a code written for one type of CPU may not be compatible with another. 
+Assembly is a low-level programming language, created in 1947, closely related to the architecture of a CPU. Each assembly language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow. Assembly is used to write programs that interact directly with a computer's hardware and control its operations. Assembly is specific to a particular CPU architecture, and code written for one type of CPU may not be compatible with another. 
 
 
 
-### 2 - Overview 
+### 2 - Project Scope and Obectives
 
+### 3 - Functional Requirements
 
-### 3 - Project Scope 
+### 4 - Non-Functional Requirements 
 
+### 5 - Dependencies
 
-### 4 - Risks and Assumptions 
+### 6 - Testing Requirements
 
-
-### 5 - Goals 
-
-
-### 6 - Constraints 
+### 7 - Constraints and Assumptions 
 Copyright Namco, Pac-man is a trademark  
 
-### 7 - 
+
+### 8 - Risks adn Mitigation Strategies
+
+### 9  - Appendix
 
 
 
