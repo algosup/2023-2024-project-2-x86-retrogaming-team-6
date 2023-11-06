@@ -1,4 +1,4 @@
-# Pac-Man Recreation for DOSBox - Technical Specification
+# x86 Retrogaming - Technical Specification
 
 ## 1. Introduction
 
