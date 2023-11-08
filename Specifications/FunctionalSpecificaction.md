@@ -59,11 +59,12 @@ Describe the various game states, including start screens, gameplay, level trans
 Create the user interface elements, such as the score display, lives remaining, and level indicator.
 
 **Audio:**
-The famous Pac-Man® music will be reused as part of our project, moreover the famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.     The song playing when you get caught by a ghost will be implemented.    
+The famous Pac-Man® music will be reused as part of our project, moreover the famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.  
+ The song playing when you get caught by a ghost will be implemented.    
 We will add the game-over and the level up sounds. 
 
 **Input Controls:**
-The player will be able to move the character using a keyboard (peut-être ajouter un support joystick)
+The player will be able to move the character using an AZERTY keyboard (ZQSD) and the directional arrows (peut-être ajouter un support joystick)
 
 **Collision Detection:**
 Implement precise collision detection between Pac-Man, ghosts, and other game objects.
