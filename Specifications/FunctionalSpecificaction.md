@@ -34,18 +34,19 @@ The objectives of this project are simple, we must recreate Pac-Man®, using the
 The game must be as enjoyable as the original game, re-using the idea of the maze action game, while twisting it a bit to add something new and original to it. 
 
 ### 3 - Functional Requirements
-#### 3.1 Game Mechanics:
+#### 3.1 Basic Game Mechanics:
 
 **Player movement:** The player must be able to control its character
-Ghost AI: Ghosts have to follow a specific pattern that will be created by the developers.   
+Ghost AI: Ghosts have to follow a specific pattern that will be created by the developers.     
+*To have more information about the player's movement, refer to the input controls section below.*
 
-**Pellet collection:** the character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghost to the player.  
+**Pellet collection:** the character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player.  
 
-**Level progression:** Once the player has collected every pellets available on the maze, a new level shall appear and bonus points will be given to the player
+**Level progression:** Once the player has collected every pellets available on the maze, a new level shall appear and bonus points will be given to the player.
 
 **Maze Design:**
-The layout will be based on the original Pac-Man® game, with some twist added to it
-Add dimensions + how it will change
+The layout will be based on the original Pac-Man® game, with some twist added to it.
+Add dimensions + how it will change, show which twist
 
 **Scoring System:**
 Determine how points are awarded for various in-game actions, such as eating pellets or consuming ghosts.
@@ -58,16 +59,17 @@ Describe the various game states, including start screens, gameplay, level trans
 Create the user interface elements, such as the score display, lives remaining, and level indicator.
 
 **Audio:**
-Specify the sounds and music to be included in the game, such as the iconic "wakka-wakka" sound.
+The famous Pac-Man® music will be reused as part of our project, moreover the famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.     The song playing when you get caught by a ghost will be implemented.    
+We will add the game-over and the level up sounds. 
 
 **Input Controls:**
-Define how player input (keyboard or joystick) is processed to control Pac-Man's movement.
+The player will be able to move the character using a keyboard (peut-être ajouter un support joystick)
 
 **Collision Detection:**
 Implement precise collision detection between Pac-Man, ghosts, and other game objects.
 
 **Win and Lose Conditions:**
-Determine the conditions that result in the player winning a level or losing a life or the game.
+The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. 
 
 **High Scores:**
 Include a high score system and display the top scores on a leaderboard.
@@ -81,20 +83,10 @@ If applicable, outline the ability to save and load game progress.
 **Bug Testing:**
 Detail the testing procedures and expected behavior to identify and fix any bugs or glitches in the game.
 
-**Documentation:**
-Document the game's assembly code, including comments, to make it understandable and maintainable.
-
-**Performance:**
-Optimize the code and design for efficient performance on an x86 architecture.
-
-**Compatibility:**
-Ensure that the game runs smoothly in the DOS environment and can be executed in DOSBox.
-
 **Packaging and Distribution:**
 Plan how the game will be packaged, distributed, and made available to players.
 
-**Legal Considerations:**
-Ensure that the project respects copyright and licensing issues related to the Pac-Man brand and intellectual property.
+#### 3.2 New Game Mechanics
 
 ### 4 - Non-Functional Requirements 
 
