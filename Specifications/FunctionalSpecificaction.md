@@ -1,17 +1,29 @@
 # Functional Specification Team-6
 
 ### Table of content : 
-<details><summary> Click to expand </summary><br>
-1 - Introduction <br>
-2 - Project Scope and Objectives<br>
-3 - Functional requirements <br>
-4 - Non-Functional Requirements <br>
-5 - Dependencies <br>
-6 - Testing Requirements <br>
-7 - Constraints and Assumptions <br>
-8 - Risks and Mitigation Strategies<br>
-9 - Appendix<br>
-10 - Glossary<br>
+<details><summary> Click to expand </summary>
+
+- [Functional Specification Team-6](#functional-specification-team-6)
+    - [Table of content :](#table-of-content-)
+    - [1 - Introduction](#1---introduction)
+      - [1.1 Pac-Man®](#11-pac-man)
+      - [1.2 Assembly language](#12-assembly-language)
+      - [1.3 Our passion](#13-our-passion)
+    - [2 - Project Scope and Obectives](#2---project-scope-and-obectives)
+      - [2.1 - Scope](#21---scope)
+      - [2.2 - Objectives](#22---objectives)
+    - [3 - Functional Requirements](#3---functional-requirements)
+      - [3.1 Basic Game Mechanics:](#31-basic-game-mechanics)
+      - [3.2 New Game Mechanics](#32-new-game-mechanics)
+    - [4 - Non-Functional Requirements](#4---non-functional-requirements)
+    - [5 - Dependencies](#5---dependencies)
+    - [6 - Testing Requirements](#6---testing-requirements)
+    - [7 - Constraints and Assumptions](#7---constraints-and-assumptions)
+    - [8 - Risks and Mitigation Strategies](#8---risks-and-mitigation-strategies)
+    - [9  - Appendix](#9----appendix)
+    - [10 - Glossary](#10---glossary)
+    
+
 </details>
 
 ### 1 - Introduction 
@@ -32,6 +44,7 @@ We are willing to give our best while keeping the original and timeless format o
 
 
 ### 2 - Project Scope and Obectives
+
 #### 2.1 - Scope 
 The scope of this project is to recreate the classic Pac-Man® , using Assembly language on x86 on DosBox.
 
@@ -178,4 +191,3 @@ Emulator :
 x86 :   
 DosBox :    
 maze action game :  
-
