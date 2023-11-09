@@ -2,10 +2,16 @@
 
 ### Table of content : 
 <details><summary> Click to expand </summary><br>
-1 - Team Members and roles <br>
-2 - System Overview Overview <br>
-3 - Goals and non goals <br>
-
+1 - Introduction <br>
+2 - Project Scope and Objectives<br>
+3 - Functional requirements <br>
+4 - Non-Functional Requirements <br>
+5 - Dependencies <br>
+6 - Testing Requirements <br>
+7 - Constraints and Assumptions <br>
+8 - Risks and Mitigation Strategies<br>
+9 - Appendix<br>
+10 - Glossary<br>
 </details>
 
 ### 1 - Introduction 
@@ -158,18 +164,18 @@ Outline the collaboration and communication procedures for team members working 
 ### 7 - Constraints and Assumptions 
 Copyright Namco, Pac-man is a trademark  
 
-
 ### 8 - Risks and Mitigation Strategies
+
 
 ### 9  - Appendix
 
+
+
+### 10 - Glossary
 Pac-Man® :  
 Assembly language :     
 Emulator :  
 x86 :   
 DosBox :    
 maze action game :  
-
-
-
 
