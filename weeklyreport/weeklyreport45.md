@@ -9,4 +9,6 @@
 
 ## Monday 11/05/2023
 
-Brainstorming 
+Brainstorming about the different roles : 
+
+    For the whole team except Remy it was our first project with roles assigned to everyone. We therefore decided to try to understand in more detail the role of each member of the team. To be more efficient and more organized in the rest of our project.
