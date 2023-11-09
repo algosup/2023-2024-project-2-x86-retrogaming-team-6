@@ -33,9 +33,9 @@
     
 </details>
 
-### 1 - Introduction 
+## 1 - Introduction 
 
-#### 1.1 Pac-Man®
+### 1.1 Pac-Man®
 The Pac-Man video game was released in 1980. It is a maze action game developed by Namco, originally for arcades. The player controls Pac-Man, who is chased by four different ghosts in a maze. The player's goal is to eat every dot in the maze to complete the level and move on to the next one.
 But there's a twist: large flashing dots, named "Power Pellets", turn the ghosts blue, making them vulnerable to the player and gives bonus points to him/her.  
 This is a simple arcade game originally designed for childrens and teenagers.  
@@ -43,80 +43,75 @@ The player has to accumulate as many points as possible until he runs out of liv
 
 ![Alt text](https://www.capitalkoala.com/project/public/media//pac-man-jeu-video.jpg)
 
-#### 1.2 Assembly language
+### 1.2 Assembly language
 Assembly is a low-level programming language, created in 1947, closely related to the architecture of a CPU. Each assembly language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow. Assembly is used to write programs that interact directly with a computer's hardware and control its operations. Assembly is specific to a particular CPU architecture, and code written for one type of CPU may not be compatible with another. 
 
-#### 1.3 Our passion 
+### 1.3 Our passion 
 We have a deep appreciation for the history of video games and we are  particularly fascinated by the arcade era. We discovered Pac-Man in our childhood and became captivated by its simplicity and challenging gameplay. We are computer science students who are intrigued by the technical aspects of classic arcade games.         
 We are willing to recreate the game in a challenging way, with Assembly.           
 We are willing to push ourselves and make the version of Pac-Man® we always dreamed of.         
 We are willing to give our best while keeping the original and timeless format of Pac-Man®
 
 
-### 2 - Project Scope and Obectives
+## 2 - Project Scope and Obectives
 
-#### 2.1 - Scope 
+### 2.1 - Scope 
 The scope of this project is to recreate the classic Pac-Man® , using Assembly language on x86 on DosBox.
 
-#### 2.2 - Objectives 
+### 2.2 - Objectives 
 The objectives of this project are simple, we must recreate Pac-Man®, using the Assembly language on an emulator.   
 The game must be as enjoyable as the original game, re-using the idea of the maze action game, while twisting it a bit to add something new and original to it. 
 The objectives of this document are to get an overview of the project and what needs to be done during the next few weeks. It will be use as a "placeholder" for our ideas. As well as for the cient to understand and have a insight of what the game will ressemble by the end of the project. 
 
-### 3 - Functional Requirements
+### 2-3 Project Schedule and Deadlines
+| Deadlines|          | Details  | 
+|----------|----------|----------|
+| 13/11/2023 | 1:30pm | Functional specification
+| 27/11/2023 | 1.30pm | Technical specification
+| 08/12/2023 | 5.pm   | Test plan 
+| 11/12/2023 | 5.pm   | Working prototype 
+| 21/12/2023 | 5.pm   | Final product 
 
-#### 3.1 Basic Game Mechanics:
+## 3 - Functional Requirements
 
-| Mechanics | Description |
-|  
+### 3.1 Basic Game Mechanics:
 
-- **Player movement:** The player must be able to control its character
-Ghost AI: Ghosts have to follow a specific pattern that will be created by the developers.     
-*To have more information about the player's movement, refer to the input controls section below.*
+| **Mechanic** | **Description** |
+| --- | --- |
+| Player movement | The player must be able to control its character |
+| Ghost AI | Ghosts have to follow a specific pattern that will be created by the developers. |
+| Pellet collection | The character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player. |
+| Level progression | Once the player has collected every pellets available on the maze, a new level shall appear and bonus points will be given to the player. |
+| Maze Design | The layout will be based on the original Pac-Man® game. The maze dimension will be the same as the original one from Pac-Man® |
+| Scoring System | Points will be determined based on the original Pac-Man® game point system  |
+| Game States | The game will include a start menu including "start game", "rules", "options" and "credit" buttons.  |
+| User Interface | We will recreate the original User Interface of Pac-Man®.  
+| Audio | The famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.The song playing when you get caught by a ghost will be implemented. We will add the game-over and the level up sounds. |
+| Input Controls | The player will be able to move the character using a  QWERTY keyboard (WASD) and the directional arrows (peut-être ajouter un support joystick) |
+| Collision Detection | We will implement collision detection between Pac-Man, ghosts, and other game objects.|
+| Win and Lose Conditions | The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. |
+| High Scores | We will include the original leaderboard, that stores the high scores of the player. |
+| Game Settings | Audio settings could be tweaked by the player in the setting section.
+ |
 
-- **Pellet collection:** the character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player.  
 
-- **Level progression:** Once the player has collected every pellets available on the maze, a new level shall appear and bonus points will be given to the player.
 
-- **Maze Design:**
-The layout will be based on the original Pac-Man® game, with some twist added to it.
-The maze dimension will be the same as the original one from Pac-Man® 
 
-- **Scoring System:**
-Points will be awarded the same way as the original Pac-Man® game.
 
-- **Game States:**
-The game will include a start menu including "start game", "rules", "options" and "credit" buttons.  
+### 3.2 New Game Mechanics
+#### 3.2.1 Essential new game mechanics 
 
-- **User Interface:**
-We will recreate the original User Interface of Pac-Man®.    
+| **New Essential Mechanic** | **Description** |
+| --- | --- |
+|  |  |
 
-<img src="https://i.pinimg.com/736x/16/6b/79/166b79c76fef9b34d671574d4b7759e5.jpg" width="450px" align=center>
+#### 3.2.2 Potential new game mechanics
 
-**Audio:**
-The famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.  
- The song playing when you get caught by a ghost will be implemented.    
-We will add the game-over and the level up sounds. 
+| **Potential New Mechanic** | **Description** |
+| --- | --- |
 
-**Input Controls:**
-The player will be able to move the character using a  QWERTY keyboard (WASD) and the directional arrows (peut-être ajouter un support joystick)
 
-**Collision Detection:**
-We will implement collision detection between Pac-Man, ghosts, and other game objects.
-
-**Win and Lose Conditions:**
-The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. 
-
-**High Scores:**
-We will include the original leaderboard, that stores the high scores of the player. 
-
-**Game Settings:** Audio settings could be tweaked by the player in the setting section.
-
-#### 3.2 New Game Mechanics
-
-****
-
-### 4 - Non-Functional Requirements 
+## 4 - Non-Functional Requirements 
 
 **Performance:**
 Define the expected frame rate and responsiveness of the game.
@@ -169,25 +164,22 @@ Consider the ease of adding new features or content to the game.
 **Legal and Licensing Considerations:**
 Ensure compliance with any legal requirements related to intellectual property and trademarks when using the Pac-Man brand.
 
-**Project Schedule and Deadlines:**
-Define the project timeline and milestones to meet development goals and release deadlines.
 
+## 5 - Dependencies
 
-### 5 - Dependencies
+## 6 - Acceptance & Testing Requirements
 
-### 6 - Acceptance & Testing Requirements
-
-### 7 - Constraints and Assumptions 
+## 7 - Constraints
 Copyright Namco, Pac-man is a trademark  
 
-### 8 - Risks
+## 8 - Risks
 
 
-### 9  - Appendix
+## 9  - Appendix
 
 
 
-### 10 - Glossary
+## 10 - Glossary
 Pac-Man® :  
 Assembly language :     
 Emulator :  
