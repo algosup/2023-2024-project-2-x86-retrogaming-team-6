@@ -96,8 +96,6 @@ The objectives of this document are to get an overview of the project and what n
 
 
 
-
-
 ### 3.2 New Game Mechanics
 #### 3.2.1 Essential new game mechanics 
 
@@ -143,23 +141,12 @@ Ensure that the game's graphics and text remain clear and functional on a variet
 Outline plans for translating the game's text and instructions into different languages if needed.
 Ensure that the game can handle different character sets and text encodings.
 
-**Data Storage and Backup:**
-Describe how player progress and high scores are stored and backed up.
-Ensure data integrity and recovery mechanisms.
-
 **Resource Management:**
 Address memory management and resource allocation to prevent memory leaks and crashes.
-
-**Testing and Quality Assurance:**
-Specify the testing approach, including the types of testing (e.g., unit testing, integration testing, user testing) and the criteria for success.
 
 **Documentation and Support:**
 Document the codebase, game mechanics, and development process.
 Provide user guides and support documentation for players.
-
-**Maintainability and Extensibility:**
-Ensure that the codebase is well-structured and maintainable for future updates or modifications.
-Consider the ease of adding new features or content to the game.
 
 **Legal and Licensing Considerations:**
 Ensure compliance with any legal requirements related to intellectual property and trademarks when using the Pac-Man brand.
