@@ -12,7 +12,7 @@
 
 Several members of the team do not know each other. So we decided to all introduce ourselves one by one. To get to know each other better.
 
-**All team member**
+*All team member*
 
 ### Brainstorming about the differents roles : 
 
@@ -20,12 +20,20 @@ For the whole team except Remy it was our first project with roles assigned to e
 
 We therefore decided to try to understand in more detail the role of each member of the team. To be more efficient and more organized in the rest of our project.
 
-### Advancement of our functional
+### Advancement of our Functional
 
-Work on functional formatting and first ideas about the project.<br>
-<br>**Thibaud Marlier**
+Work on functional formatting and first ideas about the project. Our team brainstormed ideas and then Thibaud took charge of selecting and organizing the functional.  <br>
+<br>*Thibaud Marlier*
 
 ### Advancement of our Technical 
 
-Template creation 
+Template creation
+
+*Rémy Charles* 
+
+### DOSbox 
+
+We've started to download DOSbox and understand how it works. In addition, we'll try to understand how to make an assembly language program work with DOSbox. We're also trying to link NASM with DOSbox to start coding and understanding assembly. 
+
+*Rémy Charles and Junior Sofware Engineer* 
 
