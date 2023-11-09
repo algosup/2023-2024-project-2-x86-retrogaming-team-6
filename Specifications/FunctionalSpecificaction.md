@@ -74,17 +74,17 @@ The objectives of this document are to provide an overview of the project and wh
 
 ## 3 - Functional Requirements
 
-### 3.1 Basic Game Mechanics:
+### 3.1 - Basic Game Mechanics:
 
 | **Mechanic** | **Description** |
 | --- | --- |
+| Level progression | Once the player has collected all the pellets available in the maze, a new level will appear, and bonus points will be awarded to the player. |
 | Player movement | The player must be able to control its character |
 | Ghost AI | Ghosts have to follow a specific pattern that will be created by the developers. |
 | Pellet collection | The character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player. |
-| Level progression | Once the player has collected all the pellets available in the maze, a new level will appear, and bonus points will be awarded to the player. |
 | Maze Design | The layout will be based on the original Pac-Man® game. The maze dimension will be the same as the original one from Pac-Man® |
 | Scoring System | Points will be determined based on the original Pac-Man® game point system  |
-| Game States | The game will include a start menu including "start game", "rules", "options" and "credit" buttons.  |
+| Game States | The game will include a start menu with "Start Game," "Rules," "Options," and "Credits" buttons.  |
 | User Interface | We will recreate the original User Interface of Pac-Man®.  
 | Audio | The famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.The song playing when you get caught by a ghost will be implemented. We will add the game-over and the level up sounds. |
 | Input Controls | The player will be able to move the character using a  QWERTY keyboard (WASD) and the directional arrows (peut-être ajouter un support joystick) |
@@ -92,20 +92,24 @@ The objectives of this document are to provide an overview of the project and wh
 | Win and Lose Conditions | The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. |
 | High Scores | We will include the original leaderboard, that stores the high scores of the player. |
 | Game Settings | Audio settings could be tweaked by the player in the setting section. |
+| Pause button | Player should be able to pause the game. |
 
 
 
-### 3.2 New Game Mechanics
-#### 3.2.1 Essential new game mechanics 
 
-| **New Essential Mechanic** | **Description** |
+### 3.2 - New Game Mechanics
+#### 3.2.1 - Essential new game mechanics 
+
+| **New Mechanic** | **Description** |
 | --- | --- |
 |  |  |
 
-#### 3.2.2 Potential new game mechanics
+#### 3.2.2 - Potential new game mechanics
 
 | **Potential New Mechanic** | **Description** |
 | --- | --- |
+
+#### 3.2.3 DOSBox, nasm, Assembly 
 
 
 ## 4 - Non-Functional Requirements 
@@ -150,16 +154,14 @@ Provide user guides and support documentation for players.
 **Legal and Licensing Considerations:**
 Ensure compliance with any legal requirements related to intellectual property and trademarks when using the Pac-Man brand.
 
+## 5 - Acceptance & Testing Requirements
 
-## 5 - Dependencies
-
-## 6 - Acceptance & Testing Requirements
-
-## 7 - Constraints
+## 6 - Constraints
 Copyright Namco, Pac-man is a trademark  
 
-## 8 - Risks
+## 7 - Risks
 
+## 8 - Dependencies
 
 ## 9  - Appendix
 
