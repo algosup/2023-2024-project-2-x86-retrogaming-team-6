@@ -31,9 +31,9 @@ Template creation
 
 *Rémy Charles* 
 
-### Dosbox 
+### DOSbox 
 
-We've started to download Dos box and understand how it works. In addition, we'll try to understand how to make an assembly language program work with Dos box. 
+We've started to download DOSbox and understand how it works. In addition, we'll try to understand how to make an assembly language program work with DOSbox. We're also trying to link NASM with DOSbox to start coding and understanding assembly. 
 
 *Rémy Charles and Junior Sofware Engineer* 
 
