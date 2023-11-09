@@ -7,8 +7,20 @@
 | :-------------- |
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> |
 
-## Monday 11/05/2023
+## Monday 11/5/2023
 
-Brainstorming about the different roles : 
+### Team Meeting 
 
-    For the whole team except Remy it was our first project with roles assigned to everyone. We therefore decided to try to understand in more detail the role of each member of the team. To be more efficient and more organized in the rest of our project.
+Several members of the team do not know each other. So we decided to all introduce ourselves one by one. To get to know each other better.
+
+### Brainstorming about the different roles : 
+
+For the whole team except Remy it was our first project with roles assigned to everyone. 
+
+We therefore decided to try to understand in more detail the role of each member of the team. To be more efficient and more organized in the rest of our project.
+
+**All team member**
+
+### Think about functional : 
+
+## Thursday 11/9/2023
