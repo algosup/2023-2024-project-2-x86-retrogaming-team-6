@@ -59,9 +59,9 @@ We are willing to give our best while keeping the original and timeless format o
 The scope of this project is to recreate the classic Pac-Man® , using Assembly language on x86 on DosBox.
 
 ### 2.2 - Objectives 
-The objectives of this project are simple, we must recreate Pac-Man®, using the Assembly language on an emulator.   
-The game must be as enjoyable as the original game, re-using the idea of the maze action game, while twisting it a bit to add something new and original to it. 
-The objectives of this document are to get an overview of the project and what needs to be done during the next few weeks. It will be use as a "placeholder" for our ideas. As well as for the cient to understand and have a insight of what the game will ressemble by the end of the project. 
+The objectives of this project are simple; we must recreate Pac-Man® using Assembly language on an emulator.
+The game must be as enjoyable as the original, reusing the concept of the maze action game, while adding a new and original twists to it.
+The objectives of this document are to provide an overview of the project and what needs to be accomplished in the next few weeks. It will be used as a 'placeholder' for our ideas, as well as for the client to understand and gain insight into what the game will resemble by the end of the project.
 
 ### 2-3 Project Schedule and Deadlines
 | Deadlines|          | Details  | 
@@ -81,7 +81,7 @@ The objectives of this document are to get an overview of the project and what n
 | Player movement | The player must be able to control its character |
 | Ghost AI | Ghosts have to follow a specific pattern that will be created by the developers. |
 | Pellet collection | The character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player. |
-| Level progression | Once the player has collected every pellets available on the maze, a new level shall appear and bonus points will be given to the player. |
+| Level progression | Once the player has collected all the pellets available in the maze, a new level will appear, and bonus points will be awarded to the player. |
 | Maze Design | The layout will be based on the original Pac-Man® game. The maze dimension will be the same as the original one from Pac-Man® |
 | Scoring System | Points will be determined based on the original Pac-Man® game point system  |
 | Game States | The game will include a start menu including "start game", "rules", "options" and "credit" buttons.  |
@@ -91,8 +91,7 @@ The objectives of this document are to get an overview of the project and what n
 | Collision Detection | We will implement collision detection between Pac-Man, ghosts, and other game objects.|
 | Win and Lose Conditions | The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. |
 | High Scores | We will include the original leaderboard, that stores the high scores of the player. |
-| Game Settings | Audio settings could be tweaked by the player in the setting section.
- |
+| Game Settings | Audio settings could be tweaked by the player in the setting section. |
 
 
 
