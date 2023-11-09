@@ -109,6 +109,7 @@ The objectives of this document are to provide an overview of the project and wh
 | **Potential New Mechanic** | **Description** |
 | --- | --- |
 
+
 #### 3.2.3 DOSBox, nasm, Assembly 
 
 
@@ -157,7 +158,7 @@ Ensure compliance with any legal requirements related to intellectual property a
 ## 5 - Acceptance & Testing Requirements
 
 ## 6 - Constraints
-Copyright Namco, Pac-man is a trademark  
+Copyright Namco, Pac-Man is a trademark  
 
 ## 7 - Risks
 
