@@ -14,21 +14,21 @@ Several members of the team do not know each other. So we decided to all introdu
 
 *All Team*
 
-### Brainstorming about the differents roles : 
+### Brainstorming about the different roles : 
 
-For the whole team except Remy it was our first project with roles assigned to everyone. 
+For the whole team, except for Remy, this was our initial project involving the assignment of roles to each team member. 
 
-We therefore decided to try to understand in more detail the role of each member of the team. To be more efficient and more organized in the rest of our project.
+We decided to carefully examine the role of each team member, aiming to improve efficiency and organization in the following stages of our project.
 
 *All Team*
 
 ### Advancement of our Functional
 
-Work on functional formatting and first ideas about the project. Our team brainstormed ideas and then Thibaud took charge of selecting and organizing the functional.  <br>
+Initiating the project, our team collaborated on functional formatting and brainstormed initial ideas. Thibaud then led the process of selecting and organizing the functional aspects.  <br>
 
 *Thibaud Marlier*<br>
 
-The program manager in charge of the functionall, has given the Q&A some tasks to do to help it progress with the functionall. 
+The program manager in charge of the functional, has given the QA some tasks to do to help the progress with the functional. 
 
 *Thibaud Marlier and Manech Laguens*
 
@@ -49,7 +49,7 @@ We've started to download DOSbox and understand how it works. In addition, we'll
 
 The junior software engineers managed to understand DOSbox and link it up with NASM. They are now able to launch the program and begin to understand the assembly. 
 
-*Habi cailleau and Raphël Proudh*on 
+*Habi Cailleau and Raphël Proudh*on 
 
 ### Advancement of our Readme 
 
