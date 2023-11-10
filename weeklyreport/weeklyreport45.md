@@ -43,7 +43,7 @@ Template creation
 
 ### DOSbox 
 
-We've started to download DOSbox and understand how it works. In addition, we'll try to understand how to make an assembly language program work with DOSbox. We're also trying to link NASM with DOSbox to start coding and understanding assembly. 
+We started to download DOSbox and understood how it worked. In addition, we tried to understand how to make an assembly language program work with DOSbox. We also attempted to link NASM with DOSbox to start coding and understanding assembly.
 
 *Rémy Charles and Junior Sofware Engineer* 
 
@@ -53,7 +53,7 @@ The junior software engineers managed to understand DOSbox and link it up with N
 
 ### Advancement of our Readme 
 
-Start writing the README to give the Stakholder a better understanding of our project.
+Started writing the README to give the Stakholder a better understanding of our project.
 <br>With a presentation of Team 6 using a table and photos corresponding to each team member.  
 
 *Rémy Charles* 
