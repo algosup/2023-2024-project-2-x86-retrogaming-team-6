@@ -35,7 +35,7 @@
 
 ## 1 - Introduction 
 
-### 1.1 Pac-Man®
+### 1.1 - Pac-Man®
 The Pac-Man video game was released in 1980. It is a maze action game developed by Namco, originally for arcades. The player controls Pac-Man, who is chased by four different ghosts in a maze. The player's goal is to eat every dot in the maze to complete the level and move on to the next one.
 But there's a twist: large flashing dots, named "Power Pellets", turn the ghosts blue, making them vulnerable to the player and gives bonus points to him/her.  
 This is a simple arcade game originally designed for childrens and teenagers.  
@@ -43,10 +43,10 @@ The player has to accumulate as many points as possible until he runs out of liv
 
 ![Alt text](https://www.capitalkoala.com/project/public/media//pac-man-jeu-video.jpg)
 
-### 1.2 Assembly language
+### 1.2 - Assembly language
 Assembly is a low-level programming language, created in 1947, closely related to the architecture of a CPU. Each assembly language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow. Assembly is used to write programs that interact directly with a computer's hardware and control its operations. Assembly is specific to a particular CPU architecture, and code written for one type of CPU may not be compatible with another. 
 
-### 1.3 Our passion 
+### 1.3 - Our passion 
 We have a deep appreciation for the history of video games and we are  particularly fascinated by the arcade era. We discovered Pac-Man in our childhood and became captivated by its simplicity and challenging gameplay. We are computer science students who are intrigued by the technical aspects of classic arcade games.         
 We are willing to recreate the game in a challenging way, with Assembly.           
 We are willing to push ourselves and make the version of Pac-Man® we always dreamed of.         
@@ -63,7 +63,7 @@ The objectives of this project are simple; we must recreate Pac-Man® using Asse
 The game must be as enjoyable as the original, reusing the concept of the maze action game, while adding a new and original twists to it.
 The objectives of this document are to provide an overview of the project and what needs to be accomplished in the next few weeks. It will be used as a 'placeholder' for our ideas, as well as for the client to understand and gain insight into what the game will resemble by the end of the project.
 
-### 2-3 Project Schedule and Deadlines
+### 2-3 - Project Schedule and Deadlines
 | Deadlines|          | Details  | 
 |----------|----------|----------|
 | 13/11/2023 | 1:30pm | Functional specification
@@ -77,7 +77,7 @@ The objectives of this document are to provide an overview of the project and wh
 
 
 ## 3 - Functional Requirements
-
+In this section, we will go down the functional requirements of this project, it will include the basic game mechanics that are already into the original Pac-Man game, the features that we will implement first, and those that we will add if we have time to do so. 
 ### 3.1 - Basic Game Mechanics:
 
 | **Mechanic** | **Description** |
@@ -125,97 +125,92 @@ These features will be added once every other features have been added to the ga
 | skins | Adding the possibility for the player to add even more customization to the character |
 | Point milestones | Once the player reaches a certain amount of point in game, he could receive some gift, such as cosmetics, new colors for the character... |
 
+Our goal is to add as much of these features as possible, we will try and put them all into the game.
+
+## 4 - Non-Functional Requirements 
+
+| **Requirement** | **Description** |
+| --- | --- |
+| **Performance** | The game must run smoothly on a variety of x86-based systems and configurations.|
+| **Hardware Compatibility** | Specifically designed for compatibility with the intended hardware, the game must be compatible with the specific hardware (16-bit x86 CPU from 1982).|
+| **Memory Usage** | Efficient memory usage is crucial, especially for systems with limited memory capacity. <br> Aim for optimized memory utilization to avoid leaks and overloads.|
+| **Control Responsiveness** | Game controls must be responsive and precise, offering a good user experience.|
+| **Durability** | The game should be robust, not prone to crashes or major bugs during execution.|
+
+## 5 - Acceptance & Testing Requirements
+### 5.1 - Acceptance:
+The product will be considered done when:
+- all the main pacmans features will be there.
+- no major bugs will be encountered by the player.
+- the main menu will be usable.
+- the gameplay will be balanced (not too hard, but not too easy).
+- the player will be able to go from a level to another by finishing the game.
+
+### 5.2 - Testing requirements:
+Test cases: unit tests, integration tests and system tests.
+Success criteria: clearly state the criteria that will indicate whether or not a test is successful or not.
+Backups and recovery test: must ensure that backups and recovery tests are working correctly to prevent data loss.
+## 6 - Constraints
+### 6.1 - Technical Constraints
+Assembler comptability: code must be compatible with the x86 architecture and the NASM assembler
+
+DOSBox emulator: The game must run as smooth as possible on the emulator, this pushes data limitations, framerate limitations...
+
+### 6.2 - Resource constraints
+Memory limitations: Assembly language is memory intensive and time-consuming, moreover DOSBox limitations must be taken into account to avoid crashed and performance issues.
+
+### 6.3 - Time Constaints 
+Schedule : Deadlines are tight and we must comply to the contractor needs within these time limits, adding new mechanics will be challenging. 
+
+### 6.4 - Learning Assembly
+Assembly requires deep understanding of how a machine works, learning to code is time consuming and is a real challenge, it will impact the speed of the development. 
+
+### 6.5 - Testing constraints
+Debugging the code and testing the game will be necessary but are both time consuming, however it is a necessary step of the development phase.
+
+### 6.6 - Legal constraints
+Copyrights: Pac-Man® is under copyright, therefore, our version will not be legally able to be release online to make a profit out of it. It will stay an internal project that won't be release on the internet for legal purposes.  
+
+## 7 - Risks
+### 7.1 - Technical Risks 
+Assembly language is low-level and complex, which increases the risk of errors and bugs. This complexity can lead to longer development times and difficulties in debugging and maintenance.
+
+### 7.2 - Resource Risks
+Assembly programming often requires careful management of resources like memory and processing power, especially if the game is intended for older or limited-capability hardware.
+
+### 7.3 - Testing Challenges
+Testing an Assembly language program can be more difficult than testing higher-level languages, due to the lack of advanced debugging tools and the intricacies of low-level code.
+## 8 - Dependencies
+
+* NASM Assembler: The project depends on the NASM assembler for x86 architecture to run and debug the code. 
+* DOSBox emulator: The game's testing relies on the emulator, comptability is crucial.
+
+* Assembly: The project relies on Assembly language capabilities and complexity, it must be taken into account when developing. 
+
+* Pac-Man® : The project relies on the original Pac-Man®  game.
 
 
-#### 3.2.3 DOSBox, nasm, Assembly 
+
+## 9 - Appendix
+Gantt diagram breaking down the deadlines of the project. 
+![Alt text][def] 
+
+
+## 10 - Glossary
+**Pac-Man®**: a 1980's video game created by Namco for Arcades, it is a maze action game, where the player must eat every pellets without getting hit by ghosts in order to win the game.   
+
+**maze action game**: genre of video game that involves navigating into a maze or labyrinth like environment while doing action oriented tasks.    
 
 **DOSBox**: Using DOSBox emulator is mandatory for this project, we have to comply to the emulator requirement in order to run the game.  
 This means data consumption analysis in order for the game not to crash, code optimization...   
 Understanding how the emulator works and pre-planning.
 
+**Emulator**: software that replicates the behavior of a specific machine, into another machine.
+
 **nasm**: Assembler for x86 architecture, using it to run our code in the future will be necessary.
 
-**Assembly**: Language that we will be using, low-level and time consuming, these parameters are to take into account.
+**Assembly**: Language that we will be using, low-level and time consuming, these parameters are to take into account. 
 
-
-## 4 - Non-Functional Requirements 
-
-**Performance:**
-Define the expected frame rate and responsiveness of the game.
-Specify any performance optimizations, such as minimizing CPU and memory usage.
-
-**Compatibility:**
-Ensure that the game runs smoothly on a variety of x86-based systems and is compatible with different DOSBox configurations.
-
-**Platform and Environment:**
-Clarify the specific versions and configurations of DOSBox and x86 architecture to be supported.
-Specify any system requirements for the game to run effectively.
-
-**User Interface Design:**
-Describe the overall user interface design, including the menu system, fonts, and graphical elements.
-Ensure that the user interface is user-friendly and responsive.
-
-**Accessibility:**
-Consider accessibility features to make the game usable by a wide range of players, including those with disabilities.
-Specify keyboard controls that are easy to use.
-
-**Security:**
-Address security concerns, such as protecting the game from hacks, cheats, or unauthorized access.
-
-**Scalability:**
-Define how the game handles different screen resolutions and window sizes.
-Ensure that the game's graphics and text remain clear and functional on a variety of displays.
-
-**Localization:**
-Outline plans for translating the game's text and instructions into different languages if needed.
-Ensure that the game can handle different character sets and text encodings.
-
-**Resource Management:**
-Address memory management and resource allocation to prevent memory leaks and crashes.
-
-**Documentation and Support:**
-Document the codebase, game mechanics, and development process.
-Provide user guides and support documentation for players.
-
-**Legal and Licensing Considerations:**
-Ensure compliance with any legal requirements related to intellectual property and trademarks when using the Pac-Man brand.
-
-## 5 - Acceptance & Testing Requirements
-
-## 6 - Constraints
-### 6.1 Technical Constraints
-Assembler comptability: code must be compatible with the x86 architecture and the NASM assembler
-
-DOSBox emulator: The game must run as smooth as possible on the emulator, this pushes data limitations, framerate limitations...
-
-### 6.2 Resource constraints
-Memory limitations: Assembly language is memory intensive and time-consuming, moreover DOSBox limitations must be taken into account to avoid crashed and performance issues.
-
-### 6.3 Time Constaints 
-Schedule : Deadlines are tight and we must comply to the contractor needs within these time limits, adding new mechanics will be challenging. 
-
-### 6.4 Learning Assembly
-Assembly requires deep understanding of how a machine works, learning to code is time consuming and is a real challenge, it will impact the speed of the development. 
-
-### 6.5 Testing constraints
-Debugging the code and testing the game will be necessary but are both time consuming, however it is a necessary step of the development phase.
-
-## 7 - Risks
-
-## 8 - Dependencies
-
-
-## 9  - Appendix
-
-
-
-## 10 - Glossary
-Pac-Man® :  
-Assembly language :     
-Emulator :  
-x86 :   
-DosBox :    
-maze action game :  
-
+**x86**: x86 architecture refer to a family of Intel processors architecture that appeared in the 1980's    
 
 [def]: image/gantteam6.png
