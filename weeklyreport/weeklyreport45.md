@@ -23,7 +23,12 @@ We therefore decided to try to understand in more detail the role of each member
 ### Advancement of our Functional
 
 Work on functional formatting and first ideas about the project. Our team brainstormed ideas and then Thibaud took charge of selecting and organizing the functional.  <br>
-<br>*Thibaud Marlier*
+
+<br>*Thibaud Marlier*<br>
+
+<br>The program manager in charge of the functionall, has given the Q&A some tasks to do to help it progress with the functionall.  
+
+
 
 ### Advancement of our Technical 
 
@@ -31,9 +36,22 @@ Template creation
 
 *Rémy Charles* 
 
+
 ### DOSbox 
 
 We've started to download DOSbox and understand how it works. In addition, we'll try to understand how to make an assembly language program work with DOSbox. We're also trying to link NASM with DOSbox to start coding and understanding assembly. 
 
 *Rémy Charles and Junior Sofware Engineer* 
+
+The junior software engineers managed to understand DOSbox and link it up with NASM. They are now able to launch the program and begin to understand the assembly. 
+
+*Habi cailleau and Raphël Proudh*on 
+
+### Advancement of our Readme 
+
+Start writing the README to give the Stakholder a better understanding of our project.
+<br>With a presentation of Team 6 using a table and photos corresponding to each team member.  
+
+*Rémy Charles* 
+
 
