@@ -62,6 +62,13 @@ First of all, we thought together about our Pac Man environment.
 In other words, a new map with new colors, a new universe, a new Pac Man... <br>
 
 We've also been thinking about improving the game in terms of choice. With a new menu, allowing us to change the color of our character. For those who don't know the game, here's a detail of the regels. And a category option to decrease or increase the sound. 
- 
- 
 
+### Next week's schedule 
+
+- Junior Software Engineer need to keep working on their assemblies. 
+
+- The Tech Lead is responsible for advancing the redaction of the technical. 
+
+- The Manager program must finish the functionnal by Monday. 
+
+- Then the entire team must take note of the functionnal and Q&A must check and pass on any corrections to be modified before returning the functional to the stakholder. 
