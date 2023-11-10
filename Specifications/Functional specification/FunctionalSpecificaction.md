@@ -4,7 +4,7 @@
 | ----- | ----- |
 | Author | Thibaud Marlier|
 | Team | Team 6 |
-| Reviewer(s) | Rémy CHARLES |
+| Reviewer(s) | Rémy CHARLES, Manech LAGUNES |
 | Created on | 11/06/2023 |
 | Last updated | 11/09/2023 |
 
