@@ -72,7 +72,10 @@ The objectives of this document are to provide an overview of the project and wh
 | 11/12/2023 | 5.pm   | Working prototype 
 | 21/12/2023 | 5.pm   | Final product 
 
-![Gann]()
+
+![Alt text][def]Ganntt diagram for Team 6
+
+
 ## 3 - Functional Requirements
 
 ### 3.1 - Basic Game Mechanics:
@@ -177,3 +180,6 @@ Emulator :
 x86 :   
 DosBox :    
 maze action game :  
+
+
+[def]: image/gantteam6.png
