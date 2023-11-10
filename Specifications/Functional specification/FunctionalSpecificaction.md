@@ -87,8 +87,27 @@ The objectives of this document are to provide an overview of the project and wh
 | 21/12/2023 | 5.pm   | Final product 
 
 
-![Alt text][def]Gantt diagram for Team 6
 
+## 3 - Goals and Non-goals
+### 3.1 - Goals
+- Recreate Pac-Man using Assembly language.
+- Create a game enjoyable for the user, while retaining the original concept of the game while addidng new and original twists.
+- Implement basic mechanics of the original game.
+- Add new mechanics to the game.
+- Ensure nostalagia of old gamers that used to play to the game.
+- Create a passion to new players.
+- Ensure that the game isn't boring by adding fun and modern features.
+- Ensure a stable performance of the game
+- Create an experience that is great to the player
+
+
+
+### 3.2 - Non-goals
+- Multiplayer: isn't in our project, a 2 player mode won't be on the final game.
+- Sales: The game won't be made for sale purposes, it will only be made for enjoyment and entertainment.
+- Additional game modes: Except from the other maze design, there won't be other gamemodes added to the game as we don't want to get too far of the maze action game genre. 
+- Unentertainment: the game must be entertaining and not boring.
+- Implement new physics: too time consuming and won't fit the x86 architecture.
 
 ## 3 - Functional Requirements
 In this section, we will go down the functional requirements of this project, it will include the basic game mechanics that are already into the original Pac-Man game, the features that we will implement first, and those that we will add if we have time to do so. 
