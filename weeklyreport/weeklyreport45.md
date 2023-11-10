@@ -53,7 +53,7 @@ The junior software engineers managed to understand DOSbox and link it up with N
 
 ### Advancement of our Readme 
 
-Started writing the README to give the Stakholder a better understanding of our project.
+Started writing the README to give the Stakeholder a better understanding of our project.
 <br>With a presentation of Team 6 using a table and photos corresponding to each team member.  
 
 *Rémy Charles* 
@@ -71,16 +71,16 @@ We've also been thinking about improving the game in terms of choice. With a new
 
 ### Project Charter
 
-The Project Manager finishes the project charter. 
+The Project Manager finished the project charter. 
 
 *Raphël Descamps* 
 
 ### Next week's schedule 
 
-- Junior Software Engineer need to keep working on their assemblies. 
+- Junior Software Engineer need to keep working on their assemblies learning. 
 
 - The Tech Lead is responsible for advancing the redaction of the technical. 
 
-- The Manager program must finish the functionnal by Monday. 
+- The Program Manager must finish the functional by Monday. 
 
-- Then the entire team must take note of the functionnal and Q&A must check and pass on any corrections to be modified before returning the functional to the stakholder. 
+- Then the entire team must take notes of the functionnal and QA must check and pass on any corrections to be made before returning the functional to the stakeholder. 
