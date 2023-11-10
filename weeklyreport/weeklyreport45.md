@@ -12,7 +12,7 @@
 
 Several members of the team do not know each other. So we decided to all introduce ourselves one by one. To get to know each other better.
 
-*All team member*
+*All Team*
 
 ### Brainstorming about the differents roles : 
 
@@ -20,13 +20,17 @@ For the whole team except Remy it was our first project with roles assigned to e
 
 We therefore decided to try to understand in more detail the role of each member of the team. To be more efficient and more organized in the rest of our project.
 
+*All Team*
+
 ### Advancement of our Functional
 
 Work on functional formatting and first ideas about the project. Our team brainstormed ideas and then Thibaud took charge of selecting and organizing the functional.  <br>
 
-<br>*Thibaud Marlier*<br>
+*Thibaud Marlier*<br>
 
-<br>The program manager in charge of the functionall, has given the Q&A some tasks to do to help it progress with the functionall.  
+The program manager in charge of the functionall, has given the Q&A some tasks to do to help it progress with the functionall. 
+
+*Thibaud Marlier and Manech Laguens*
 
 
 
@@ -62,6 +66,14 @@ First of all, we thought together about our Pac Man environment.
 In other words, a new map with new colors, a new universe, a new Pac Man... <br>
 
 We've also been thinking about improving the game in terms of choice. With a new menu, allowing us to change the color of our character. For those who don't know the game, here's a detail of the regels. And a category option to decrease or increase the sound. 
+
+*All Team*
+
+### Project Charter
+
+The Project Manager finishes the project charter. 
+
+*Raphël Descamps* 
 
 ### Next week's schedule 
 
