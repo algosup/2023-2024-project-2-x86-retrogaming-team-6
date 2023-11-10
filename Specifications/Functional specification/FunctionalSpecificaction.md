@@ -133,7 +133,7 @@ These features will be added once every other features have been added to the ga
 This means data consumption analysis in order for the game not to crash, code optimization...   
 Understanding how the emulator works and pre-planning.
 
-**nasm**: Assembler for x86 architecture, using it to run our code in the future will be necessary.*
+**nasm**: Assembler for x86 architecture, using it to run our code in the future will be necessary.
 
 **Assembly**: Language that we will be using, low-level and time consuming, these parameters are to take into account.
 
@@ -183,7 +183,22 @@ Ensure compliance with any legal requirements related to intellectual property a
 ## 5 - Acceptance & Testing Requirements
 
 ## 6 - Constraints
-Copyright Namco, Pac-Man is a trademark  
+### 6.1 Technical Constraints
+Assembler comptability: code must be compatible with the x86 architecture and the NASM assembler
+
+DOSBox emulator: The game must run as smooth as possible on the emulator, this pushes data limitations, framerate limitations...
+
+### 6.2 Resource constraints
+Memory limitations: Assembly language is memory intensive and time-consuming, moreover DOSBox limitations must be taken into account to avoid crashed and performance issues.
+
+### 6.3 Time Constaints 
+Schedule : Deadlines are tight and we must comply to the contractor needs within these time limits, adding new mechanics will be challenging. 
+
+### 6.4 Learning Assembly
+Assembly requires deep understanding of how a machine works, learning to code is time consuming and is a real challenge, it will impact the speed of the development. 
+
+### 6.5 Testing constraints
+Debugging the code and testing the game will be necessary but are both time consuming, however it is a necessary step of the development phase.
 
 ## 7 - Risks
 
