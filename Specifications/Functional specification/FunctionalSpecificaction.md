@@ -49,7 +49,7 @@
 
 ## 1 - Introduction 
 
-### 1.1 - Pac-Man®
+### 1.1 - [Pac-Man®](#11---pac-man®)
 The Pac-Man video game was released in 1980. It is a maze action game developed by Namco, originally for arcades. The player controls Pac-Man, who is chased by four different ghosts in a maze. The player's goal is to eat every dot in the maze to complete the level and move on to the next one.
 But there's a twist: large flashing dots, named "Power Pellets", turn the ghosts blue, making them vulnerable to the player and gives bonus points to him/her.  
 This is a simple arcade game originally designed for childrens and teenagers.  
@@ -57,12 +57,12 @@ The player has to accumulate as many points as possible until he runs out of liv
 
 ![Alt text](https://www.capitalkoala.com/project/public/media//pac-man-jeu-video.jpg)
 
-### 1.2 - Assembly language
-Assembly is a low-level programming language, created in 1947, closely related to the architecture of a CPU. Each assembly language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow. Assembly is used to write programs that interact directly with a computer's hardware and control its operations. Assembly is specific to a particular CPU architecture, and code written for one type of CPU may not be compatible with another. 
+### 1.2 - [Assembly](#10---glossary) language
+[Assembly](#10---glossary) is a low-level programming language, created in 1947, closely related to the architecture of a CPU. Each [Assembly](#10---glossary) language instruction corresponds to a specific operation that the CPU can perform, such as arithmetic calculations, data movement, and control flow. [Assembly](#10---glossary) is used to write programs that interact directly with a computer's hardware and control its operations. [Assembly](#10---glossary) is specific to a particular CPU architecture, and code written for one type of CPU may not be compatible with another. 
 
 ### 1.3 - Our passion 
 We have a deep appreciation for the history of video games and we are  particularly fascinated by the arcade era. We discovered Pac-Man in our childhood and became captivated by its simplicity and challenging gameplay. We are computer science students who are intrigued by the technical aspects of classic arcade games.         
-We are willing to recreate the game in a challenging way, with Assembly.           
+We are willing to recreate the game in a challenging way, with [Assembly](#10---glossary).           
 We are willing to push ourselves and make the version of Pac-Man® we always dreamed of.         
 We are willing to give our best while keeping the original and timeless format of Pac-Man®
 
@@ -70,10 +70,10 @@ We are willing to give our best while keeping the original and timeless format o
 ## 2 - Project Scope and Obectives
 
 ### 2.1 - Scope 
-The scope of this project is to recreate the classic Pac-Man® , using Assembly language on x86 on DosBox.
+The scope of this project is to recreate the classic [Pac-Man®](#11---pac-man®) , using [Assembly](#10---glossary) language on [x86](#10---glossary) on [DOSbox](#10---glossary).
 
 ### 2.2 - Objectives 
-The objectives of this project are simple; we must recreate Pac-Man® using Assembly language on an emulator.
+The objectives of this project are simple; we must recreate Pac-Man® using [Assembly](#10---glossary) language on an [emulator](#10---glossary).
 The game must be as enjoyable as the original, reusing the concept of the maze action game, while adding a new and original twists to it.
 The objectives of this document are to provide an overview of the project and what needs to be accomplished in the next few weeks. It will be used as a 'placeholder' for our ideas, as well as for the client to understand and gain insight into what the game will resemble by the end of the project.
 
@@ -145,8 +145,8 @@ Our goal is to add as much of these features as possible, we will try and put th
 
 | **Requirement** | **Description** |
 | --- | --- |
-| **Performance** | The game must run smoothly on a variety of x86-based systems and configurations.|
-| **Hardware Compatibility** | Specifically designed for compatibility with the intended hardware, the game must be compatible with the specific hardware (16-bit x86 CPU from 1982).|
+| **Performance** | The game must run smoothly on a variety of [x86](#10---glossary)-based systems and configurations.|
+| **Hardware Compatibility** | Specifically designed for compatibility with the intended hardware, the game must be compatible with the specific hardware (16-bit [x86](#10---glossary) CPU from 1982).|
 | **Memory Usage** | Efficient memory usage is crucial, especially for systems with limited memory capacity. <br> Aim for optimized memory utilization to avoid leaks and overloads.|
 | **Control Responsiveness** | Game controls must be responsive and precise, offering a good user experience.|
 | **Durability** | The game should be robust, not prone to crashes or major bugs during execution.|
@@ -166,18 +166,18 @@ Success criteria: clearly state the criteria that will indicate whether or not a
 Backups and recovery test: must ensure that backups and recovery tests are working correctly to prevent data loss.
 ## 6 - Constraints
 ### 6.1 - Technical Constraints
-Assembler comptability: code must be compatible with the x86 architecture and the NASM assembler
+Assembler comptability: code must be compatible with the [x86](#10---glossary) architecture and the [NASM](#10---glossary) assembler
 
-DOSBox emulator: The game must run as smooth as possible on the emulator, this pushes data limitations, framerate limitations...
+[DOSbox](#10---glossary) [emulator](#10---glossary): The game must run as smooth as possible on the [emulator](#10---glossary), this pushes data limitations, framerate limitations...
 
 ### 6.2 - Resource constraints
-Memory limitations: Assembly language is memory intensive and time-consuming, moreover DOSBox limitations must be taken into account to avoid crashed and performance issues.
+Memory limitations: [Assembly](#10---glossary) language is memory intensive and time-consuming, moreover [DOSbox](#10---glossary) limitations must be taken into account to avoid crashed and performance issues.
 
 ### 6.3 - Time Constaints 
 Schedule : Deadlines are tight and we must comply to the contractor needs within these time limits, adding new mechanics will be challenging. 
 
-### 6.4 - Learning Assembly
-Assembly requires deep understanding of how a machine works, learning to code is time consuming and is a real challenge, it will impact the speed of the development. 
+### 6.4 - Learning [Assembly](#10---glossary)
+[Assembly](#10---glossary) requires deep understanding of how a machine works, learning to code is time consuming and is a real challenge, it will impact the speed of the development. 
 
 ### 6.5 - Testing constraints
 Debugging the code and testing the game will be necessary but are both time consuming, however it is a necessary step of the development phase.
@@ -187,19 +187,19 @@ Copyrights: Pac-Man® is under copyright, therefore, our version will not be leg
 
 ## 7 - Risks
 ### 7.1 - Technical Risks 
-Assembly language is low-level and complex, which increases the risk of errors and bugs. This complexity can lead to longer development times and difficulties in debugging and maintenance.
+[Assembly](#10---glossary) language is low-level and complex, which increases the risk of errors and bugs. This complexity can lead to longer development times and difficulties in debugging and maintenance.
 
 ### 7.2 - Resource Risks
-Assembly programming often requires careful management of resources like memory and processing power, especially if the game is intended for older or limited-capability hardware.
+[Assembly](#10---glossary) programming often requires careful management of resources like memory and processing power, especially if the game is intended for older or limited-capability hardware.
 
 ### 7.3 - Testing Challenges
-Testing an Assembly language program can be more difficult than testing higher-level languages, due to the lack of advanced debugging tools and the intricacies of low-level code.
+Testing an [Assembly](#10---glossary) language program can be more difficult than testing higher-level languages, due to the lack of advanced debugging tools and the intricacies of low-level code.
 ## 8 - Dependencies
 
-* NASM Assembler: The project depends on the NASM assembler for x86 architecture to run and debug the code. 
-* DOSBox emulator: The game's testing relies on the emulator, comptability is crucial.
+* [NASM](#10---glossary) Assembler: The project depends on the [NASM](#10---glossary) assembler for [x86](#10---glossary) architecture to run and debug the code. 
+* [DOSbox](#10---glossary) [emulator](#10---glossary): The game's testing relies on the [emulator](#10---glossary), comptability is crucial.
 
-* Assembly: The project relies on Assembly language capabilities and complexity, it must be taken into account when developing. 
+* [Assembly](#10---glossary): The project relies on [Assembly](#10---glossary) language capabilities and complexity, it must be taken into account when developing. 
 
 * Pac-Man® : The project relies on the original Pac-Man®  game.
 
@@ -215,13 +215,13 @@ Gantt diagram breaking down the deadlines of the project.
 
 **maze action game**: genre of video game that involves navigating into a maze or labyrinth like environment while doing action oriented tasks.    
 
-**DOSBox**: Using DOSBox emulator is mandatory for this project, we have to comply to the emulator requirement in order to run the game.  
+**DOSbox**: Using DOSbox emulator is mandatory for this project, we have to comply to the emulator requirement in order to run the game.  
 This means data consumption analysis in order for the game not to crash, code optimization...   
 Understanding how the emulator works and pre-planning.
 
 **Emulator**: software that replicates the behavior of a specific machine, into another machine.
 
-**nasm**: Assembler for x86 architecture, using it to run our code in the future will be necessary.
+**NASM**: Assembler for x86 architecture, using it to run our code in the future will be necessary.
 
 **Assembly**: Language that we will be using, low-level and time consuming, these parameters are to take into account. 
 
