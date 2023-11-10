@@ -54,4 +54,14 @@ Start writing the README to give the Stakholder a better understanding of our pr
 
 *Rémy Charles* 
 
+### Brainstorming ideas for our Pac Man version  
+
+#### New features :
+
+First of all, we thought together about our Pac Man environment. 
+In other words, a new map with new colors, a new universe, a new Pac Man... <br>
+
+We've also been thinking about improving the game in terms of choice. With a new menu, allowing us to change the color of our character. For those who don't know the game, here's a detail of the regels. And a category option to decrease or increase the sound. 
+ 
+ 
 
