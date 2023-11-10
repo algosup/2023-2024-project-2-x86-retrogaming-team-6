@@ -73,7 +73,7 @@ The objectives of this document are to provide an overview of the project and wh
 | 21/12/2023 | 5.pm   | Final product 
 
 
-![Alt text][def]Ganntt diagram for Team 6
+![Alt text][def]Gantt diagram for Team 6
 
 
 ## 3 - Functional Requirements
@@ -97,24 +97,45 @@ The objectives of this document are to provide an overview of the project and wh
 | High Scores | We will include the original leaderboard, that stores the high scores of the player. |
 | Game Settings | Audio settings could be tweaked by the player in the setting section. |
 | Pause button | Player should be able to pause the game. |
+| Life system | The player starts the game with 3 lives, each 10 000  points, the player earns an additional life. |
 
 
 
 
 ### 3.2 - New Game Mechanics
 #### 3.2.1 - Essential new game mechanics 
+These new mechanics are those that we will try to prioritize the implementation into the game. 
 
 | **New Mechanic** | **Description** |
 | --- | --- |
-|  |  |
-
+| UI modification |Adding some modification to the original UI in order to make it our own way, and add something original to the game.  |
+| New maze design | Implementation of a new maze that will be into a different section of the original maze design (like a second gamemode). |
+| Character's color | Adding new color customization to the main character of the game, the player must be able to choose it. |
+| Game state | Changing the UI and the maze design, obligates us to create whole new game states |
+| New Bonuses | Implementing the concept of the original bonuses that appears each level (cherry, peach...), but we will add our own spice to it |
+| Leaderboard | Providing the ability to the player to score his high scores into a leaderboard|
+| Rule section  | Adding a rule section in the menu to explain new players what the rules of the game are. |
 #### 3.2.2 - Potential new game mechanics
+
+These features will be added once every other features have been added to the game, they could be implemented later, in future updates. 
 
 | **Potential New Mechanic** | **Description** |
 | --- | --- |
+| New powers | Power pellets will be giving new powers, such as invicibility (transparency), killing all Ghost direclty (send them back to their base), for instance |
+| skins | Adding the possibility for the player to add even more customization to the character |
+| Point milestones | Once the player reaches a certain amount of point in game, he could receive some gift, such as cosmetics, new colors for the character... |
+
 
 
 #### 3.2.3 DOSBox, nasm, Assembly 
+
+**DOSBox**: Using DOSBox emulator is mandatory for this project, we have to comply to the emulator requirement in order to run the game.  
+This means data consumption analysis in order for the game not to crash, code optimization...   
+Understanding how the emulator works and pre-planning.
+
+**nasm**: Assembler for x86 architecture, using it to run our code in the future will be necessary.*
+
+**Assembly**: Language that we will be using, low-level and time consuming, these parameters are to take into account.
 
 
 ## 4 - Non-Functional Requirements 
