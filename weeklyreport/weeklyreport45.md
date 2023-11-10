@@ -65,7 +65,7 @@ Started writing the README to give the Stakeholder a better understanding of our
 First of all, we thought together about our Pac Man environment. 
 In other words, a new map with new colors, a new universe, a new Pac Man... <br>
 
-We've also been thinking about improving the game in terms of choice. With a new menu, allowing us to change the color of our character. For those who don't know the game, here's a detail of the regels. And a category option to decrease or increase the sound. 
+We've also been thinking about improving the game in terms of choice. With a new menu, allowing us to change the color of our character. For the people that arent familiar with the rules, there will be a section to learn them. And a category option to decrease or increase the sound. 
 
 *All Team*
 
