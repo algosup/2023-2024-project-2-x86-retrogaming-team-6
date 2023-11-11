@@ -4,7 +4,7 @@
 | ----- | ----- |
 | Author | Thibaud Marlier|
 | Team | Team 6 |
-| Reviewer(s) | Rémy CHARLES, Manech LAGUNES |
+| Reviewer(s) | Rémy CHARLES, Manech LAGUENS |
 | Created on | 11/06/2023 |
 | Last updated | 11/10/2023 |
 
@@ -116,22 +116,22 @@ In this section, we will go down the functional requirements of this project, it
 
 | **Mechanic** | **Description** |
 | --- | --- |
-| Level progression | Once the player has collected all the pellets available in the maze, a new level will appear, and bonus points will be awarded to the player. |
-| Player movement | The player must be able to control its character |
-| Ghost AI | Ghosts have to follow a specific pattern that will be created by the developers. |
-| Pellet collection | The character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player. |
-| Maze Design | The layout will be based on the original Pac-Man® game. The maze dimension will be the same as the original one from Pac-Man® |
-| Scoring System | Points will be determined based on the original Pac-Man® game point system  |
-| Game States | The game will include a start menu with "Start Game," "Rules," "Options," and "Credits" buttons.  |
-| User Interface | We will recreate the original User Interface of Pac-Man®.  
-| Audio | The famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.The song playing when you get caught by a ghost will be implemented. We will add the game-over and the level up sounds. |
-| Input Controls | The player will be able to move the character using a  QWERTY keyboard (WASD) and the directional arrows |
-| Collision Detection | We will implement collision detection between Pac-Man, ghosts, and other game objects.|
-| Win and Lose Conditions | The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. |
-| High Scores | We will include the original leaderboard, that stores the high scores of the player. |
-| Game Settings | Audio settings could be tweaked by the player in the setting section. |
-| Pause button | Player should be able to pause the game. |
-| Life system | The player starts the game with 3 lives, each 10 000  points, the player earns an additional life. |      
+| **Level progression**| Once the player has collected all the pellets available in the maze, a new level will appear, and bonus points will be awarded to the player. |
+| **Player movement** | The player must be able to control its character |
+| **Ghost AI** | Ghosts have to follow a specific pattern that will be created by the developers. |
+| **Pellet collection** | The character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player. |
+| **Maze Design** | The layout will be based on the original Pac-Man® game. The maze dimension will be the same as the original one from Pac-Man® |
+| **Scoring System** | Points will be determined based on the original Pac-Man® game point system  |
+| **Game States** | The game will include a start menu with "Start Game," "Rules," "Options," and "Credits" buttons.  |
+| **User Interface** | We will recreate the original User Interface of Pac-Man®.  
+| **Audio** | The famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game.The song playing when you get caught by a ghost will be implemented. We will add the game-over and the level up sounds. |
+| **Input Controls** | The player will be able to move the character using a  QWERTY keyboard (WASD) and the directional arrows |
+| **Collision Detection** | We will implement collision detection between Pac-Man, ghosts, and other game objects.|
+|**Win and Lose Conditions**| The player wins when every pellets have been eaten, the player loses a life whenever he gets caught by a ghost. |
+| **High Scores** | We will include the original leaderboard, that stores the high scores of the player. |
+| **Game Settings** | Audio settings could be tweaked by the player in the setting section. |
+| **Pause button** | Player should be able to pause the game. |
+| **Life system**| The player starts the game with 3 lives, each 10 000  points, the player earns an additional life. |      
 
 ### 4.2 - New Game Mechanics
 #### 4.2.1 - Essential new game mechanics 
@@ -139,13 +139,13 @@ These new mechanics are those that we will try to prioritize the implementation 
 
 | **New Mechanic** | **Description** |
 | --- | --- |
-| UI modification |Adding some modification to the original UI in order to make it our own way, and add something original to the game.  |
-| New maze design | Implementation of a new maze that will be into a different section of the original maze design (like a second gamemode). |
-| Character's color | Adding new color customization to the main character of the game, the player must be able to choose it. |
-| Game state | Changing the UI and the maze design, obligates us to create whole new game states |
-| New Bonuses | Implementing the concept of the original bonuses that appears each level (cherry, peach...), but we will add our own spice to it |
-| Leaderboard | Providing the ability to the player to score his high scores into a leaderboard|
-| Rule section  | Adding a rule section in the menu to explain new players what the rules of the game are. |
+| **UI modification** |Adding some modification to the original UI in order to make it our own way, and add something original to the game.  |
+| **New maze design** | Implementation of a new maze that will be into a different section of the original maze design (like a second gamemode). |
+| **Character's color**| Adding new color customization to the main character of the game, the player must be able to choose it. |
+| **Game state** | Changing the UI and the maze design, obligates us to create whole new game states |
+| **New Bonuses** | Implementing the concept of the original bonuses that appears each level (cherry, peach...), but we will add our own spice to it |
+| **Leaderboard** | Providing the ability to the player to score his high scores into a leaderboard|
+| **Rule section**  | Adding a rule section in the menu to explain new players what the rules of the game are. |
 
 #### 4.2.2 - Potential new game mechanics
 
@@ -153,9 +153,9 @@ These features will be added once every other features have been added to the ga
 
 | **Potential New Mechanic** | **Description** |
 | --- | --- |
-| New powers | Power pellets will be giving new powers, such as invicibility (transparency), killing all Ghost direclty (send them back to their base), for instance |
-| skins | Adding the possibility for the player to add even more customization to the character |
-| Point milestones | Once the player reaches a certain amount of point in game, he could receive some gift, such as cosmetics, new colors for the character... |
+| **New powers** | Power pellets will be giving new powers, such as invicibility (transparency), killing all Ghost direclty (send them back to their base), for instance |
+| **Skins** | Adding the possibility for the player to add even more customization to the character |
+| **Point milestones** | Once the player reaches a certain amount of point in game, he could receive some gift, such as cosmetics, new colors for the character... |
 
 Our goal is to add as much of these features as possible, we will try and put them all into the game.
 
