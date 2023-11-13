@@ -83,11 +83,11 @@ The objectives of this document are to provide an overview of the project and wh
 ### 2-3 - Project Schedule and Deadlines
 | Deadlines|          | Details  | 
 |----------|----------|----------|
-| 13/11/2023 | 1:30pm | Functional specification
-| 27/11/2023 | 1.30pm | Technical specification
-| 08/12/2023 | 5.pm   | Test plan 
-| 11/12/2023 | 5.pm   | Working prototype 
-| 21/12/2023 | 5.pm   | Final product 
+| 11/13/2023 | 1:30pm | Functional specification
+| 11/27/2023 | 1.30pm | Technical specification
+| 12/08/2023 | 5.pm   | Test plan 
+| 12/11/2023 | 5.pm   | Working prototype 
+| 12/21/2023 | 5.pm   | Final product 
 
 
 ## 3 - Goals and Non-goals
