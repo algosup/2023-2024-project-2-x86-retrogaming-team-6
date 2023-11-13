@@ -4,7 +4,7 @@
 | ----- | ----- |
 | Author | Thibaud Marlier|
 | Team | Team 6 |
-| Reviewer(s) | Rémy CHARLES, Manech LAGUENS |
+| Reviewers | Rémy CHARLES, Manech LAGUENS |
 | Created on | 11/06/2023 |
 | Last updated | 11/13/2023 |
 
@@ -70,7 +70,7 @@ We are willing to push ourselves and make the version of Pac-Man® we always dre
 We are willing to give our best while keeping the original and timeless format of Pac-Man®
 
 
-## 2 - Project Scope and Obectives
+## 2 - Project Scope and Objectives
 
 ### 2.1 - Scope 
 The scope of this project is to recreate the classic [Pac-Man®](#11---pac-man®) , using [Assembly](#10---glossary) language on [x86](#10---glossary) on [DOSbox](#10---glossary).
@@ -194,7 +194,7 @@ Assembler comptability: code must be compatible with the [x86](#10---glossary) a
 ### 7.2 - Resource constraints
 Memory limitations: [Assembly](#10---glossary) language is memory intensive and time-consuming, moreover [DOSbox](#10---glossary) limitations must be taken into account to avoid crashed and performance issues.
 
-### 7.3 - Time Constaints 
+### 7.3 - Time Constraints 
 Schedule : Deadlines are tight and we must comply to the contractor needs within these time limits, adding new mechanics will be challenging. 
 
 ### 7.4 - Learning [Assembly](#10---glossary)
