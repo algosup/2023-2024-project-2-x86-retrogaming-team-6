@@ -6,7 +6,7 @@
 | Team | Team 6 |
 | Reviewer(s) | Rémy CHARLES, Manech LAGUENS |
 | Created on | 11/06/2023 |
-| Last updated | 11/10/2023 |
+| Last updated | 11/13/2023 |
 
 ### Table of content : 
 <details><summary> Click to expand </summary>
@@ -179,9 +179,12 @@ The product will be considered done when:
 - the player will be able to go from a level to another by finishing the game.
 
 ### 6.2 - Testing requirements:
-Test cases: unit tests, integration tests and system tests.
-Success criteria: clearly state the criteria that will indicate whether or not a test is successful or not.
-Backups and recovery test: must ensure that backups and recovery tests are working correctly to prevent data loss.
+**Test cases:** unit tests, integration tests and User Interface.
+
+**Success criteria:** These criterias will be based on the goals and non-goals, once they'll meet all the requirements statuated there, it will be approved by the team and the QA.   
+
+**Backups and recovery test:** We will ensure to make save backups in order to prevent any crash and/or loss of data.
+
 ## 7 - Constraints
 ### 7.1 - Technical Constraints
 Assembler comptability: code must be compatible with the [x86](#10---glossary) architecture and the [NASM](#10---glossary) assembler
