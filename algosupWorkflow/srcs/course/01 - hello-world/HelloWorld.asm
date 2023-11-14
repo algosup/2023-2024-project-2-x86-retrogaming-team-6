@@ -3,7 +3,8 @@ org 100h
 ; -----------------------------------------------
 ; We declare some initialized data.
 section .data
-    hello db 'Hello, World!$'   ; DOS printable string must be terminated by a dollar sign.
+    ;hello db 'Hello, World!$'   ; DOS printable string must be terminated by a dollar sign.
+    hello db 'Hello, World!' , 0 ; 
 
 ; -----------------------------------------------
 ; This section host code.
