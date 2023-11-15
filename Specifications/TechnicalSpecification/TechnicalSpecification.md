@@ -6,7 +6,7 @@
 | Team | Team 6 |
 | Reviewer(s) |  |
 | Created on | 11/13/2023 |
-| Last updated | 11/13/2023 |
+| Last updated | 11/15/2023 |
 
 ## Table of Contents
 
@@ -74,17 +74,107 @@ This document is intended for use by the software development team, project mana
 
 ## 2. Technical Overview
 ### 2.1 System Requirements
-Detail the necessary hardware and software specifications for the project. Include minimum and recommended requirements.
+
+The system requirements for Team 6's Pac-Man® project are specifically tailored to ensure compatibility and optimal performance for the game's development and execution. These requirements are fundamental to achieving the technical objectives of the project while working within the constraints of our chosen development environment.
+
+Hardware requirements:
+- **Processor**: Must support x86 architecture, with a preference for a 16-bit processor to closely emulate the original game's environment.
+- **Memory**: Minimum of 512 KB RAM, with 1 MB or higher recommended for better performance.
+- **Storage**: A minimum of 10 MB of free disk space for installing the game and storing saved game data.
+- **Input Devices**: Keyboard interfacing is essential for gameplay control. Optional support for additional input devices like gamepads or joysticks can be considered for enhanced player experience.
+
+Software Requirements:
+- **Operating System**: DOSBox emulator is a mandatory requirement to provide a DOS environment on modern operating systems. This allows for accurate emulation of the game's intended runtime environment.
+- **Programming Language**: NASM (Netwide Assembler) is required for Assembly language development, chosen for its direct compatibility with x86 architecture and efficiency in handling low-level operations.
+- **Development Tools**: A robust text editor (such as VSCode) for coding, integrated with version control systems like Git for source code management. Compatibility with debugging tools that support Assembly language, NASM, and DOSBox integration is crucial for efficient development and troubleshooting.
+
+Compatibility:
+- The game should be executable on both modern and legacy systems meeting the above hardware specifications. Emphasis on backward compatibility is essential to maintain the authenticity of the gameplay experience.
+- Ensuring robustness and performance consistency within the DOSBox emulator is critical, as it forms the backbone of our development and testing environment.
+
+These system requirements are designed with a focus on the technical nuances and constraints specific to low-level programming in Assembly language and the emulation of a classic gaming environment. Compliance with these requirements will ensure that the Pac-Man® project is developed with precision, catering to both the nostalgic appeal of the original game and the technical prowess expected in modern software engineering.
 
 ### 2.2 Programming Language and Tools
-Discuss the rationale behind choosing Assembly language, NASM, and DOSBox. Include a diagram to illustrate how these tools interact. `[ToolsInteractionDiagram]`
+For the development of Team 6's Pac-Man® project, we have selected a set of programming tools and a language that align with our project's technical goals and the necessity for precise low-level programming control.
+
+NASM (Netwide Assembler):
+- **Role**: Chosen for its direct compatibility with x86 architecture, NASM is our assembler for writing Assembly language code. It is pivotal for developing the intricate low-level functionalities of the game.
+- **Advantages**: NASM is renowned for its efficiency and flexibility, essential in executing complex programming tasks inherent in game development, such as memory management and hardware interaction.
+- **Application**: NASM will be utilized for the entire coding process, encompassing the implementation of game mechanics, graphics rendering, and user input handling.
+
+DOSbox Emulator:
+- **Role**: DOSBox is essential for emulating a DOS environment, allowing us to test and run the game in a setting that mirrors the original hardware conditions.
+- **Advantages**: By using DOSBox, we can ensure compatibility with modern operating systems while maintaining the authentic feel and constraints of the DOS-based gameplay experience.
+- **Application**: It serves as the primary platform for testing, debugging, and demonstrating the game, providing a consistent and accurate emulation of the game's performance.
+
+Development Environment - Visual Studio Code (VSCode):
+- **Primary Tool**: VSCode will be the main development environment for the project, offering a comprehensive and integrated platform for code writing, editing, and debugging.
+- **Features**: VSCode is selected for its extensive feature set, including advanced syntax highlighting, intelligent code completion, integrated version control with Git, and debugging support. These features enhance development efficiency and collaboration.
+- **Extensions**: VSCode’s support for extensions allows us to customize the environment to our specific needs, including NASM syntax support and direct integration with DOSBox for seamless testing and debugging.
+
+Additional Tools:
+- **Build and Automation Scripts**: We will utilize custom scripts to automate repetitive tasks like building and deploying the game, enhancing development efficiency.
+- **Performance Profiling**: Tools integrated into VSCode will be used to monitor and optimize the game's performance, particularly focusing on CPU and memory usage to ensure smooth gameplay.
+
+`[ToolsInteractionDiagram]`
 
 ## 3. System Architecture
 ### 3.1 High-Level Architecture
-Provide an overview of the system's architecture. A block diagram showing the main components would be helpful. `[SystemArchitectureDiagram]`
+
+The high-level architecture of Team 6's Pac-Man® project is designed to efficiently handle the complexities of a game developed in Assembly language while ensuring fidelity to the original Pac-Man® experience. The architecture is structured to promote modularity, scalability, and maintainability.
+
+Core Components:
+- **Game Engine**: The central component responsible for managing game mechanics, physics, and interactions. It processes input commands, updates game state, and renders the game screen.
+- **Rendering Module**: Dedicated to graphics processing, this module handles the rendering of game elements including the maze, Pac-Man®, ghosts, and score display, ensuring adherence to the classic visual style.
+- **Input Control System**: Manages player inputs using keyboard or other supported devices. It translates these inputs into actions within the game.
+- **Sound Engine**: Responsible for audio processing, including the iconic "wakka-wakka" sound effects and background music, contributing to the game's immersive experience.
+- **Memory Management**: Critical for optimizing the game’s performance on the x86 architecture, especially given the constraints of Assembly language programming.
+
+Data Flow:
+- **Input to Action**: Player inputs are captured by the Input Control System and relayed to the Game Engine where they influence game dynamics and character movements.
+- **Game State Management**: The Game Engine continuously updates the game state based on player actions, game rules, and AI behaviors.
+- **Rendering Cycle**: The Rendering Module receives updates from the Game Engine and translates them into visual elements on the screen, ensuring a seamless gaming experience.
+- **Audio Feedback**: Sound cues corresponding to game events (like eating pellets or ghost encounters) are triggered by the Sound Engine in sync with the game state.
+
+Integration Points:
+- **DOSBox Interface**: The game interfaces with the DOSBox emulator for execution and testing, ensuring compatibility with a wide range of systems.
+- **Development and Debugging Tools**: Integration with tools in VSCode, including the debugger and performance profiler, facilitates efficient development and maintenance.
+
+This architecture is designed with a clear separation of concerns, ensuring that each module can be developed, tested, and maintained independently while functioning cohesively as part of the larger system. The modular approach also allows for future enhancements and adaptations with minimal impact on the overall system.
+
+`[SystemArchitectureDiagram]`
 
 ### 3.2 Component Interaction
-Describe how different components of the system will communicate and interact with each other. Include a flowchart if necessary. `[ComponentInteractionFlowchart]`
+
+Understanding the interaction between various components of the Pac-Man® game is essential for effective development and integration. This section details how each key component of the system architecture communicates and collaborates to deliver a cohesive gaming experience.
+
+Game Engine and Input Control System:
+- **Input Processing**: The Input Control System captures player commands (keyboard or optional gamepad inputs) and sends these inputs to the Game Engine.
+- **Action Translation**: The Game Engine interprets these inputs and translates them into corresponding actions for Pac-Man® or game settings (like pause or exit).
+
+Game Engine and Rendering Module:
+- **State Rendering**: The Game Engine sends information about the current game state (Pac-Man®'s position, ghost movements, score, etc.) to the Rendering Module.
+- **Visual Feedback**: The Rendering Module, in turn, generates the visual representation of the current game state, updating the screen with real-time changes.
+
+Game Engine and Sound Engine:
+- **Audio Triggers**: Specific game events handled by the Game Engine (like eating a pellet or a ghost encounter) trigger audio responses.
+- **Sound Playback**: The Sound Engine plays the appropriate sound effects and background music, enhancing the game's immersive experience.
+
+Game Engine and Memory Management:
+- **Resource Allocation**: The Game Engine works closely with the Memory Management component to efficiently allocate and utilize memory resources, crucial in Assembly language development.
+- **Performance Optimization**: Memory Management ensures optimal game performance by preventing memory leaks and managing data storage effectively.
+
+Integration with DOSBox:
+- **Execution Environment**: DOSBox provides the necessary DOS environment for running the game, with the Game Engine and other modules operating within this framework.
+- **Compatibility Assurance**: The seamless integration with DOSBox ensures that the game is compatible and performs consistently across different hardware and operating systems.
+
+Development and Debugging Tools Integration:
+- **Code Development**: The integration with VSCode allows developers to write, edit, and manage Assembly code efficiently.
+- **Debugging and Testing**: Tools within VSCode facilitate debugging and performance profiling, allowing developers to identify and resolve issues during development.
+
+This interplay between components ensures that the game operates smoothly, reflecting player interactions in real-time gameplay while maintaining the look and feel of the classic Pac-Man®. The modular design also aids in isolating and addressing issues in specific areas without impacting the entire system.
+
+`[ComponentInteractionFlowchart]`
 
 ## 4. Detailed Component Design
 ### 4.1 Game Engine
