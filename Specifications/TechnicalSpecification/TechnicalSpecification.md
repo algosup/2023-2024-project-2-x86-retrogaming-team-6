@@ -5,8 +5,8 @@
 | Author | Rémy CHARLES|
 | Team | Team 6 |
 | Reviewer(s) |  |
-| Created on | 11/13/2023 |
-| Last updated | 11/15/2023 |
+| Created on | 2023-11-13 |
+| Last updated | 2023-11-16 |
 
 ## Table of Contents
 
@@ -34,8 +34,6 @@
     - [6.2 Audio and Visual Elements](#62-audio-and-visual-elements)
   - [7. Security and Privacy Considerations](#7-security-and-privacy-considerations)
   - [8. Testing Strategy](#8-testing-strategy)
-    - [8.1 Testing Phases](#81-testing-phases)
-    - [8.2 Success Criteria](#82-success-criteria)
   - [9. Maintenance and Support](#9-maintenance-and-support)
   - [10. Appendix](#10-appendix)
   - [11. Glossary](#11-glossary)
@@ -178,6 +176,12 @@ This interplay between components ensures that the game operates smoothly, refle
 
 ## 4. Detailed Component Design
 ### 4.1 Game Engine
+
+The Game Engine is the core component of the Pac-Man® game, responsible for managing game mechanics, physics, and interactions. It processes player inputs, updates the game state, and renders the game screen. The Game Engine is designed to be modular, allowing for the addition of new features and mechanics while maintaining compatibility with the other components.
+
+Key Functions:
+
+
 Delve into the specifics of the game engine, including algorithms and game mechanics. Diagrams illustrating game logic can be included. `[GameLogicDiagram]`
 
 ### 4.2 User Interface
@@ -201,11 +205,8 @@ Describe the implementation of audio-visual elements, adhering to the classic fe
 Discuss any potential security or privacy issues, particularly if networked features are planned.
 
 ## 8. Testing Strategy
-### 8.1 Testing Phases
-Outline the different phases of testing, including unit, integration, and system tests.
 
-### 8.2 Success Criteria
-Define the criteria for successful testing at each phase.
+See the [Testing Strategy](../TestingStrategy/TestingStrategy.md) document for details.
 
 ## 9. Maintenance and Support
 Discuss plans for post-launch support, bug fixes, and updates.
