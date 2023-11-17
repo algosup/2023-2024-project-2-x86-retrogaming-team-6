@@ -67,4 +67,4 @@ After brainstorming all the ideas in terms of map design, powers to be added and
 * 
 
 
-<br> [Evolution Project Diagram](image/EvolutionProjectDiagram.png.jpg)
+[Ceci est un exemple d’image](https://files.slack.com/files-tmb/T019N8PRR7W-F065CN2HQ85-c74468003c/evolution_project_diagram_720.png)
