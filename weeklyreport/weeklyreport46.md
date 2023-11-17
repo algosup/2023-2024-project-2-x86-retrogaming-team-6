@@ -56,4 +56,6 @@ At the end of the week, the techlead and program manager decided to work togethe
 
 ### Our ideas 
 
-We've decided to put a form into service. All algosup students will have access to it. In this form we've put all the ideas we want to add to our game to improve it. Students will then be able to give their opinions and suggest ideas for improvement.
+After brainstorming all the ideas in terms of map design, powers to be added and customizations. Our Program Manager decided to create a form and send it out to all the school's students. We then asked the other students to give their opinion on our ideas. Then, if they wished, they could give us advice or ideas on certain designs to improve the ideas we wanted to implement in our game. 
+
+*Thibaud Marlier & All Team* 
