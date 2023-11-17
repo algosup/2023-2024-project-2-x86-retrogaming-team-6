@@ -38,7 +38,7 @@ The weekly report is also being written. As well as updating our Gantt to keep t
 
 ### Development of our game 
 
-Now that our junior Softwar engineers have some knowledge of assembly. So they started by choosing a card for our game and began coding it to get a feel for it.
+Now that our junior Softwar engineers have some knowledge of assembly. So they started by choosing a map for our game and began coding it to get a feel for it.
 
 *Junior Software Engineer*
 
