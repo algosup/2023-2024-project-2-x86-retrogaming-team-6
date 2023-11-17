@@ -11,8 +11,13 @@
 
 ### Weekly Report 
 
+The weekly report summarizes the activities, progress and challenges of the past week. It helps maintain transparency, share key information and facilitate coordination within our team.<br>
+Here's a different link to the weekly reports we've already written.
+
+*
+
 ### Gantt Diagram
 
 The following link gives you access to our team's Gantt. This Gantt allows you to observe our progress in all the tasks we have to complete. 
 
-* 
+* [Click for Gantt Diagram](https://docs.google.com/spreadsheets/d/14zmxl0TTvft6xD5HXRiZPvcDN_OqEZXFPyNOz_zGEo0/edit?usp=sharing/).
