@@ -53,3 +53,7 @@ Our QA is looking for information to start writing his Test Plan.
 At the end of the week, the techlead and program manager decided to work together on editing the technical section, to be more efficient. 
 
 *Rémy Charles & Thibaud Marlier* 
+
+### Our ideas 
+
+We've decided to put a form into service. All algosup students will have access to it. In this form we've put all the ideas we want to add to our game to improve it. Students will then be able to give their opinions and suggest ideas for improvement.
