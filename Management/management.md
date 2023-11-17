@@ -14,7 +14,9 @@
 The weekly report summarizes the activities, progress and challenges of the past week. It helps maintain transparency, share key information and facilitate coordination within our team.<br>
 Here's a different link to the weekly reports we've already written.
 
-*
+* [Weekly Report week 45](../weeklyreport/weeklyreport45.md)
+
+* [Weekly Report week 46](../weeklyreport/weeklyreport45.md)
 
 ### Gantt Diagram
 
