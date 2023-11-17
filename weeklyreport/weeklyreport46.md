@@ -66,4 +66,5 @@ After brainstorming all the ideas in terms of map design, powers to be added and
 
 * 
 
-![css](image/EvolutionProjectDiagram.png.jpg)
+
+<br> [Evolution Project Diagram](image/EvolutionProjectDiagram.png.jpg)
