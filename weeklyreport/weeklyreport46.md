@@ -33,3 +33,21 @@ What's more, the rest of the team is working on learning assembly so that they c
 For the organization and distribution of tasks within the team. The project manager has set up an online timetable where each team member can see what they've done and how much time they have to organize their tasks. This allows us to be much more organized and save time in our work.
 
 *Raphaël Descamps* 
+
+### Development of our game 
+
+Now that our junior Softwar engineers have some knowledge of assembly. So they started by choosing a card for our game and began coding it to get a feel for it.
+
+*Junior Software Engineer*
+
+### Advencement about the Test Plan
+
+Our QA is looking for information to start writing his Test Plan. 
+
+*Manech Laguens* 
+
+### Advencement of our Technical 
+
+At the end of the week, the techlead and program manager decided to work together on editing the technical section, to be more efficient. 
+
+*Rémy Charles & Thibaud Marlier* 
