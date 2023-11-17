@@ -208,7 +208,9 @@ For the development of Team 6's Pac-Man® project, we have selected a set of pro
   
 - **Performance Profiling**: Tools integrated into VSCode will be used to monitor and optimize the game's performance, particularly focusing on CPU and memory usage to ensure smooth gameplay.
 
-`[ToolsInteractionDiagram]`
+<img src="img/ToolInteractionDiagram.png">
+
+*The diagram shows a developer workflow where code written in Visual Studio Code is compiled by NASM and then executed in the DOSBox emulator, resulting in the running Pac-Man® game.*
 
 ## 3. System Architecture
 ### 3.1 High-Level Architecture
@@ -243,7 +245,10 @@ The high-level architecture of Team 6's Pac-Man® project is designed with a foc
 
 This architecture fosters a clear separation of concerns, enabling each module to be developed and tested independently, yet function cohesively within the larger system. The design also allows for future enhancements and modifications with minimal impact on existing functionalities.
 
-`[SystemArchitectureDiagram]`
+<img src="img/systemArchitecture/SystemArchitectureDiagram.png">
+
+*At the center is the Game Engine, orchestrating game logic and interactions.* *It connects to the Rendering Module (for graphics) on the right, the Input Control System (for player inputs) and the Sound Engine (for audio) on the left. Below the Game Engine, the Memory Management component ensures efficient resource utilization.*
+
 
 ### 3.2 Component Interaction
 
