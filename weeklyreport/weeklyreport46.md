@@ -18,7 +18,9 @@ The technical work is progressing, to be finished on schedule and to allow the d
 
 the engineering softwares are well advanced in their reading of the assembly book. What's more, they're working on their own to understand it better and better. They're practicing on exercises given by the speakers. And they're starting to try their hand at coding our game.
 
-*Junior Software Engineer* 
+What's more, the rest of the team is working on learning assembly so that they can help the software engineers when needed.
+
+*All Team* 
 
 ### Project management 
 
