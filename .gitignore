@@ -1,0 +1,62 @@
+# Compiled Object files
+*.o
+*.obj
+*.exe
+*.dll
+*.com
+*.bin
+*.out
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Assembly Compiled Files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options directory
+.vs/
+*.opendb
+*.VC.db
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug files
+*.pdb
+*.ilk
+
+# Build Folders (keep bin/)
+bin/
+obj/
+
+# Backup & Temporary files
+*~
+*.swp
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
