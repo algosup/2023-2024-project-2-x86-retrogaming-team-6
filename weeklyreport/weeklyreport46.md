@@ -64,7 +64,12 @@ After brainstorming all the ideas in terms of map design, powers to be added and
 
 * The junior software engineers must continue to work on their assembly skills, like all the other team members. But they need to make progress on the game's code. More specifically, they need to finish coding our map and start creating the monsters if the map is finished coding.
 
-* 
+* The program manager and tech lead will continue to write the functional in order to deliver it on time, on 11/27/2023. And to enable the junior software engineer to continue developing the game.
+
+* The QA will have to check the documents supplied to him, such as our weekly report and the technical.
+
+* The project manager will continue to distribute tasks to each team member, and will then continue to draft the weekly report and its diagrams and documents to keep the team's various information up to date.
 
 
-[Ceci est un exemple d’image](https://files.slack.com/files-tmb/T019N8PRR7W-F065CN2HQ85-c74468003c/evolution_project_diagram_720.png)
+<br><img src="image/EvolutionProjectDiagram.png"></br>
+
