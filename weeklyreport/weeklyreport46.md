@@ -22,5 +22,6 @@ the engineering softwares are well advanced in their reading of the assembly boo
 
 ### Project management 
 
+For the organization and distribution of tasks within the team. The project manager has set up an online timetable where each team member can see what they've done and how much time they have to organize their tasks. This allows us to be much more organized and save time in our work.
 
-
+*Raphaël Descamps* 
