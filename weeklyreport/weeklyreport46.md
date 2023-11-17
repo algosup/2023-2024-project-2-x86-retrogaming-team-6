@@ -20,5 +20,7 @@ the engineering softwares are well advanced in their reading of the assembly boo
 
 *Junior Software Engineer* 
 
+### Project management 
+
 
 
