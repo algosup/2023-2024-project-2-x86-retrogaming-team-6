@@ -16,7 +16,9 @@ Here's a different link to the weekly reports we've already written.
 
 * [Weekly Report week 45](../weeklyreport/weeklyreport45.md)
 
-* [Weekly Report week 46](../weeklyreport/weeklyreport45.md)
+* [Weekly Report week 46](../weeklyreport/weeklyreport46.md)
+
+* [Weekly Report week 47](../weeklyreport/weeklyreport47.md)
 
 ### Gantt Diagram
 
