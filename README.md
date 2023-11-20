@@ -13,4 +13,16 @@
 
 ## Project Description
 
-### <p align ="center">x86 Retro Gaming Project</p>
+### <br><p align ="center">x86 Retro Gaming Project</p>
+
+### The project : 
+
+For this second Project of 2023, Algosup has asked us to develop the Pac Man game in a special language. Which is Assembly.
+
+### Project objectives : 
+
+This project aims to create a version of the famous Pac-Man game using assembly language. Objectives include writing the source code to faithfully reproduce the mechanics of the original game, implementing a graphical interface with user input management, and optimizing the code to ensure efficient performance. The overall aim is to develop a functional and optimized version of Pac-Man, while deepening practical understanding of the assembly language.
+
+### Difficulties 
+
+First of all, assembly language is complex to understand and complex to use. However, we are novices, if not inexperienced, in this language. We therefore need to learn and understand this language to be able to code this game.  
