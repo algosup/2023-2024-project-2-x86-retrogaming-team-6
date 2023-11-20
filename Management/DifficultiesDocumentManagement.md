@@ -14,3 +14,6 @@ Our problem with DOSBox was that we didn't understand how it worked with NASM. A
 So we did some research on NASM and discovered that there were several assemblers like NASM. We found some older, non-updated assemblers like TASM and MASM. 
 
 So we did some research and in our computer science classes we learned to use NASM. What's more, NASM is the most recent assembler still in use today. 
+
+### Game design problems 
+
