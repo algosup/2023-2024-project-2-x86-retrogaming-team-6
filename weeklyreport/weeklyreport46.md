@@ -8,29 +8,30 @@
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> |
 
 
-### Advencement of our functional 
+### Functional Specification progress
 
-The functional is finished being written. Then it was uploaded to our github. 
+The functional specification have been completed and was then uploaded to our GitHub repository. 
 
 *Thibaud Marlier*
 
-### Advencement of our Technical 
+### Technical Specification progress 
 
-The technical work is progressing, to be finished on schedule and to allow the developer to start developing our version of pac man. 
+The technical specification work is in progress, it will be done on time so the devs will start developing our pac-man version. 
 
 *Rémy Charles*
 
 ### Assembly knowledge
 
-the engineering softwares are well advanced in their reading of the assembly book. What's more, they're working on their own to understand it better and better. They're practicing on exercises given by the speakers. And they're starting to try their hand at coding our game.
+the engineering softwares are well advanced in their reading of the assembly book. Furthermore, they're working on their own to have a better understanding of it. They're practicing on 
+exercises given by the teacher. And they're starting to try their hand at coding our game
 
-What's more, the rest of the team is working on learning assembly so that they can help the software engineers when needed.
+Moreover, the rest of the team is working on learning assembly so that they can help the software engineers when needed.
 
 *All Team* 
 
 ### Project management 
 
-For the organization and distribution of tasks within the team. The project manager has set up an online timetable where each team member can see what they've done and how much time they have to organize their tasks. This allows us to be much more organized and save time in our work.
+For the organization and distribution of tasks within the team, the project manager did set up an online timetable where each team member can see what they've done and how they had to organize their tasks with the given time. This allowed us to be much more organized and saved time in our work
 
 The weekly report is also being written. As well as updating our Gantt to keep track of our team's work.
 
@@ -38,13 +39,13 @@ The weekly report is also being written. As well as updating our Gantt to keep t
 
 ### Development of our game 
 
-Now that our junior Softwar engineers have some knowledge of assembly. So they started by choosing a map for our game and began coding it to get a feel for it.
+Now that our junior Softwar engineers have some knowledge of assembly, they can now choose a map for our game and begin coding it to get a feel for it.
 
 *Junior Software Engineer*
 
 ### Advencement about the Test Plan
 
-Our QA is looking for information to start writing his Test Plan. 
+Our QA started making a test plan by taking examples from already existing professional test plans. 
 
 *Manech Laguens* 
 
@@ -62,7 +63,7 @@ After brainstorming all the ideas in terms of map design, powers to be added and
 
 ### Next week's schedule 
 
-* The junior software engineers must continue to work on their assembly skills, like all the other team members. But they need to make progress on the game's code. More specifically, they need to finish coding our map and start creating the monsters if the map is finished coding.
+* The junior software engineers must continue to work on their assembly skills, like all the other team members. But they need to make progress on the game's code. More specifically, they need to finish coding our map and start creating the monsters if the map is done.
 
 * The program manager and tech lead will continue to write the functional in order to deliver it on time, on 11/27/2023. And to enable the junior software engineer to continue developing the game.
 
