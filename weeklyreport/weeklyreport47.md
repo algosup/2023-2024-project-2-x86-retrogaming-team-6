@@ -11,7 +11,11 @@
 
 For this week, the deveollepers began work on the maze. And tried to get the pac man character to react to the borders. To prevent them from crossing the walls. 
 
-*Habi Caillau & Raphël Proudhon* 
+Here's the result of our first maze display prototype : 
+
+<br><img src="image/Maze.png"></br>
+
+*Sofware Engineer & Rémy Charles* 
 
 ### QA Documents 
 
@@ -30,5 +34,8 @@ The technical is well advanced, so we're waiting for the developers to be much m
 A "Mangement" document, listing all documents related to team management, has been written and published on our Github, making it easier for StakHodlder to follow our progress on this project. 
 
 In addition, a document called "Difficulties Documents Managements" has been written and will be kept throughout the project to record the difficulties and solutions we faced during the project. This document is available as a clickable link in the "Management" document. 
+
+Here's a link to the "management" document : [Management](../Management/management.md)
+
 
 *Raphaël Descamps* 
