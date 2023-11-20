@@ -4,7 +4,7 @@
 | ----- | ----- |
 | Author | Rémy CHARLES|
 | Team | Team 6 |
-| Reviewer(s) |  |
+| Reviewer(s) | Thibaud MARLIER, Manech LAGUENS |
 | Created on | 2023-11-13 |
 | Last updated | 2023-11-20 |
 
@@ -314,6 +314,8 @@ The game engine is a critical component of Team 6's Pac-Man® project, designed 
 This blueprint guides the development team in building a game engine that not only aligns with the original Pac-Man® in efficiency but is also adaptable for future enhancements.
 
 <img src="img/Pac-ManUML.png">
+
+*The UML class diagram illustrates the object-oriented architecture of a Pac-Man game, detailing key classes like Pacman, Ghost, GameBoard, MazeBlock, Pellets, and Powerup, along with their attributes and methods. The diagram also shows the interaction between game elements, user input handling, and the game's event-driven logic.*
 
 ### 4.2 New Game Mechanics
 In line with the functional specifications, the development team will integrate new game mechanics into the Pac-Man® project. These enhancements are designed to add depth and modern touches to the classic game while maintaining its original charm.
