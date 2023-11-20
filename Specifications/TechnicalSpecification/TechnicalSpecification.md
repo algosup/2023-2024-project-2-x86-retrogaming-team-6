@@ -313,7 +313,7 @@ The game engine is a critical component of Team 6's Pac-Man® project, designed 
 
 This blueprint guides the development team in building a game engine that not only aligns with the original Pac-Man® in efficiency but is also adaptable for future enhancements.
 
-`[GameLogicDiagram]`
+<img src="img/Pac-ManUML.png">
 
 ### 4.2 New Game Mechanics
 In line with the functional specifications, the development team will integrate new game mechanics into the Pac-Man® project. These enhancements are designed to add depth and modern touches to the classic game while maintaining its original charm.
@@ -700,7 +700,7 @@ The Appendix section of this document serves as a repository for additional reso
 - **Gantt Chart of Project Timeline:** Detailed timeline showcasing the project's phases, milestones, and deadlines. `[GanttChartImage]`
 - **Technical Diagrams:**
   - System Architecture Diagram: Visual representation of the game's architecture. `[SystemArchitectureDiagram]`
-  - Data Flow Diagrams: Illustrate how data moves through the game's systems. `[DataFlowDiagrams]`
+  - Data Flow Diagrams: Illustrate how data moves through the game's systems. <img src="img/DataFlowDiagram.png">
   - Class or Module Diagrams (if applicable): Show the structure of the game's programming modules. `[ClassOrModuleDiagrams]`
 
 ### 11.2 Reference Documents
