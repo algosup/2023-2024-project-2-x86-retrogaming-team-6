@@ -39,3 +39,9 @@ Here's a link to the "management" document : [Management](../Management/manageme
 
 
 *Raphaël Descamps* 
+
+### ReadMe Writing 
+
+The ReadMe was late in being written, but at last it allows us to present our team and our project in a single project. 
+
+*Raphaël Descamps*
