@@ -9,6 +9,8 @@
 
 ### Project Charter
 
+Here's the link to our team's Project Charter.
+
 * [Project Charter](https://docs.google.com/spreadsheets/d/1TsUUccu2tHIzaquExrp2YchRUE8ImAT6fgPyLSOc3GU/edit?usp=sharing)
 
 ### ReadMe 
