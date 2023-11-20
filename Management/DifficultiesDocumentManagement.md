@@ -17,3 +17,10 @@ So we did some research and in our computer science classes we learned to use NA
 
 ### Game design problems 
 
+We also had a few problems when we wanted to start designing our map, and the Pac Man characters.
+
+First, we started using aseprite software. Which is a program that lets you draw with any number of pixels. After a few hours of drawing, we realized that we couldn't save because we had to buy the paid version. 
+
+As a result, we tried a new software, Gimp, which was a little more complicated but free. Unfortunately, the output of our "drawing" should be in bmp. But when we wanted to export our drawing in bmp, it didn't work. 
+
+To overcome all these problems, we decided to buy the paid version of asperite. It's much more practical than Gimp and allows us to export our design as a bmp file. 
