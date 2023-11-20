@@ -24,3 +24,11 @@ First, we started using aseprite software. Which is a program that lets you draw
 As a result, we tried a new software, Gimp, which was a little more complicated but free. Unfortunately, the output of our "drawing" should be in bmp. But when we wanted to export our drawing in bmp, it didn't work. 
 
 To overcome all these problems, we decided to buy the paid version of asperite. It's much more practical than Gimp and allows us to export our design as a bmp file. 
+
+### Delayed game code 
+
+Week three has just begun, we're due to hand in our prototype on December 11th and our developers are struggling to get started on the game code. 
+
+D n addition, to finish our technical specification, our developers need to make progress on the game code. Moreover, the technical specification is due on December 27, so we're a little behind schedule. 
+
+We've decided to get a head start on each of our respective tasks to get a little more involved in the assembly to help our developers start creating our version of Pac Man. 
