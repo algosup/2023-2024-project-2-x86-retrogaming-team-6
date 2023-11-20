@@ -13,4 +13,4 @@
 
 ## Project Description
 
-`In progress`
+### <p align ="center">x86 Retro Gaming Project</p>
