@@ -7,15 +7,15 @@
 | :-------------- |
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> |
 
+### Project Charter
+
+* [Project Charter](https://docs.google.com/spreadsheets/d/1TsUUccu2tHIzaquExrp2YchRUE8ImAT6fgPyLSOc3GU/edit?usp=sharing)
+
 ### ReadMe 
 
 Here's the link to our team's ReadMe. This document introduces the project and our team. 
 
 * [ReadMe Team 6](../README.md)
-
-### Project Charter
-
-* [Project Charter](https://docs.google.com/spreadsheets/d/1TsUUccu2tHIzaquExrp2YchRUE8ImAT6fgPyLSOc3GU/edit?usp=sharing)
 
 ### Weekly Report 
 
