@@ -9,6 +9,14 @@
 
 ### Project Charter
 
+* [Project Charter](https://docs.google.com/spreadsheets/d/1TsUUccu2tHIzaquExrp2YchRUE8ImAT6fgPyLSOc3GU/edit?usp=sharing)
+
+### ReadMe 
+
+Here's the link to our team's ReadMe. This document introduces the project and our team. 
+
+* [ReadMe Team 6](../README.md)
+
 ### Weekly Report 
 
 The weekly report summarizes the activities, progress and challenges of the past week. It helps maintain transparency, share key information and facilitate coordination within our team.<br>
