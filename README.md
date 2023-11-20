@@ -17,7 +17,7 @@
 
 ### The project : 
 
-For this second Project of 2023, Algosup has asked us to develop the Pac Man game in language Assembly x86.
+For this second Project of 2023, Algosup has asked us to develop the Pac Man game in Assembly x86.
 
 ### Project objectives : 
 
