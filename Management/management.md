@@ -36,4 +36,9 @@ The following link gives you access to our team's Gantt. This Gantt allows you t
 
 * [Click for Gantt Diagram](https://docs.google.com/spreadsheets/d/14zmxl0TTvft6xD5HXRiZPvcDN_OqEZXFPyNOz_zGEo0/edit?usp=sharing/).
 
-### Difficulties Management Document
+### Difficulties Management Documents
+
+Here's a document listing all the problems and solutions we encountered during the project. 
+
+* [Difficulties](../Management/DifficultiesDocumentManagement.md)
+
