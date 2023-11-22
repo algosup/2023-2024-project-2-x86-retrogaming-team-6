@@ -32,3 +32,6 @@ Week three has just begun, we're due to hand in our prototype on December 11th a
 D n addition, to finish our technical specification, our developers need to make progress on the game code. Moreover, the technical specification is due on December 27, so we're a little behind schedule. 
 
 We've decided to get a head start on each of our respective tasks to get a little more involved in the assembly to help our developers start creating our version of Pac Man. 
+
+### Coding problems
+

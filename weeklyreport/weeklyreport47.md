@@ -45,3 +45,20 @@ Here's a link to the "management" document : [Management](../Management/manageme
 The ReadMe was late in being written, but at last it allows us to present our team and our project in a single project. 
 
 *Raphaël Descamps*
+
+### Learning Assembly and Code 
+
+During the rest of this week, we made good progress on our maze display. Here are the versions of our maze we've been through.  
+
+<br><img src="image/maze1.png"></br>
+
+As you can see from the photo above. We have a color problem we can not understand the color. To know if it's hexadecimal or not. 
+
+Below is another photo of our maze where we managed to unify the color. But we don't have our final color. 
+
+<br><img src="image/maze2.png"></br>
+
+We also managed to display our Pac Man character. 
+
+<br><img src="image/PacMan.png"></br>
+
