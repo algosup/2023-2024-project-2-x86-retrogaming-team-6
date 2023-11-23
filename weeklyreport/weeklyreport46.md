@@ -73,4 +73,3 @@ After brainstorming all the ideas in terms of map design, powers to be added and
 
 
 <br><img src="image/EvolutionProjectDiagram.png"></br>
-

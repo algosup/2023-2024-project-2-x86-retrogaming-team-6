@@ -62,4 +62,16 @@ We also managed to display our Pac Man character.
 
 <br><img src="image/PacMan.png"></br>
 
+### Next week's schedule 
+
+* The junior software developers and team members are going to have to work even harder on developing our game. More specifically, we need to work on the direction of our pac man. Change the face of our pac man with his mouth open and closed. 
+
+    In addition, we need to start developing the menu for our game. To have an interface before starting the game. 
+
+    We also need to make progress on our character's reaction to a wall. 
+
+* Our QA will have to continue writing his test plan. 
+
+* The Program Manager will help the techlead to finish writing and formatting the technical due by 11/27/2023.
+
 
