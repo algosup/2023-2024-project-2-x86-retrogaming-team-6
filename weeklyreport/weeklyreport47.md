@@ -37,6 +37,8 @@ In addition, a document called "Difficulties Documents Managements" has been wri
 
 Here's a link to the "management" document : [Management](../Management/management.md)
 
+Then The trello was updated, the tasks for each role and the rest of the week was shared.
+
 
 *Raphaël Descamps* 
 
@@ -61,6 +63,10 @@ Below is another photo of our maze where we managed to unify the color. But we d
 We also managed to display our Pac Man character. 
 
 <br><img src="image/PacMan.png"></br>
+
+And here's below our final version of our maze with the correct display and the overflow problem solved. 
+
+<br><img src="image/mazefinale.png"></br>
 
 ### Next week's schedule 
 
