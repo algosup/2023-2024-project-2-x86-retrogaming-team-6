@@ -68,6 +68,8 @@ And here's below our final version of our maze with the correct display and the 
 
 <br><img src="image/mazefinale.png"></br>
 
+*Rémy Charles & All team* 
+
 ### Next week's schedule 
 
 * The junior software developers and team members are going to have to work even harder on developing our game. More specifically, we need to work on the direction of our pac man. Change the face of our pac man with his mouth open and closed. 
