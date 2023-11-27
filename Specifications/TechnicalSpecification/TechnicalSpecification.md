@@ -107,6 +107,9 @@
     - [10.2 Support Strategy](#102-support-strategy)
       - [Help and Documentation:](#help-and-documentation)
       - [Community Engagement:](#community-engagement)
+  - [11. Game Visual Design](#11-game-visual-design)
+    - [11.1 The maze](#111-the-maze)
+    - [11.2 The Pac-Man](#112-the-pac-man)
   - [11. Appendix](#11-appendix)
     - [11.1 Supplementary Materials](#111-supplementary-materials)
     - [11.2 Reference Documents](#112-reference-documents)
@@ -163,7 +166,7 @@ The system requirements for Team 6's Pac-Man® project are specifically tailored
   
 - **Storage**: A minimum of 10 MB of free disk space for installing the game and storing saved game data.
   
-- **Input Devices**: Keyboard interfacing is essential for gameplay control. Optional support for additional input devices like gamepads or joysticks can be considered for enhanced player experience.
+- **Input Devices**: Keyboard interfacing is essential for gameplay control.  -
 
 #### Software Requirements:
 - **Operating System**: DOSBox emulator is a mandatory requirement to provide a DOS environment on modern operating systems. This allows for accurate emulation of the game's intended runtime environment.
@@ -207,6 +210,8 @@ For the development of Team 6's Pac-Man® project, we have selected a set of pro
 - **Build and Automation Scripts**: We will utilize custom scripts to automate repetitive tasks like building and deploying the game, enhancing development efficiency.
   
 - **Performance Profiling**: Tools integrated into VSCode will be used to monitor and optimize the game's performance, particularly focusing on CPU and memory usage to ensure smooth gameplay.
+
+- **Debugging Tools**: Turbo Debugger will be used for debugging, providing a comprehensive set of features for step-by-step code execution, memory inspection, and register tracking.
 
 <img src="img/ToolInteractionDiagram.png">
 
@@ -471,7 +476,7 @@ The acceptance phase is crucial in ensuring that the Pac-Man® project delivers 
 
 ### 6.2 Testing Strategy
 
-See the [Testing Strategy]() document for details.
+See the [Testing Strategy](../../QA%20Documents/TestPLan.md) document for details.
 
 ## 7. Constraints
 ### 7.1 Technical Constraints
@@ -693,6 +698,20 @@ Providing effective support to address user concerns and maintain a positive pla
 - **Community Events:** Consider hosting online events or contests to keep the player community engaged and active.
 
 The maintenance and support plan for the Pac-Man® project is designed to ensure the game remains relevant, enjoyable, and technically sound post-launch. Regular updates, performance optimizations, and active community engagement are key components of this plan, contributing to the game’s long-term success and player satisfaction.
+
+## 11. Game Visual Design
+
+### 11.1 The maze
+
+<img src="img/Maze.png">
+
+*The maze is the main visual element of the game. It is the environment in which the player and the ghosts move around. The maze is composed of walls and corridors. The walls are the boundaries of the maze and the corridors are the paths that the player and the ghosts can move on. The maze also contains the dots and power pellets that the player can eat to score points.* 
+
+### 11.2 The Pac-Man
+
+<img src="">
+
+*The Pac-Man must be *
 
 
 ## 11. Appendix
