@@ -1,5 +1,5 @@
-Testing plan V2:
-last update: 11/21/23 
+Testing plan V3:
+last updated: 11/27/23 
 
 
 
@@ -26,33 +26,33 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
 
  3. Ghosts behavior.
 
-We must ensure that every ghosts respects their assigned behavior, which are : 
+ We must ensure that every ghosts respects their assigned behavior, which are : 
 
-Blinky : he tracks Pac-Man and is always agressiv.
+ Blinky : he tracks Pac-Man and is always agressiv.
 
-Pinky : she tries to predict Pac-Mans movements, and will position herslef in front of Pac-Man to trap him. 
+ Pinky : she tries to predict Pac-Mans movements, and will position herslef in front of Pac-Man to trap him. 
 
-Inky : his movements are depending of Blinkys movements, as Pinky, he will try to trap Pac-Man.
+ Inky : his movements are depending of Blinkys movements, as Pinky, he will try to trap Pac-Man.
 
-Clyde : in opposition to the others, Clyde doesnt always chase Pac-Man ; if he's far of him, he will chase him down, but if he's too close, he will runaway. 
+ Clyde : in opposition to the others, Clyde doesnt always chase Pac-Man ; if he's far of him, he will chase him down, but if he's too close, he will runaway. 
 
 II. Integration testing.
 
 1. Pac-Mans movements with the dots.
 
-We must verify that Pac-Man interacts correctly with the dots when he mooves through the maze. Pac-Man movements shouldnt be impacted when he picks up dots.
+ We must verify that Pac-Man interacts correctly with the dots when he mooves through the maze. Pac-Man movements shouldnt be impacted when he picks up dots.
 
 2. Interactions between Pac-Man and the ghosts.
 
-We must test the interactions between Pac-Man and every single ghosts, we have to make sure that Pac-Man dies/looses a life when this happens. We have to ensure that each ghosts react and moove according to Pac-Man movments.    
+ We must test the interactions between Pac-Man and every single ghosts, we have to make sure that Pac-Man dies/looses a life when this happens. We have to ensure that each ghosts react and moove according to Pac-Man movments.    
 
 3. Level transitions and screen menu.
 
-We have to see if the screen transitions between levels and level to menu is smooth enough. In addtition to this, we must check if there is nothing  wrong when we move from a level to another.
+ We have to see if the screen transitions between levels and level to menu is smooth enough. In addtition to this, we must check if there is nothing  wrong when we move from a level to another.
 
 4. Power-ups integration between Pac-Man and the ghosts.
 
-When Pac-Man eats a power-up, we have to make sure that it makes the ghosts vulnerable to him, futhermore, their attitude toward Pac-Man change, they all try to escape, no matter their assigned behavior is. 
+ When Pac-Man eats a power-up, we have to make sure that it makes the ghosts vulnerable to him, futhermore, their attitude toward Pac-Man change, they all try to escape, no matter their assigned behavior is. 
 
 III. System testing.
 
@@ -70,19 +70,19 @@ IV. Display check.
  
  1. Maze check.
  
- We must ensure that every wall, path and every elements in the maze are correctly displayed, without any visual artifact or distortion. 
+   We must ensure that every wall, path and every elements in the maze are correctly displayed, without any visual artifact or distortion. 
 
  2. Characters check.
 
- We must check that Pac-Man and the ghosts are correctly shown, with every  proper details and animations, which are : eyes changing direction depending of where they are facing, the ghosts tentacles that are moving or the Pac-Mans mouth that is in the direction he his moving. 
+  We must check that Pac-Man and the ghosts are correctly shown, with every  proper details and animations, which are : eyes changing direction depending of where they are facing, the ghosts tentacles that are moving or the Pac-Mans mouth that is in the direction he his moving. 
 
  3. UI check.
 
- The user interface must be watched carefully, the score and the remaining lives should be displayed so that the player can see these informations. Some space will be left to eventually put the highscores or other features that we'll eventualy implement.
+  The user interface must be watched carefully, the score and the remaining lives should be displayed so that the player can see these informations. Some space will be left to eventually put the highscores or other features that we'll eventualy implement.
 
  4. Animation check and visual effects.
  
- We have to check if Pac-Man and the ghosts movements are smoothly displayed, without couplings or any other problems. The powerups, collisions and transitions visual effects should be displayed with no issues. 
+  We have to check if Pac-Man and the ghosts movements are smoothly displayed, without couplings or any other problems. The powerups, collisions and transitions visual effects should be displayed with no issues. 
 
 
 V. (Potential) Update testing. 
@@ -91,18 +91,44 @@ V. (Potential) Update testing.
   
   For safety, we will do backups before every update that we are planning to do. In case of an inconvenient event, all the data will remain stored.
 
-  2. New features testing. 
+  2. New features testing and backwards compatibility. 
 
- If an updates occures, we will take note of any changes that will be made and test them manually as was done for the maze and every previous features. 
+  If an updates occures, we will take note of any changes that will be made and test them manually as was done for the maze and every previous features. We have to make sure that the existing files will still work even with new features added, so we'll test every features, even old ones, that wil be impacted by the uptade. 
+
+VI Documentation and test reporting requirements.
+
+ 1. Documentation.
+
+   1.1 Test plan. 
+   
+   This document shows the testing strategy, the objectives and how the tests will be made.
+  
+  1.2 Traceability table.
+
+   This table will show every modification done, every found test, made by whom, when and how. It will also give the current version.
+  
+ 2. Test reporting requirements. 
+   
+   The test reports must include a summary of how the test was done, the results of those said test, and if issues got detected.
+   For each made test, the steps and results should reported, with screen shots if necessary. 
+   All the found bugs will be listed, their severity will be specified, as well as their status and every steps to remake them. 
+   The traceability table will be updated in accordance to the test report. 
+   
+   
+   
+   Reports will be made after each done test. It will contain every results with the bugs, what bugs got detected and their state (if they are corrected or not yet) and their severity. 
+
+   
+  
+  
+   
+   
 
 
 
 
 
 
-
-
-V. (Potential) Update testing
 VI. Documentation and test reporting requirements
 VII. Testing schedule (dates)
 VIII. Testing tools (environement)(hardware, software, flaws tracking app/device)
