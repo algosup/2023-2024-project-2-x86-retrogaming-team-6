@@ -70,6 +70,10 @@
 ; Error checking is omitted for brevity
 org 100h
 
+%define SCREEN_WIDTH 320
+%define SCREEN_HEIGHT 200
+
+
 section .data
 
 mazeSprite:
