@@ -4,7 +4,7 @@
 | ----- | ----- |
 | Author | Rémy CHARLES|
 | Team | Team 6 |
-| Reviewer(s) | Thibaud MARLIER, Manech LAGUENS |
+| Reviewers | Thibaud MARLIER, Manech LAGUENS |
 | Created on | 2023-11-13 |
 | Last updated | 2023-11-27 |
 
@@ -705,19 +705,19 @@ The maintenance and support plan for the Pac-Man® project is designed to ensure
 
 ## 11. Game Visual Design
 
-### 11.1 The maze
+### 11.1 Maze
 
 <img src="img/Maze.png">
 
 *The maze is the main visual element of the game. It is the environment in which the player and the ghosts move around. The maze is composed of walls and corridors. The walls are the boundaries of the maze and the corridors are the paths that the player and the ghosts can move on. The maze also contains the dots and power pellets that the player can eat to score points.* 
 
-### 11.2 The Pac-Man
+### 11.2 Pac-Man
 
 <img src="img/PacManCharacter.png">
 
 *Pac-Man is the main character of the game. The player controls Pac-Man through a maze, consuming dots and avoiding ghosts. Consuming power pellets allows Pac-Man to eat the ghosts, scoring extra points. The goal is to consume all the dots in the maze while avoiding the ghosts to progress to the next level.*
 
-### 11.3 The ghosts
+### 11.3 Ghosts
 
 <img src="img/Ghosts.png">
 
@@ -727,25 +727,25 @@ The maintenance and support plan for the Pac-Man® project is designed to ensure
 
 *When Pac-Man consumes a power pellet, the ghosts become weak and change their appearance, indicating that they can now be eaten by Pac-Man. This state is temporary, and once it wears off, the ghosts return to their normal state. If Pac-Man eats a weak ghost, it will respawn in the ghost house in the center of the maze.*
 
-### 11.4 The dots
+### 11.4 Dots
 
 <img src="img/Dots.png">
 
 *The dots are the main collectible in the game. The player must consume all the dots in the maze to progress to the next level. Consuming a dot scores points for the player.*
 
-### 11.5 The power pellets
+### 11.5 Power Pellets
 
 <img src="img/PowerPillets.png">
 
 *Power pellets are special items in the game. When Pac-Man consumes a power pellet, he gains the ability to eat the ghosts, which normally are his enemies. This effect is temporary, and once it wears off, the ghosts return to their normal state. Consuming a ghost after eating a power pellet scores extra points for the player.*
 
-### 11.6 The score
+### 11.6 Score
 
 <img src="img/Score.png">
 
 *The score is a numerical value that represents the player's performance in the game. The score increases when the player consumes dots, power pellets, and ghosts. The score is displayed on the screen during gameplay.*
 
-### 11.7 The lives
+### 11.7 Lives
 
 <img src="img/PacManLife.png">
 
