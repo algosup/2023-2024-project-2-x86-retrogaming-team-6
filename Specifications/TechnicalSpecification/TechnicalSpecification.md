@@ -110,6 +110,11 @@
   - [11. Game Visual Design](#11-game-visual-design)
     - [11.1 The maze](#111-the-maze)
     - [11.2 The Pac-Man](#112-the-pac-man)
+    - [11.3 The ghosts](#113-the-ghosts)
+    - [11.4 The dots](#114-the-dots)
+    - [11.5 The power pellets](#115-the-power-pellets)
+    - [11.6 The score](#116-the-score)
+    - [11.7 The lives](#117-the-lives)
   - [11. Appendix](#11-appendix)
     - [11.1 Supplementary Materials](#111-supplementary-materials)
     - [11.2 Reference Documents](#112-reference-documents)
@@ -711,18 +716,46 @@ The maintenance and support plan for the Pac-Man® project is designed to ensure
 
 <img src="">
 
-*The Pac-Man must be *
+*Pac-Man is the main character of the game. The player controls Pac-Man through a maze, consuming dots and avoiding ghosts. Consuming power pellets allows Pac-Man to eat the ghosts, scoring extra points. The goal is to consume all the dots in the maze while avoiding the ghosts to progress to the next level.*
+
+### 11.3 The ghosts
+
+<img src="">
+
+*The ghosts are the main antagonists in the game. They roam the maze and their goal is to catch Pac-Man. Each ghost has its own behavior, which makes the game more challenging. If a ghost catches Pac-Man, the player loses a life.*
+
+### 11.4 The dots
+
+<img src="">
+
+*The dots are the main collectible in the game. The player must consume all the dots in the maze to progress to the next level. Consuming a dot scores points for the player.*
+
+### 11.5 The power pellets
+
+<img src="">
+
+*Power pellets are special items in the game. When Pac-Man consumes a power pellet, he gains the ability to eat the ghosts, which normally are his enemies. This effect is temporary, and once it wears off, the ghosts return to their normal state. Consuming a ghost after eating a power pellet scores extra points for the player.*
+
+### 11.6 The score
+
+<img src="">
+
+*The score is a numerical value that represents the player's performance in the game. The score increases when the player consumes dots, power pellets, and ghosts. The score is displayed on the screen during gameplay.*
+
+### 11.7 The lives
+
+<img src="">
+
+*The lives are a numerical value that represents the number of times the player can be caught by a ghost before losing the game. The player starts with three lives and loses one each time a ghost catches them. The lives are displayed on the screen during gameplay.*
 
 
 ## 11. Appendix
 The Appendix section of this document serves as a repository for additional resources, documentation, and materials that provide supplementary information and support for the Pac-Man® project.
 
 ### 11.1 Supplementary Materials
-- **Gantt Chart of Project Timeline:** Detailed timeline showcasing the project's phases, milestones, and deadlines. `[GanttChartImage]`
+
 - **Technical Diagrams:**
-  - System Architecture Diagram: Visual representation of the game's architecture. `[SystemArchitectureDiagram]`
   - Data Flow Diagrams: Illustrate how data moves through the game's systems. <img src="img/DataFlowDiagram.png">
-  - Class or Module Diagrams (if applicable): Show the structure of the game's programming modules. `[ClassOrModuleDiagrams]`
 
 ### 11.2 Reference Documents
 - **Original Pac-Man® Game Design Document:** A reference to the original game’s design for historical and comparison purposes.
