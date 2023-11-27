@@ -7,7 +7,17 @@
 | :-------------- |
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> |
 
+### ReadMe 
+
+Here's the link to our team's ReadMe. This document introduces the project and our team. 
+
+* [ReadMe Team 6](../README.md)
+
 ### Project Charter
+
+Here's the link to our team's Project Charter.
+
+* [Project Charter](https://docs.google.com/spreadsheets/d/1TsUUccu2tHIzaquExrp2YchRUE8ImAT6fgPyLSOc3GU/edit?usp=sharing)
 
 ### Weekly Report 
 
@@ -16,10 +26,19 @@ Here's a different link to the weekly reports we've already written.
 
 * [Weekly Report week 45](../weeklyreport/weeklyreport45.md)
 
-* [Weekly Report week 46](../weeklyreport/weeklyreport45.md)
+* [Weekly Report week 46](../weeklyreport/weeklyreport46.md)
+
+* [Weekly Report week 47](../weeklyreport/weeklyreport47.md)
 
 ### Gantt Diagram
 
 The following link gives you access to our team's Gantt. This Gantt allows you to observe our progress in all the tasks we have to complete. 
 
 * [Click for Gantt Diagram](https://docs.google.com/spreadsheets/d/14zmxl0TTvft6xD5HXRiZPvcDN_OqEZXFPyNOz_zGEo0/edit?usp=sharing/).
+
+### Difficulties Management Documents
+
+Here's a document listing all the problems and solutions we encountered during the project. 
+
+* [Difficulties](../Management/DifficultiesDocumentManagement.md)
+
