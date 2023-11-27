@@ -747,7 +747,7 @@ The maintenance and support plan for the Pac-Man® project is designed to ensure
 
 ### 11.7 The lives
 
-<img src="img/PacManLife">
+<img src="img/PacManLife.png">
 
 *The lives are a numerical value that represents the number of times the player can be caught by a ghost before losing the game. The player starts with three lives and loses one each time a ghost catches them. The lives are displayed on the screen during gameplay.*
 
