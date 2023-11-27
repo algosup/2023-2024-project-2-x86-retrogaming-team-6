@@ -6,7 +6,7 @@
 | Team | Team 6 |
 | Reviewer(s) | Thibaud MARLIER, Manech LAGUENS |
 | Created on | 2023-11-13 |
-| Last updated | 2023-11-20 |
+| Last updated | 2023-11-27 |
 
 ## Table of Contents
 
@@ -115,17 +115,18 @@
     - [11.5 The power pellets](#115-the-power-pellets)
     - [11.6 The score](#116-the-score)
     - [11.7 The lives](#117-the-lives)
-  - [11. Appendix](#11-appendix)
-    - [11.1 Supplementary Materials](#111-supplementary-materials)
-    - [11.2 Reference Documents](#112-reference-documents)
-    - [11.3 Code Snippets and Examples](#113-code-snippets-and-examples)
-    - [11.4 Tools and Software](#114-tools-and-software)
-    - [11.5 Meeting Notes and Discussions](#115-meeting-notes-and-discussions)
-    - [11.6 Compliance and Legal Documentation](#116-compliance-and-legal-documentation)
-  - [12. Glossary](#12-glossary)
-    - [12.1 Key Terms and Definitions](#121-key-terms-and-definitions)
-    - [12.2 Acronyms](#122-acronyms)
-    - [12.3 Game-Specific Terms](#123-game-specific-terms)
+    - [11.8 Bonus items](#118-bonus-items)
+  - [12. Appendix](#12-appendix)
+    - [12.1 Supplementary Materials](#121-supplementary-materials)
+    - [12.2 Reference Documents](#122-reference-documents)
+    - [12.3 Code Snippets and Examples](#123-code-snippets-and-examples)
+    - [12.4 Tools and Software](#124-tools-and-software)
+    - [12.5 Meeting Notes and Discussions](#125-meeting-notes-and-discussions)
+    - [12.6 Compliance and Legal Documentation](#126-compliance-and-legal-documentation)
+  - [13. Glossary](#13-glossary)
+    - [13.1 Key Terms and Definitions](#131-key-terms-and-definitions)
+    - [13.2 Acronyms](#132-acronyms)
+    - [13.3 Game-Specific Terms](#133-game-specific-terms)
 
 </details>
 
@@ -358,8 +359,6 @@ In line with the functional specifications, the development team will integrate 
 These new mechanics are aimed at modernizing the Pac-Man® experience while respecting the game's original essence. The development team will focus on implementing these features in a way that is both technically feasible and faithful to the spirit of the classic game.
 
 
-`[UIScreenMockups]`
-
 ## 5. Data Management
 ### 5.1 Data Storage
 Efficient data management is critical for the performance and stability of the Pac-Man® project. The team will implement data storage strategies optimized for Assembly language on x86 architecture, focusing on compactness and speed.
@@ -573,13 +572,13 @@ Designing an intuitive and appealing user interface (UI) is a critical aspect of
 
   - **Elements:** Include options such as 'Start Game', 'High Scores', 'Settings', and 'Exit'.
 
-  - **Design:** Use a layout that is visually aligned with the game's retro aesthetic. `[MainMenuLayoutImage]`
+  - **Design:** Use a layout that is visually aligned with the game's retro aesthetic.
   
 - **Gameplay Interface:** The in-game UI should provide necessary information without cluttering the screen.
 
   - **Components:** Display elements like current score, lives left, level number, and any power-up timers.
   
-  - **Visibility:** Ensure all UI components are easily readable and do not obstruct gameplay. `[GameplayInterfaceImage]`
+  - **Visibility:** Ensure all UI components are easily readable and do not obstruct gameplay.
 
 #### UI Feedback and Interaction:
 - **Responsiveness:** UI elements should respond to user inputs promptly, providing immediate and intuitive feedback.
@@ -596,7 +595,7 @@ Designing an intuitive and appealing user interface (UI) is a critical aspect of
 #### Customization and Settings:
 - **Player Preferences:** Include options that allow players to customize their experience, such as audio volume controls and potential color scheme choices.
 
-- **Settings Menu:** Design a settings menu that is easy to navigate and adjust. `[SettingsMenuImage]`
+- **Settings Menu:** Design a settings menu that is easy to navigate and adjust.
 
 #### UI Prototyping and Testing:
 - **Mockups and Prototypes:** Create initial mockups and interactive prototypes of the UI for early testing and feedback.
@@ -605,7 +604,7 @@ Designing an intuitive and appealing user interface (UI) is a critical aspect of
   
 - **User Testing:** Conduct user testing sessions to gather feedback on the UI design, focusing on usability and player experience.
 
-The user interface design for the Pac-Man® project is a bridge between the game's classic roots and modern gaming expectations. It should be both a nod to nostalgia and a testament to contemporary design principles, ensuring a smooth and enjoyable user experience. `[CompleteUIDesignImage]`
+The user interface design for the Pac-Man® project is a bridge between the game's classic roots and modern gaming expectations. It should be both a nod to nostalgia and a testament to contemporary design principles, ensuring a smooth and enjoyable user experience. 
 
 
 ### 8.2 Audio Design
@@ -714,75 +713,84 @@ The maintenance and support plan for the Pac-Man® project is designed to ensure
 
 ### 11.2 The Pac-Man
 
-<img src="">
+<img src="img/PacManCharacter.png">
 
 *Pac-Man is the main character of the game. The player controls Pac-Man through a maze, consuming dots and avoiding ghosts. Consuming power pellets allows Pac-Man to eat the ghosts, scoring extra points. The goal is to consume all the dots in the maze while avoiding the ghosts to progress to the next level.*
 
 ### 11.3 The ghosts
 
-<img src="">
+<img src="img/Ghosts.png">
 
 *The ghosts are the main antagonists in the game. They roam the maze and their goal is to catch Pac-Man. Each ghost has its own behavior, which makes the game more challenging. If a ghost catches Pac-Man, the player loses a life.*
 
+<img src="img/GhostWeak.png">
+
+*When Pac-Man consumes a power pellet, the ghosts become weak and change their appearance, indicating that they can now be eaten by Pac-Man. This state is temporary, and once it wears off, the ghosts return to their normal state. If Pac-Man eats a weak ghost, it will respawn in the ghost house in the center of the maze.*
+
 ### 11.4 The dots
 
-<img src="">
+<img src="img/Dots.png">
 
 *The dots are the main collectible in the game. The player must consume all the dots in the maze to progress to the next level. Consuming a dot scores points for the player.*
 
 ### 11.5 The power pellets
 
-<img src="">
+<img src="img/PowerPillets.png">
 
 *Power pellets are special items in the game. When Pac-Man consumes a power pellet, he gains the ability to eat the ghosts, which normally are his enemies. This effect is temporary, and once it wears off, the ghosts return to their normal state. Consuming a ghost after eating a power pellet scores extra points for the player.*
 
 ### 11.6 The score
 
-<img src="">
+<img src="img/Score.png">
 
 *The score is a numerical value that represents the player's performance in the game. The score increases when the player consumes dots, power pellets, and ghosts. The score is displayed on the screen during gameplay.*
 
 ### 11.7 The lives
 
-<img src="">
+<img src="img/PacManLife">
 
 *The lives are a numerical value that represents the number of times the player can be caught by a ghost before losing the game. The player starts with three lives and loses one each time a ghost catches them. The lives are displayed on the screen during gameplay.*
 
+### 11.8 Bonus items
 
-## 11. Appendix
+<img src="img/Bonus.png">
+
+*Bonus items are special items that appear in the maze at random times. They are worth more points than dots and power pellets. The player can consume them to score extra points. Bonus items are optional and do not need to be consumed to progress to the next level.*
+
+## 12. Appendix
 The Appendix section of this document serves as a repository for additional resources, documentation, and materials that provide supplementary information and support for the Pac-Man® project.
 
-### 11.1 Supplementary Materials
+### 12.1 Supplementary Materials
 
 - **Technical Diagrams:**
   - Data Flow Diagrams: Illustrate how data moves through the game's systems. <img src="img/DataFlowDiagram.png">
 
-### 11.2 Reference Documents
+### 12.2 Reference Documents
 - **Original Pac-Man® Game Design Document:** A reference to the original game’s design for historical and comparison purposes.
 - **Assembly Language Programming Guides:** Manuals and guides for Assembly language programming specific to x86 architecture.
 - **DOSBox Emulator Documentation:** Comprehensive guide on using DOSBox for development and testing.
 
-### 11.3 Code Snippets and Examples
+### 12.3 Code Snippets and Examples
 - **Sample Code:** Examples of key code segments used in the game, such as ghost AI algorithms, collision detection routines, and UI rendering scripts.
 - **Debugging and Testing Scripts:** Scripts and tools developed for debugging and testing the game during development.
 
-### 11.4 Tools and Software
+### 12.4 Tools and Software
 - **List of Development Tools:** Detailed list of all software and tools used in the development of the game, including text editors, version control systems, and testing tools.
 - **Custom Tool Documentation:** If any custom tools or scripts were developed for the project, include their documentation here.
 
-### 11.5 Meeting Notes and Discussions
+### 12.5 Meeting Notes and Discussions
 - **Team Meeting Summaries:** Records of significant team meetings, outlining decisions, discussions, and action items.
 - **Expert Consultations:** Notes from consultations with experts in Assembly language or game design, if applicable.
 
-### 11.6 Compliance and Legal Documentation
+### 12.6 Compliance and Legal Documentation
 - **Compliance Checklists:** Documentation of compliance with relevant legal and industry standards.
 - **License and Copyright Information:** Information on licensing, especially concerning the use of the Pac-Man® name and assets.
 
 
-## 12. Glossary
+## 13. Glossary
 This glossary provides definitions for technical terms, concepts, and acronyms used in the Pac-Man® project documentation. It is intended to clarify meanings and ensure a common understanding among all project stakeholders.
 
-### 12.1 Key Terms and Definitions
+### 13.1 Key Terms and Definitions
 - **Assembly Language:** A low-level programming language that uses a strong correspondence between the language instructions and the architecture's machine code instructions.
 - **x86 Architecture:** A family of backward-compatible instruction set architectures based on the Intel 8086 CPU and its Intel 8088 variant.
 - **DOSBox:** An emulator program that creates a DOS-like environment for running older software and games on modern operating systems.
@@ -791,12 +799,12 @@ This glossary provides definitions for technical terms, concepts, and acronyms u
 - **Digital Signature:** A technique used to validate the authenticity and integrity of a message, software, or digital document.
 - **Debugging:** The process of identifying and resolving errors, flaws, or faults in a computer program.
 
-### 12.2 Acronyms
+### 13.2 Acronyms
 - **UI (User Interface):** The space where interactions between humans and machines occur.
 - **DAW (Digital Audio Workstation):** An electronic device or software application for recording, editing, and producing audio files.
 - **CPU (Central Processing Unit):** The primary component of a computer that performs most of the processing inside the computer.
 
-### 12.3 Game-Specific Terms
+### 13.3 Game-Specific Terms
 - **Pac-Man®:** The player character in the game, known for eating dots in a maze while avoiding ghosts.
 - **Ghosts:** Characters in the game that chase Pac-Man® and have distinct behaviors (Blinky, Pinky, Inky, Clyde).
 - **Power Pellet:** An item in the game that allows Pac-Man® to eat ghosts for a short period.
