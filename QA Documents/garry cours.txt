@@ -1,0 +1,70 @@
+garrys lesson 11/29/2023 : structured data definition.  
+
+ STRUC -> defines shape of data. (doesnt compil anything) 
+ STRUC Vec 2
+      x resw 1
+      y resw 1 
+ENDSTRUC
+
+section .data
+
+position: ISTRUC Vec2
+      at .x, dw 1 
+      at .y, dw 2
+mov ax, [position + Vec2.x]
+mov bx, [position + Vec2.y] 
+mov sI, [velocity]
+mov ax, [sI + Vec2.x]
+mov bx, [sI + Vec2.y]
+
+section .bss 
+velocity resb Vec2_size
+
+OpenFile (Dos)
+mov ah, 3dh 
+mov al, 
+mov ax, cs __ ; Segment base to Filename 
+mov ds, ax
+mov dw, [Filename] ; 0 Terminated name
+; ds: dx -> "Filename.ext", 0
+int 21h 
+Jc  .error
+mov [FileHandle], ax 
+_______
+.data 
+   Filename: db "FILE.EXT", 0 
+   FileHandle dw 0 
+
+________
+
+Write Into File 
+
+mov ah, 40h 
+mov bx, [FileHandle]
+mov cx, 
+mov ds: dw <- Address of Buffer 
+int 21h 
+
+
+____ 
+STRUC Options
+   .is Sound resb 1 
+   .up ScanCode resb 1 
+   .down ScanCode resb 1 
+ENDSTRUC
+section.data
+      game Options INSTRUC Options 
+           at is Sound, db 1
+           at up Scan, db UpArrowScanCOde
+IENDSTRUC
+________
+
+Close File 
+
+move ah, 3Eh 
+mov bx, [FileHandle]
+int 21h
+
+_______
+
+[map symbols pacaman.map]

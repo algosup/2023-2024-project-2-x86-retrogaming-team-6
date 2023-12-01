@@ -6,7 +6,7 @@ last updated: 11/27/23
 
 introduction:
 
-This testing plan is made to check the quality and the functionality of the pacman game in a PC environment. The tests are made to make sure that the game is efficient in every way and that the player can enjoy the game.
+This testing plan is made to check the quality and the functionality of the Pac-Man game in a PC environment. The tests are made to make sure that the game is efficient in every way and that the player can enjoy the game.
 
 
 Objectives: 
@@ -85,12 +85,12 @@ IV. Display check.
   We have to check if Pac-Man and the ghosts movements are smoothly displayed, without couplings or any other problems. The powerups, collisions and transitions visual effects should be displayed with no issues. 
 
 
-V. (Potential) Update testing. 
+V. Update testing. 
  
  1. Backups.
   
   For safety, we will do backups before every update that we are planning to do. In case of an inconvenient event, all the data will remain stored.
-
+²&
   2. New features testing and backwards compatibility. 
 
   If an updates occures, we will take note of any changes that will be made and test them manually as was done for the maze and every previous features. We have to make sure that the existing files will still work even with new features added, so we'll test every features, even old ones, that wil be impacted by the uptade. 
@@ -109,29 +109,48 @@ VI Documentation and test reporting requirements.
   
  2. Test reporting requirements. 
    
-   The test reports must include a summary of how the test was done, the results of those said test, and if issues got detected.
+   The test reports must include a summary of how the tests were done, the results of those said tests, and if issues got detected.
    For each made test, the steps and results should reported, with screen shots if necessary. 
    All the found bugs will be listed, their severity will be specified, as well as their status and every steps to remake them. 
    The traceability table will be updated in accordance to the test report. 
-   
-   
-   
    Reports will be made after each done test. It will contain every results with the bugs, what bugs got detected and their state (if they are corrected or not yet) and their severity. 
-
-   
   
   
+  
+
+VII. Testing schedule.
+
+ The test plan is due to the 12/8 at 5pm. A working prototype will be delivred on the 12/11 at 5pm, which will be tested as much as possible. Then, the final product will be sent on 12/21 at 5pm, fully tested and operational.
+ Since we'll only have a playable version for the 12/11, all major tests will be done between 12/11 and 12/21. 
+
+
+
+
+VIII. Testing tools (environement)(hardware, software, flaws tracking app/device).
+
+ 1. Hardware.
+    
+    MacBook Air 2020 and Lenovo Thinkbook 14 will be used to test our game. 
+  
+ 2. Software. 
+   
+   DOSBox 0.74-3 for macOS
+   DOSBox 0.74-3 for Windows 
+   NASM for the assembly language
+   Visual Studio Code used to develop the game.
+   GitHub share the code between the devs. (?)
+
+ 3. Flaws tracking. 
+    
+   To keep an eye on every errors, we willl use Githubs issues to keep track on a case-by-case basis.   
+
+
+
+
+  
    
    
 
-
-
-
-
-
-VI. Documentation and test reporting requirements
-VII. Testing schedule (dates)
-VIII. Testing tools (environement)(hardware, software, flaws tracking app/device)
 IX. Validation criteria (at what point will we consider a point as "done")
 X. Test methodology (?) everything will be done manualy ig
 
