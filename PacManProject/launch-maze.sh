@@ -7,7 +7,7 @@ rootDir="$(cd "$thisDir" && pwd)"
 binDir="$rootDir/bin"
 
 cd "${thisDir}/src/rendering/" \
-  && nasm maze.asm -f bin -o "${binDir}/maze.com" \
+  && nasm mazeAscii.asm -f bin -o "${binDir}/maze.com" \
 
 echo "Built Successfully! ✅"
 
