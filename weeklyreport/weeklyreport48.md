@@ -17,7 +17,9 @@ The technical is finished being written. And ready for delivery. And it's been c
 
 This week we managed to keep our pac man on the move. He can now move in all directions (up, down, left, right). 
 
-The junior software engineers are working on opening and closing the mouth as the pac man moves forward. 
+The junior software engineers are working on opening and closing the mouth as the pac man  moves when he eat some point. 
+
+To do this, we need to create 3 different sprites. 1 sprite with its mouth closed, another with its mouth half open, and the last with its mouth completely open.
 
 *Junior Software Engineer & Rémy Charles* 
 
