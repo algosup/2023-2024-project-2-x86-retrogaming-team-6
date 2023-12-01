@@ -44,6 +44,8 @@ To solve this problem, we'll leave the menu aside for the moment. Then we'll fin
 
 The devellopers and other team members will concentrate on the pac man's collisions with the walls. But we're also working on the problem of the pac man's size, which is too small compared to the size of the labyrinth's corridors.  
 
+Finally, we update various documents such as the gantt diagram and the project charter. 
+
 *Raphaël Descamps* 
 
 ### Next week's schedule 
