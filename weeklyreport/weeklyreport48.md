@@ -9,7 +9,7 @@
 
 ### Technical Specification 
 
-The technical is finished being written. And ready for delivery. And it's been checked and corrected. 
+The technical is finished being written. And ready for delivery. And it's been checked and corrected. The technical was handed down on Tuesday November 27. 
 
 *Rémy Charles, Thibaud Marlier & Manech Lenguens*
 
@@ -39,3 +39,12 @@ The devellopers and other team members will concentrate on the pac man's collisi
 
 *Raphaël Descamps* 
 
+### Next week's schedule 
+
+Here are the tasks we'd like to accomplish over the next week. 
+
+* First to finish: the problem of Pac Man colliding with our Maze's blackberries. 
+
+* Now that we've managed to display the ghosts, we need to solve the collision problem with them too, and start encoding the different powers they possess. 
+
+* Secondly, the finalization of our QA Test Plan. 
