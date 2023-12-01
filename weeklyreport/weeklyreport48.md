@@ -1,5 +1,7 @@
 # Weekly Report Team 6 : Week 47 
 
+<br>
+
 [<img src="https://www.presse-citron.net/app/uploads/2020/06/linkedin-logo.jpg"  width="25px" align=right>](https://www.linkedin.com/in/rapha%C3%ABl-descamps-201112293)
 
 
@@ -7,7 +9,8 @@
 | :-------------- |
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> 
 
-### Technical Specification 
+
+### <br> Technical Specification 
 
 The technical is finished being written. And ready for delivery. And it's been checked and corrected. The technical was handed down on Tuesday November 27. 
 
@@ -15,11 +18,13 @@ The technical is finished being written. And ready for delivery. And it's been c
 
 ### Learning Assembly and Code 
 
-This week we managed to keep our pac man on the move. He can now move in all directions (up, down, left, right). 
+* This week we managed to keep our pac man on the move. He can now move in all directions (up, down, left, right). 
 
-The junior software engineers are working on opening and closing the mouth as the pac man  moves when he eat some point. 
+  To do this, junior software engineers had to understand how to use the position of pixels in relation to our 320 by 200 screen. And then be able to link it to the player's keystrokes to make it move wherever he wants. 
 
-To do this, we need to create 3 different sprites. 1 sprite with its mouth closed, another with its mouth half open, and the last with its mouth completely open.
+* The junior software engineers are working on opening and closing the mouth as the pac man  moves when he eat some point. 
+
+  To do this, we need to create 3 different sprites. 1 sprite with its mouth closed, another with its mouth half open, and the last with its mouth completely open.
 
 *Junior Software Engineer & Rémy Charles* 
 
