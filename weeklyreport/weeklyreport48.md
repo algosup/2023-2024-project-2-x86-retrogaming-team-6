@@ -12,21 +12,21 @@
 
 ### <br> Technical Specification 
 
-The technical is finished being written. And ready for delivery. And it's been checked and corrected. The technical was handed down on Tuesday November 27. 
+The Technical Specification has been completely written. We fully corrected and checked, we then handed it down on the 12/27/23.
 
 *Rémy Charles, Thibaud Marlier & Manech Lenguens*
 
 ### Learning Assembly and Code 
 
-* This week we managed to keep our pac man on the move. He can now move in all directions (up, down, left, right). 
+* During this week, we succeeded to make ou Pac-Man changing direction, he can now go in every direction, which are up, down, left and right. 
 
-  To do this, junior software engineers had to understand how to use the position of pixels in relation to our 320 by 200 screen. And then be able to link it to the player's keystrokes to make it move wherever he wants. 
+  To do so, junior software engineers had to understand how to use the position of pixels in relation to our 320 by 200 screen. And then be able to link it to the player's command to make it move wherever he wants. 
 
-* The junior software engineers are working on opening and closing the mouth as the pac man  moves when he eat some point. 
+* The junior software engineers worked on opening and closing Pac-Mans mouth whenever he eats a point. 
 
-  To do this, we need to create 3 different sprites. 1 sprite with its mouth closed, another with its mouth half open, and the last with its mouth completely open.
+  To do this, we had to create 3 different sprites. A first sprite with its mouth closed, a second one with its mouth half open, and the third with its mouth completely open.
 
-*Junior Software Engineer & Rémy Charles* 
+*Junior Software Engineers & Rémy Charles* 
 
 ### QA Test Plan
 
@@ -40,20 +40,20 @@ Here's an update on our game development organization.
 
 We had to code a menu to select between playing the game or the settings. Unfortunately, we're a little behind schedule. 
 
-To solve this problem, we'll leave the menu aside for the moment. Then we'll finish a playable, bug-free version of our game before adding extras like the menu or the score. 
+To solve this problem, we'll leave the menu aside for the moment. We prefer to show a playable, bug-free version of our game before adding extras like the menu or the score. 
 
-The devellopers and other team members will concentrate on the pac man's collisions with the walls. But we're also working on the problem of the pac man's size, which is too small compared to the size of the labyrinth's corridors.  
+The developers and other team members will focus on the Pac-Man's collisions with the walls. We're also working on an issue concerning Pac-Mans size, which is too small compared to the labyrinth's corridors.  
 
-Finally, we update various documents such as the gantt diagram and the project charter. 
+To conclude, we updated various documents such as the Gantts diagram and the project charter.
 
 *Raphaël Descamps* 
 
 ### Next week's schedule 
 
-Here are the tasks we'd like to accomplish over the next week. 
+Here are the tasks we would like to realize during the upcoming week.
 
 * First to finish: the problem of Pac Man colliding with our Maze's walls. 
 
 * Now that we've managed to display the ghosts, we need to solve the collision problem with them too, and start encoding the different powers they possess. 
 
-* Secondly, the finalization of our QA Test Plan. 
+* Finally, the finalization of our QAs Test Plan.
