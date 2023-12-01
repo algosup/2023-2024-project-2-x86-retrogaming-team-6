@@ -1,4 +1,4 @@
-# Weekly Report Team 6 : Week 47 
+# Weekly Report Team 6 : Week 48 
 
 <br>
 
@@ -50,7 +50,7 @@ The devellopers and other team members will concentrate on the pac man's collisi
 
 Here are the tasks we'd like to accomplish over the next week. 
 
-* First to finish: the problem of Pac Man colliding with our Maze's blackberries. 
+* First to finish: the problem of Pac Man colliding with our Maze's walls. 
 
 * Now that we've managed to display the ghosts, we need to solve the collision problem with them too, and start encoding the different powers they possess. 
 
