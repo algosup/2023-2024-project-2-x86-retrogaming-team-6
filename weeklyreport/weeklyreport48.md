@@ -27,4 +27,15 @@ Our QA is still writing and finalizing its test plan. Which must be ready for ou
 
 *Manech Laguens* 
 
-### 
+### Management and Document 
+
+Here's an update on our game development organization. 
+
+We had to code a menu to select between playing the game or the settings. Unfortunately, we're a little behind schedule. 
+
+To solve this problem, we'll leave the menu aside for the moment. Then we'll finish a playable, bug-free version of our game before adding extras like the menu or the score. 
+
+The devellopers and other team members will concentrate on the pac man's collisions with the walls. But we're also working on the problem of the pac man's size, which is too small compared to the size of the labyrinth's corridors.  
+
+*Raphaël Descamps* 
+
