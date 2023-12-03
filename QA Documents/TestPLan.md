@@ -130,20 +130,41 @@ VIII. Testing tools (environement)(hardware, software, flaws tracking app/device
 
  1. Hardware.
     
-    MacBook Air 2020 and Lenovo Thinkbook 14 will be used to test our game. 
+    A MacBook Air 2020 and a Lenovo Thinkbook 14 will be used to test our Pac-Man game. 
   
  2. Software. 
    
-   DOSBox 0.74-3 for macOS
+   DOSBox 0.74-3 for macOS (comment mettre point par point ?)
    DOSBox 0.74-3 for Windows 
    NASM for the assembly language
    Visual Studio Code used to develop the game.
-   GitHub share the code between the devs. (?)
+   GitHub share the code between the devs.
 
  3. Flaws tracking. 
     
-   To keep an eye on every errors, we willl use Githubs issues to keep track on a case-by-case basis.   
+   To keep an eye on every errors, we will use Githubs issues to keep track on a case-by-case basis. By doing this, we will be able to access every issue that occured during the project.
 
+
+IX. Validation criteria and status.
+
+The following table shows the most important features and their current progress. 
+
+| Aspect               | Validation Criteria                                | Validation Status   | Comment (ask thibauD)    |
+|----------------------|----------------------------------------------------|---------------------|-----------------|
+| Collision            | Correctly working collision between Pac-Man and walls        | In progress             |                 |
+|                      | Appropriate interaction between Pac-Man and ghosts  | In progress         |                 |
+| Movement             | Smooth Pac-Mans movements                         | In progress         |                 |
+|                      | Responsiveness and accuracy of commands             | In progress         |                 |
+| Game Mechanics       | Efficient collection of pac-dots                    | In progress         |                 |
+|                      | Pursuit and evasion mechanisms of ghosts            | In progress           |                 |
+| Graphics             | Clear and representative maze display               | In progress             |                 |
+|                      | Appealing visuals for characters and game elements  | In progress         |                 |
+| Audio                | Clear and coherent sound effects                    | Optional           |   Will be done if everything else is done               |
+|                      | Accompanying music                        | Optional            |              Will be done if everything else is done   |
+| Controls             | Easy grasp for new players                          | In progress             |                 |
+|                      | Adaptation of controls to gaming platforms          | In progress             |                 |
+| User Interface       | Clarity and readability of on-screen information    | In progress         |                 |
+|                      | Ease of navigation through menus                     | In progress             |                 |
 
 
 
@@ -151,7 +172,6 @@ VIII. Testing tools (environement)(hardware, software, flaws tracking app/device
    
    
 
-IX. Validation criteria (at what point will we consider a point as "done")
 X. Test methodology (?) everything will be done manualy ig
 
 faire un table of content. 
