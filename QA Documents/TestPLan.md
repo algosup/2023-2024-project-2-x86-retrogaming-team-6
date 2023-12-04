@@ -3,9 +3,16 @@ last updated: 12/04/23
 
 
 ## Table of content : 
-- [I. Unitary testing.](#I.-Unitary-testing.)
-- [II. Integration testing.](#II.-Integration-testing.)
-
+- [I. Unitary testing.](#i-unitary-testing)
+- [II. Integration testing.](#ii-integration-testing)
+- [III. System testing.](#iii-system-testing)
+- [IV. Display check.](#iv-display-check)
+- [V. Update testing.](#v-update-testing) 
+- [VI. Documentation and test reporting requirements.](#vi-documentation-and-test-reporting-requirements)
+- [VII. Testing schedule.](#vii-testing-schedule)
+- [VIII. Testing tools.](#viii-testing-tools)
+- [IX. Validation criteria and status.](#ix-validation-criteria-and-status)
+- [X. Testing methodology.](#x-testing-methodology)
 
 
 introduction:
