@@ -20,4 +20,13 @@ This means we'd have to code pixel by pixel to determine which pixels are crosse
 
 So we decided to code our maze in ascii code. All we have to do is determine which color not to cross. 
 
-It'll be much simpler and much faster. Instead of defining each pixel of the maze sprite. 
+It'll be much simpler and much faster. Instead of defining each pixel of the maze sprite.
+
+### QA Test Plan
+
+Our QA is just finishing writing his test plan. 
+
+He is currently adding a table of content to his test plan. 
+
+Once his test plan is finished, corrected and checked, he'll turn his attention to testing our prototype, which is due to be finished by the end of this week. 
+
