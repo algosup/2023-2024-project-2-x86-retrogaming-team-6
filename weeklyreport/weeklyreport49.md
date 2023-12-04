@@ -22,6 +22,8 @@ So we decided to code our maze in ascii code. All we have to do is determine whi
 
 It'll be much simpler and much faster. Instead of defining each pixel of the maze sprite.
 
+*Junior Software Engineer, Thibaud Marlier & Rémy Charles*
+
 ### QA Test Plan
 
 Our QA is just finishing writing his test plan. 
@@ -29,4 +31,6 @@ Our QA is just finishing writing his test plan.
 He is currently adding a table of content to his test plan. 
 
 Once his test plan is finished, corrected and checked, he'll turn his attention to testing our prototype, which is due to be finished by the end of this week. 
+
+*Manech Laguens* 
 
