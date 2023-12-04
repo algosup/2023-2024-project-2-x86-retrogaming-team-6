@@ -10,4 +10,14 @@
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> 
 
 
-### <br> 
+### <br> Learning Assembly and Code 
+
+We realized that our sprite maze was actually a bad idea. 
+
+Because to determine the game's borders and ensure that our pac man doesn't cross the walls, with a sprite maze it's going to be too complicated to determine. 
+
+This means we'd have to code pixel by pixel to determine which pixels are crossed and which are not. 
+
+So we decided to code our maze in ascii code. All we have to do is determine which color not to cross. 
+
+It'll be much simpler and much faster. Instead of defining each pixel of the maze sprite. 
