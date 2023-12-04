@@ -22,6 +22,8 @@ So we decided to code our maze in ascii code. All we have to do is determine whi
 
 It'll be much simpler and much faster. Instead of defining each pixel of the maze sprite.
 
+*Junior Software Engineer, Thibaud Marlier & Rémy Charles*
+
 ### QA Test Plan
 
 Our QA is just finishing writing his test plan. 
@@ -30,3 +32,14 @@ He is currently adding a table of content to his test plan.
 
 Once his test plan is finished, corrected and checked, he'll turn his attention to testing our prototype, which is due to be finished by the end of this week. 
 
+*Manech Laguens* 
+
+### Management
+
+To solve our delay problem and ensure delivery of our game on the right date. 
+
+This week, the Program Manager and Le techlead will be working in cohesion with our Junior Software Engineer to move forward as quickly and efficiently as possible on our game. 
+
+In the meantime, the QA will continue drafting its test plan, as described above. 
+
+The project manager will then write all the documents he's supposed to hand in, and once finished, he'll also help the software engineers with the development of our game. 
