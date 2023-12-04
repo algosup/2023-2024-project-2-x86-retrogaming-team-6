@@ -30,6 +30,10 @@ Here's a different link to the weekly reports we've already written.
 
 * [Weekly Report week 47](../weeklyreport/weeklyreport47.md)
 
+* [Weekly Report week 48](../weeklyreport/weeklyreport48.md)
+
+* [Weekly Report week 49](../weeklyreport/weeklyreport49.md)
+
 ### Gantt Diagram
 
 The following link gives you access to our team's Gantt. This Gantt allows you to observe our progress in all the tasks we have to complete. 
