@@ -291,14 +291,14 @@ rep stosb
 ret 
 
 printSprite:
-mov ax, 0xA000
-mov es, ax
-mov di, 0
-mov si, mazeSprite
-mov dx, 173
-eachLine:
-mov cx, 320
-rep movsb
-dec dx
-jnz eachLine
-ret
+    mov ax, 0xA000
+    mov es, ax
+    mov di, 0
+    mov si, mazeSprite
+    mov dx, 173
+    eachLine:
+        mov cx, 320
+        rep movsb
+        dec dx
+        jnz eachLine
+        ret
