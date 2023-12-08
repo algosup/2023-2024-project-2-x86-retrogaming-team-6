@@ -15,58 +15,55 @@ last updated: 12/04/23
 - [X. Testing methodology.](#x-testing-methodology)
 
 
-introduction:
 
 This testing plan is made to check the quality and the functionality of the Pac-Man game in a PC environment. The tests are made to make sure that the game is efficient in every way and that the player can enjoy the game.
 
 
-Objectives: 
-
 Validation of the key features, performance,  UI, audiovisual and stability of the game. The game must be challenging, but not too hard. 
 
-Here are what will be covered: 
+Here is what will be covered : 
 
 # I. Unitary testing.
-## 1. Pac-Mans movements
+## 1. Pac-Mans movements.
 
-We must ensure that Pac-Man can be pointed in every dictated direction by the keyboard, which are up, down, let and right.
+We must ensure that Pac-Man can be pointed in every dictated direction by the keyboard, which are up, down, left and right.
 
-## 2. Collisions with the walls and with the points
+## 2. Collisions with the walls and with the points.
 
 When Pac-Man eats a dot, the score should move accordingly and the dot must vanish. When Pac-Man faces a wall, he must be stopped.
  ## 3. Ghosts behavior.
 
- We must ensure that every ghosts respects their assigned behavior, which are :   
- Blinky : he tracks Pac-Man and is always agressiv.  
- Pinky : she tries to predict Pac-Mans movements, and will position herslef in front of Pac-Man to trap him.   
- Inky : his movements are depending of Blinkys movements, as Pinky, he will try to trap Pac-Man.  
- Clyde : in opposition to the others, Clyde doesnt always chase Pac-Man ; if he's far of him, he will chase him down, but if he's too close, he will runaway.   
+ We must ensure that every ghosts respect their assigned behavior, which are :   
+ Blinky : tracks Pac-Man and is always agressiv.  
+ Pinky : tries to predict Pac-Mans movements, and will position herself in front of Pac-Man to trap him.   
+ Inky : his movements are depending of Blinky's movements, as Pinky, he will try to trap Pac-Man.  
+ Clyde : in opposition to the others, Clyde doesn't always chase Pac-Man ; if he's far of him, he will chase him down, but if he's too close, he will runaway.   
 
 # II. Integration testing.
 
 ## 1. Pac-Mans movements with the dots.
 
- We must verify that Pac-Man interacts correctly with the dots when he mooves through the maze. Pac-Man movements shouldnt be impacted when he picks up dots.
+ We must verify that Pac-Man interacts correctly with the dots when he moves through the maze. Pac-Man movements shouldn't be impacted when he picks up dots.
 
 ## 2. Interactions between Pac-Man and the ghosts.
 
- We must test the interactions between Pac-Man and every single ghosts, we have to make sure that Pac-Man dies/looses a life when this happens. We have to ensure that each ghosts react and moove according to Pac-Man movments.    
+ We must test the interactions between Pac-Man and every single ghosts, we have to make sure that Pac-Man dies/looses a life when this happens. We have to ensure that each ghosts react and move according to Pac-Man movements.    
 
 ## 3. Level transitions and screen menu.
 
- We have to see if the screen transitions between levels and level to menu is smooth enough. In addtition to this, we must check if there is nothing  wrong when we move from a level to another.
+ We have to see if the screen transitions between levels and level to menu is smooth enough. In addtition to this, we must check if there is nothing wrong when we move from a level to another.
 
-## 4. Power-ups integration between Pac-Man and the ghosts.
+## 4. Power-ups effects on Pac-Man and the ghosts.
 
- When Pac-Man eats a power-up, we have to make sure that it makes the ghosts vulnerable to him, futhermore, their attitude toward Pac-Man change, they all try to escape, no matter their assigned behavior is. 
+ When Pac-Man eats a power-up, we have to make sure that it makes the ghosts vulnerable to him, futhermore, their attitude toward Pac-Man changes, they all try to escape, no matter what their assigned behavior is. 
 
 # III. System testing.
 
- game stability, fluidity
+ The following parts process the game stability and fluidity.
 
  ## 1. Game stability.
   
-  We must check if the game stays stable even on a long game session. Playing for a long periode of time must not impact the players gameplay.
+  We must check if the game stays stable even on a long game session. Playing for a long periode of time must not impact the player's gameplay.
  
   ## 2. Game fluidity.
   
@@ -80,7 +77,7 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
 
  ## 2. Characters check.
 
-  We must check that Pac-Man and the ghosts are correctly shown, with every  proper details and animations, which are : eyes changing direction depending of where they are facing, the ghosts tentacles that are moving or the Pac-Mans mouth that is in the direction he his moving. 
+  We must check that Pac-Man and the ghosts are correctly shown, with every proper details and animations, which are : eyes changing direction depending on where they are facing, the ghosts' tentacles that are moving or Pac-Mans mouth that is in the direction he's moving. 
 
  ## 3. UI check.
 
@@ -99,7 +96,7 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
 
   ## 2. New features testing and backwards compatibility. 
 
-  If an updates occures, we will take note of any changes that will be made and test them manually as was done for the maze and every previous features. We have to make sure that the existing files will still work even with new features added, so we'll test every features, even old ones, that wil be impacted by the uptade. 
+  If an updates occures, we will take note of any changes that will be made and test them manually as was done for the maze and every previous features. We have to make sure that the existing files will still work even with new features added, so we'll test every features, even old ones, that will be impacted by the update. 
 
 # VI. Documentation and test reporting requirements.
 
@@ -113,7 +110,7 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
 
    This table will show every modification done, every found test, made by whom, when and how. It will also give the current version.
   
- # 2. Test reporting requirements. 
+ ## 2. Test reporting requirements. 
    
    The test reports must include a summary of how the tests were done, the results of those said tests, and if issues got detected.
    For each made test, the steps and results should reported, with screen shots if necessary. 
@@ -152,7 +149,7 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
  
 
  ## 4. Environment.
-   Everything will be made to be run on DosBox in a x86 architecture. It will meet the conditions to develop Pac-Man like it was back in 1980. (a faire check)
+   Everything will be made to be run on DosBox in a x86 architecture. It will meet the conditions to develop Pac-Man like it was back in 1980.
 
 
 # IX. Validation criteria and status.
@@ -180,12 +177,4 @@ The following table shows the most important features and their current progress
 
 # X. Testing methodology. 
  
-A series of manual test cases will guide testers through the validation process, covering various scenarios. Every issue will be reported in "Github issues", like in the part "Flaws tracking". Futhermore, a complete documentation of every test results, including observed behavior and if they are resolved or not like specified in the "Test reporting requirements." part. 
-
-
-
-
- 
-
-
-faire un table of content. 
+A series of manual test cases will lead the tester through the validation process, covering various scenarios. Every issues will be reported in "Github issues", like in the part "Flaws tracking". Futhermore, a complete documentation of every test results, including observed behavior and if they are resolved or not like specified in the "Test reporting requirements." part. 
