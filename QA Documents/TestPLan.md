@@ -3,6 +3,9 @@ last updated: 12/04/23
 
 
 ## Table of content : 
+
+<details><summary>Click to expand</summary>
+
 - [I. Unitary testing.](#i-unitary-testing)
 - [II. Integration testing.](#ii-integration-testing)
 - [III. System testing.](#iii-system-testing)
@@ -14,7 +17,9 @@ last updated: 12/04/23
 - [IX. Validation criteria and status.](#ix-validation-criteria-and-status)
 - [X. Testing methodology.](#x-testing-methodology)
 
+</details>
 
+______________
 
 This testing plan is made to check the quality and the functionality of the Pac-Man game in a PC environment. The tests are made to make sure that the game is efficient in every way and that the player can enjoy the game.
 
