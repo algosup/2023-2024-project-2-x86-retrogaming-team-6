@@ -1,550 +1,230 @@
 ;------------------------------------------------------
+; Manages the input handling logic for a generic 2D game.
+; Interprets player inputs from the keyboard or gamepad
+; and translates them into in-game movements and actions.
 ;
-; Manages the input handling logic, capturing
-; and interpreting player inputs from the keyboard
-; or gamepad and converting them into in-game actions.
-;
-; Translates player actions into meaningful game 
-; movements and decisions.
-;
+; Provides a basic framework for a 2D game loop including
+; player movement and rendering.
 ;------------------------------------------------------
 
-;------------------------------------------------------
-; input.asm Pseudo-Code
-;------------------------------------------------------
-; Start:
-;     Initialize Input System
-;     Set Up Key Bindings for Movement
-; 
-; ReadInput:
-;     Check Keyboard Buffer for Key Presses
-;     If Up Arrow Pressed Then
-;         Call MovePacmanUp
-;     Else If Down Arrow Pressed Then
-;         Call MovePacmanDown
-;     Else If Left Arrow Pressed Then
-;         Call MovePacmanLeft
-;     Else If Right Arrow Pressed Then
-;         Call MovePacmanRight
-;     EndIf
-;     If Escape Key Pressed Then
-;         Call ExitGame
-;     Return
-; 
-; MovePacmanUp:
-;     Set Pac-Man's Direction to Up
-;     Update Pac-Man's Position
-;     Return
-; 
-; MovePacmanDown:
-;     Set Pac-Man's Direction to Down
-;     Update Pac-Man's Position
-;     Return
-; 
-; MovePacmanLeft:
-;     Set Pac-Man's Direction to Left
-;     Update Pac-Man's Position
-;     Return
-; 
-; MovePacmanRight:
-;     Set Pac-Man's Direction to Right
-;     Update Pac-Man's Position
-;     Return
-; 
-; ExitGame:
-;     Trigger Game Exit Sequence
-;     Return
-;------------------------------------------------------
+[bits 16]
+[org 100h]
 
-org 100h
- 
+%include "game_sprites.asm"
+%include "../rendering/TheOfficialMaze.asm"
+
+%define SCREEN_WIDTH 320
+%define SCREEN_HEIGHT 200
+
 %define SPRITEW 8
-; ---------------------------------------------------------------------------
+%define SPRITEH 8
+
 section .data
-     
-; initialize data for Pacman
-yPosPac dw 200                 ; the starting y coordinate of the sprite
-xPosPac dw 100                   ; the starting x coordinate of the sprite
-yVelocityPac dw 320            ; to go from one line to another
-xVelocityPac dw 1              ; horizontal speed
-directionPac db 'R'            ; Current direction (R, L, U, D)
+playerXPos dw 0
+playerYPos dw 80
+playerSprite dd sprite_right_1
+actualKeystroke dw 0
 
-currentPacmanSprite dd pacman_right_1 ; the current sprite to be displayed
-; ---------------------------------------------------------------------------
-; initialize data for Blinky
-yPosBlinky dw 100                 ; the starting y coordinate of the sprite
-xPosBlinky dw 200                   ; the starting x coordinate of the sprite
-yVelocity dw 320            ; to go from one line to another
-xVelocity dw 1              ; horizontal speed
-directionBl db 'R'            ; Current direction (R, L, U, D)
+section .bss
+keyPressed resb 1
 
-currentBlinkySprite dd blinky_right_1 ; the current sprite to be displayed
-; ---------------------------------------------------------------------------
-; initialize data for Inky
-yPosInky dw 150                 ; the starting y coordinate of the sprite
-xPosInky dw 150                   ; the starting x coordinate of the sprite
-yVelocityInky dw 320            ; to go from one line to another
-xVelocityInky dw 1              ; horizontal speed
-directionIn db 'R'            ; Current direction (R, L, U, D)
-
-currentInkySprite dd inky_right_1 ; the current sprite to be displayed
-; ---------------------------------------------------------------------------
-; Initialize data for Clyde
-yPosClyde dw 200                 ; the starting y coordinate of the sprite
-xPosClyde dw 50                   ; the starting x coordinate of the sprite
-yVelocityClyde dw 320            ; to go from one line to another
-xVelocityClyde dw 1              ; horizontal speed
-directionCl db 'R'            ; Current direction (R, L, U, D)
-
-currentClydeSprite dd clyde_right_1 ; the current sprite to be displayed
-; ---------------------------------------------------------------------------
-; Initialize data for Pinky
-yPosPinky dw 50                 ; the starting y coordinate of the sprite
-xPosPinky dw 75                   ; the starting x coordinate of the sprite
-yVelocityPinky dw 320            ; to go from one line to another   
-xVelocityPinky dw 1              ; horizontal speed
-directionPi db 'R'            ; Current direction (R, L, U, D)
-
-currentPinkySprite dd pinky_right_1 ; the current sprite to be displayed
-; ---------------------------------------------------------------------------
-
-; Pacman sprites
-
-pacman_right_1 db 0x00, 0x00, 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x00
-                 db 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00
-                 db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-                 db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-                 db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00
-                 db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-                 db 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-                 db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-                 db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00
-                 db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-                 db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-                 db 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00
-                 db 0x00, 0x00, 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x00
-
-pacman_down_1 db 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00
-              db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-              db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-              db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-              db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x0e
-              db 0x0e, 0x0e, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-              db 0x0e, 0x0e, 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e
-              db 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x0e, 0x0e, 0x00
-
-pacman_up_1 db 0x0e, 0x0e, 0x00, 0x00, 0x00, 0x0e, 0x0e, 0x00
-            db 0x0e, 0x0e, 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e
-            db 0x0e, 0x0e, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-            db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x0e
-            db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-            db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-            db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-            db 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00
-
-
-pacman_left_1  db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-               db 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x0e, 0x0e, 0x0e 
-               db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-               db 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-               db 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-               db 0x00, 0x00, 0x00, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e
-               db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00
-               db 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x00, 0x00
-; ---------------------------------------------------------------------------
-; blinky sprites
-blinky_right_1 db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0xFF, 0xFF
-               db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-               db 0x28, 0x28, 0x0f, 0x00, 0x28, 0x0f, 0x00, 0x28
-               db 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x0f, 0x0f, 0x28
-               db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-               db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-               db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-               db 0x28, 0xFF, 0x28, 0x28, 0xFF, 0x28, 0x28, 0x28
-
-blinky_left_1  db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0xFF, 0xFF
-               db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-               db 0x28, 0x00, 0x0f, 0x28, 0x00, 0x0f, 0x28, 0x28
-               db 0x28, 0x0f, 0x0f, 0x28, 0x0f, 0x0f, 0x28, 0x28
-               db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-               db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-               db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-               db 0x28, 0x28, 0x28, 0xFF, 0x28, 0x28, 0xFF, 0x28
-
-
-blinky_down_1 db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF, 0xFF
-              db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x28
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x28
-              db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x28
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x00, 0x28, 0xFF
-              db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF, 0xFF
-
-
-blinky_up_1   db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF, 0xFF
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x00, 0x28, 0xFF
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x28
-              db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x28
-              db 0x28, 0x28, 0x28, 0x28, 0x0f, 0x0f, 0x28, 0x28
-              db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-              db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF, 0xFF
-; ---------------------------------------------------------------------------
-; inky sprites
-inky_right_1 db 0xFF, 0xFF, 0x34, 0x34, 0x34, 0x34, 0xFF, 0xFF
-             db 0xFF, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF
-             db 0x34, 0x34, 0x0f, 0x00, 0x34, 0x0f, 0x00, 0x34
-             db 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x0f, 0x0f, 0x34
-             db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-             db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-             db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-             db 0x34, 0xFF, 0x34, 0x34, 0xFF, 0x34, 0x34, 0x34
-
-inky_left_1  db 0xFF, 0xFF, 0x34, 0x34, 0x34, 0x34, 0xFF, 0xFF
-             db 0xFF, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF
-             db 0x34, 0x00, 0x0f, 0x34, 0x00, 0x0f, 0x34, 0x34
-             db 0x34, 0x0f, 0x0f, 0x34, 0x0f, 0x0f, 0x34, 0x34
-             db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-             db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-             db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-             db 0x34, 0x34, 0x34, 0xFF, 0x34, 0x34, 0xFF, 0x34
-
-
-inky_down_1 db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF, 0xFF
-            db 0xFF, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x34
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x34
-            db 0xFF, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x34
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x00, 0x34, 0xFF
-            db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF, 0xFF
-
-
-inky_up_1   db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF, 0xFF
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x00, 0x34, 0xFF
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x34
-            db 0xFF, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x34
-            db 0x34, 0x34, 0x34, 0x34, 0x0f, 0x0f, 0x34, 0x34
-            db 0xFF, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF
-            db 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xFF, 0xFF
-
-; ---------------------------------------------------------------------------
-; Pinky sprites
-
-pinky_right_1 db 0xFF, 0xFF, 0x54, 0x54, 0x54, 0x54, 0xFF, 0xFF
-             db 0xFF, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF
-             db 0x54, 0x54, 0x0f, 0x00, 0x54, 0x0f, 0x00, 0x54
-             db 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x0f, 0x0f, 0x54
-             db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-             db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-             db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-             db 0x54, 0xFF, 0x54, 0x54, 0xFF, 0x54, 0x54, 0x54
-
-pinky_left_1 db 0xFF, 0xFF, 0x54, 0x54, 0x54, 0x54, 0xFF, 0xFF
-             db 0xFF, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF
-             db 0x54, 0x00, 0x0f, 0x54, 0x00, 0x0f, 0x54, 0x54
-             db 0x54, 0x0f, 0x0f, 0x54, 0x0f, 0x0f, 0x54, 0x54
-             db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-             db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-             db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-             db 0x54, 0x54, 0x54, 0xFF, 0x54, 0x54, 0xFF, 0x54
-
-
-pinky_down_1 db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF, 0xFF
-            db 0xFF, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x54
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x54
-            db 0xFF, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x54
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x00, 0x54, 0xFF
-            db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF, 0xFF
-
-
-pinky_up_1  db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF, 0xFF
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x00, 0x54, 0xFF
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x54
-            db 0xFF, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x54
-            db 0x54, 0x54, 0x54, 0x54, 0x0f, 0x0f, 0x54, 0x54
-            db 0xFF, 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF
-            db 0x54, 0x54, 0x54, 0x54, 0x54, 0x54, 0xFF, 0xFF
-; ---------------------------------------------------------------------------
-
-; Clyde sprites
-
-clyde_right_1 db 0xFF, 0xFF, 0x42, 0x42, 0x42, 0x42, 0xFF, 0xFF
-             db 0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF
-             db 0x42, 0x42, 0x0f, 0x00, 0x42, 0x0f, 0x00, 0x42
-             db 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x0f, 0x0f, 0x42
-             db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-             db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-             db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-             db 0x42, 0xFF, 0x42, 0x42, 0xFF, 0x42, 0x42, 0x42
-
-clyde_left_1 db 0xFF, 0xFF, 0x42, 0x42, 0x42, 0x42, 0xFF, 0xFF
-             db 0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF
-             db 0x42, 0x00, 0x0f, 0x42, 0x00, 0x0f, 0x42, 0x42
-             db 0x42, 0x0f, 0x0f, 0x42, 0x0f, 0x0f, 0x42, 0x42
-             db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-             db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-             db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-             db 0x42, 0x42, 0x42, 0xFF, 0x42, 0x42, 0xFF, 0x42
-
-
-clyde_down_1 db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF, 0xFF
-            db 0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x42
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x42
-            db 0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x42
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x00, 0x42, 0xFF
-            db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF, 0xFF
-
-
-clyde_up_1  db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF, 0xFF
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x00, 0x42, 0xFF
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x42
-            db 0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x42
-            db 0x42, 0x42, 0x42, 0x42, 0x0f, 0x0f, 0x42, 0x42
-            db 0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF
-            db 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0xFF, 0xFF
-
-; ---------------------------------------------------------------------------
-
- 
 section .text
- 
-        mov ah, 00h ; set video mode requirement
-        mov al, 13h ; set video mode option to 320 x 200 256 colors
-        int 10h
+start:
+    ; Initialize game and enter graphics mode
+    call InitializeGame
+    call EnterGraphicsMode
 
-        gameloop:
-        mov al, 0FFh
-        call clearScreen
+    gameloop:
+        call ProcessPlayerInput
+        call UpdateGameLogic
+        call RenderGraphics
+        call CheckGameExit
+        jmp gameloop
 
+    ; Return to text mode and exit game
+    call ExitGame
 
-        ; display pacman
-        mov si, [currentPacmanSprite]
-        mov di, [xPosPac]
-        call draw_pacman
+InitializeGame:
+    ; Initialize player position
+    mov word [playerXPos], 100 ; Set initial X position of the player
+    mov word [playerYPos], 100 ; Set initial Y position of the player
 
-        ; display blinky
-        mov si, [currentBlinkySprite]
-        mov di, [xPosBlinky]
-        call draw_ghost12
+    ; Initialize player sprite
+    mov dword [playerSprite], sprite_right_1 ; Set initial sprite for the player
 
-        ; display inky
-        mov si, [currentInkySprite]
-        mov di, [xPosInky]
-        call draw_ghost12
-        
-        ; display clyde
-        mov si, [currentClydeSprite]
-        mov di, [xPosClyde]
-        call draw_ghost34
+    ; Initialize game variables
+    ; (Add any additional game-specific variables or states to initialize here)
 
-        ; display pinky
-        mov si, [currentPinkySprite]
-        mov di, [xPosPinky]
-        call draw_ghost34
+    ; Setup initial game environment
+    ; (This can include loading level data, setting up initial game objects, etc.)
 
+    ; Initialize other components as needed
+    ; (Such as score, lives, timers, or any other game mechanics)
 
-        ; this loop is to slow down the animation
-        mov cx, 30000
-        waitloop:
-        loop waitloop
-
-        ; update the positions of the sprites
-; ---------------------------------------------------------------------------
-call waitForKey
-; check if key pressed WASD
-cmp al, 119 ; 'w' ASCII
-je up
-cmp al, 115 ; 's' ASCII
-je down
-cmp al, 100 ; 'd' ASCII 
-je right 
-cmp al, 97 ; 'a' ASCII
-je left
-
-; check if key pressed zqsd
-cmp al, 122 ; 'z' ASCII
-je up
-cmp al, 115 ; 's' ASCII
-je down
-cmp al, 100 ; 'd' ASCII
-je right
-cmp al, 113 ; 'q' ASCII
-je left
-
-; ---------------------------------------------------------------------------
-; Exit the program if the escape key is pressed
-cmp al, 27                  ; ASCII value of escape key
-je clearScreen
-je quit                     ; go to the exit function if the comparison return an equal
-jmp gameloop                ; else return to the main loop
-
-; ---------------------------------------------------------------------------
-;the_functions:
-
-clearScreen:
-        mov ax, 0xA000
-        mov es, ax
-        mov di, 0
-        mov cx, 200*320
-        rep stosb
-        ret 
-
-; si must have the sprite address
-; di must have the target address
-
- draw_pacman:
-    mov ax, 0xA000              ; memory location of the video mode
-    mov es, ax
-    mov dx, 13                  ; set the destination index to 8 (starting position in video memory)
-    .eachLine:                  ; loop till each line of the sprite is printed
-        mov cx, 13               ; setthe count register to 8 (number of pixel to copy per line)
-        rep movsb               ; repeat the move byte action (copying pixel)
-        add di, 320-13           ; move the destination index to the next line (320 pixel per line)
-        dec dx                  ; decrement the loop counter (dx) and jump to .eachLine if not zero
-        jnz .eachLine
-        ret                     ; return to the main loop
-
-; draw_blinky:
-;     mov ax, 0xA000              ; memory location of the video mode
-;     mov es, ax
-;     mov dx, 8                   ; set the destination index to 8 (starting position in video memory)
-;     .eachLine:                  ; loop till each line of the sprite is printed
-;         mov cx, 8               ; setthe count register to 8 (number of pixel to copy per line)
-;         rep movsb               ; repeat the move byte action (copying pixel)
-;         add di, 320-8           ; move the destination index to the next line (320 pixel per line)
-;         dec dx                  ; decrement the loop counter (dx) and jump to .eachLine if not zero
-;         jnz .eachLine
-;         ret                     ; return to the main loop
- 
-
-; draw_inky:
-;  mov ax, 0xA000              ; memory location of the video mode
-;  mov es, ax
-;  mov dx, 8                   ; set the destination index to 8 (starting position in video memory)
-;     .eachLine:                  ; loop till each line of the sprite is printed
-;         mov cx, 8               ; setthe count register to 8 (number of pixel to copy per line)
-;         rep movsb               ; repeat the move byte action (copying pixel)
-;         add di, 320-8           ; move the destination index to the next line (320 pixel per line)
-;         dec dx                  ; decrement the loop counter (dx) and jump to .eachLine if not zero
-;         jnz .eachLine
-;         ret                     ; return to the main loop
- 
-    
-;  draw_clyde:
-;     mov ax, 0xA000              ; memory location of the video mode
-;     mov es, ax
-;     mov dx, 8                   ; set the destination index to 8 (starting position in video memory)
-;         .eachLine:                  ; loop till each line of the sprite is printed
-;             mov cx, 8               ; setthe count register to 8 (number of pixel to copy per line)
-;             rep movsb               ; repeat the move byte action (copying pixel)
-;             add di, 320-8           ; move the destination index to the next line (320 pixel per line)
-;             dec dx                  ; decrement the loop counter (dx) and jump to .eachLine if not zero
-;             jnz .eachLine
-;             ret                     ; return to the main loop
-
-draw_ghost12: 
-    mov ax , 0xA000
-    mov es, ax
-    mov dx, 8
-    .eachLine:
-        mov cx, 8
-        rep movsb
-        add di, 320-8
-        dec dx
-        jnz .eachLine
-        ret
-
-draw_ghost34:
-    mov ax , 0xA000
-    mov es, ax
-    mov dx, 8
-    .eachLine:
-        mov cx, 8
-        rep movsb
-        add di, 320-8
-        dec dx
-        jnz .eachLine
-        ret
-; ---------------------------------------------------------------------------
-right: 
-    ; move the sprite to the right 
-    mov word [currentPacmanSprite], pacman_right_1 ; set the current sprite to the right facing sprite
-    cmp word [xVelocityPac], 0 ; check if the sprite is moving to the left
-    jl .reverse ; if it is, reverse the direction
-    mov bx , [xVelocityPac] ; move the velocity to bx
-    add bx, [xPosPac] ; add the velocity to the current position
-    mov [xPosPac], bx ; move the new position to the current position
-    jmp gameloop
-    .reverse: 
-        neg word [xVelocityPac] ; reverse the velocity
-        jmp right ; jump back to the right function
-    ret 
-
-
-left:
-    ; move the sprite to the left
-    mov word [currentPacmanSprite], pacman_left_1 ; set the current sprite to the left facing sprite
-    cmp word [xVelocityPac], 0                       ; check if the sprite is moving to the right
-    jg .reverse                                   ; if it is, reverse the direction
-    mov bx , [xVelocityPac]                          ; move the velocity to bx
-    add bx, [xPosPac]                                ; add the velocity to the current position
-    mov [xPosPac], bx                                ; move the new position to the current position
-    jmp gameloop
-    .reverse: 
-        neg word [xVelocityPac]                      ; reverse the velocity
-        jmp left                               ; jump back to the left function
-    ret 
-
-
-up:
-    ; Move the sprite upward
-    mov word [currentPacmanSprite], pacman_up_1 ; select the sprite to be displayed
-    cmp word [yVelocityPac], 0     ; check the value of velocity
-    jg .reverse                 ; if the value is positive go to sub procedure .reverse
-    mov bx, [xPosPac]              ; the position is increased by the speed of the sprite to go to the next line (here 320)
-    add bx, [yVelocityPac]
-    mov [xPosPac], bx              ; update the position and speed of the sprite
-    jmp gameloop                ; return to the main loop
-    .reverse:
-        neg word [yVelocityPac]    ; negate the value of velocity to -320
-        jmp up                  ; return to the procedure up
     ret
 
-down:
-    ; Move the sprite downward
-    mov word [currentPacmanSprite], pacman_down_1 ; select the sprite to be displayed
-    cmp word [yVelocityPac], 0     ; check the value of velocity
-    jl .reverse                 ; if the value is negative go to sub procedure .reverse
-    mov bx, [xPosPac]              ; the position is increased by the speed of the sprite to go to the next line (here -320)
-    add bx, [yVelocityPac]
-    mov [xPosPac], bx              ; update the position and speed of the sprite 
-    jmp gameloop                ; return to the main loop
-    .reverse:
-        neg word [yVelocityPac]    ; negate the value of velocity to +320
-        jmp down                ; return to the procedure down
-    ret
- ; ---------------------------------------------------------------------------
 
-waitForKey:
-    mov ah, 0x00                 ; BIOS function to read keyboard input
-    int 16h                      ; Call BIOS interrupt
+EnterGraphicsMode:
+    ; Set video mode to 13h, a common graphics mode (320x200 with 256 colors)
+    mov ah, 0x00   ; Function: Set Video Mode
+    mov al, 0x13   ; Mode 13h: 320x200 pixels, 256 colors
+    int 0x10       ; Call BIOS Video Services
+
+    ; Additional setup can be done here if needed
+    ; (like palette initialization, clearing the screen, etc.)
+
     ret
 
-;dos box default video mode
-mov ax, 03h                 ; set into video mode
-int 21h                     ; call DOS interupt
-int 20h                     ; quit 
 
-quit:                       ; If escape key is pressed, jump to label 'exit'
-    mov ah, 4ch                 ; DOS function to exit program
-    int 21h                     ; Call DOS interrupt
+ProcessPlayerInput:
+    ; Check for keyboard input
+    ; Update playerXPos and playerYPos based on arrow key input
+    ; Implement logic for moving the player sprite
+    call ReadKeyboardInput
+    call UpdatePlayerPosition
+    ret
+
+UpdateGameLogic:
+    ; Check for collisions with game boundaries or obstacles
+    call CheckCollisions
+
+    ; Update game elements such as enemies, power-ups, etc.
+    call UpdateGameElements
+
+    ; Check for game objectives or end conditions
+    call CheckGameConditions
+
+    ret
+
+CheckCollisions:
+    ; Collision detection logic goes here
+    ; Example: Check if playerXPos and playerYPos are within game boundaries
+    ; and adjust or respond accordingly (like stopping movement or losing a life)
+    ret
+
+UpdateGameElements:
+    ; Update logic for other game elements
+    ; For example, move enemies, spawn items, etc.
+    ret
+
+CheckGameConditions:
+    ; Check for conditions like score milestones, lives remaining, etc.
+    ; Implement logic for level completion, game over, etc.
+    ret
+
+
+RenderGraphics:
+    ; Clear screen
+    ; Draw player sprite at playerXPos, playerYPos
+    ; Render other game elements
+    ret
+
+CheckGameExit:
+    ; Implement logic to check if the game should exit
+    ; Exit game loop if necessary
+    ret
+
+ExitGame:
+    ; Return to text mode and trigger game exit sequence
+    ret
+
+; Implementations of ReadKeyboardInput, UpdatePlayerPosition, and other functions
+
+;------------------------------------------------------
+; Example implementation for ReadKeyboardInput
+;------------------------------------------------------
+ReadKeyboardInput:
+    ; Check if a key is pressed
+    mov ah, 0x01
+    int 0x16       ; BIOS Keyboard Service
+    jz NoKeyPress  ; Jump if no key is pressed
+
+    ; Read the keystroke
+    mov ah, 0x00
+    int 0x16       ; BIOS Keyboard Service
+    mov [actualKeystroke], ax ; Store the keystroke
+
+    ; Check for arrow keys
+    cmp ah, 0x48   ; Up arrow key
+    je KeyIsUp
+    cmp ah, 0x50   ; Down arrow key
+    je KeyIsDown
+    cmp ah, 0x4B   ; Left arrow key
+    je KeyIsLeft
+    cmp ah, 0x4D   ; Right arrow key
+    je KeyIsRight
+    jmp NoKeyPress
+
+KeyIsUp:
+    ; Code to handle up arrow key
+    mov [actualKeystroke], 0x4800 ; Store up arrow keystroke
+    mov byte [playerDirection], 'U' ; 'U' for Up
+    jmp EndOfInputCheck
+
+KeyIsDown:
+    ; Code to handle down arrow key
+    mov [actualKeystroke], 0x5000 ; Store down arrow keystroke
+    mov byte [playerDirection], 'D' ; 'D' for Down
+    jmp EndOfInputCheck
+
+KeyIsLeft:
+    ; Code to handle left arrow key
+    mov [actualKeystroke], 0x4B00 ; Store left arrow keystroke
+    mov byte [playerDirection], 'L' ; 'L' for Left
+    jmp EndOfInputCheck
+
+KeyIsRight:
+    ; Code to handle right arrow key
+    mov [actualKeystroke], 0x4D00 ; Store right arrow keystroke
+    mov byte [playerDirection], 'R' ; 'R' for Right
+    jmp EndOfInputCheck
+
+NoKeyPress:
+    ; Code to handle no key press
+    ; This can be used to stop the player's movement or take no action
+    ; For example, to stop movement:
+    ; mov byte [playerDirection], 'N' ; 'N' for None or Stationary
+    mov [actualKeystroke], 0x0000 ; Clear the keystroke
+    jmp EndOfInputCheck
+
+;------------------------------------------------------
+; Example implementation for UpdatePlayerPosition
+;------------------------------------------------------
+UpdatePlayerPosition:
+    ; Compare the player's current direction and update position accordingly
+    mov al, [playerDirection]
+    cmp al, 'U' ; Compare with 'U' for Up
+    je MoveUp
+    cmp al, 'D' ; Compare with 'D' for Down
+    je MoveDown
+    cmp al, 'L' ; Compare with 'L' for Left
+    je MoveLeft
+    cmp al, 'R' ; Compare with 'R' for Right
+    je MoveRight
+
+    ; If no valid direction is found, skip movement update
+    jmp EndOfPositionUpdate
+
+MoveUp:
+    ; Decrease Y position to move up
+    dec word [playerYPos]
+    jmp EndOfPositionUpdate
+
+MoveDown:
+    ; Increase Y position to move down
+    inc word [playerYPos]
+    jmp EndOfPositionUpdate
+
+MoveLeft:
+    ; Decrease X position to move left
+    dec word [playerXPos]
+    jmp EndOfPositionUpdate
+
+MoveRight:
+    ; Increase X position to move right
+    inc word [playerXPos]
+    jmp EndOfPositionUpdate
+
+EndOfPositionUpdate:
+    ret
 
