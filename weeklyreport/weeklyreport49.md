@@ -43,3 +43,11 @@ This week, the Program Manager and Le techlead will be working in cohesion with 
 In the meantime, the QA will continue drafting its test plan, as described above. 
 
 The project manager will then write all the documents he's supposed to hand in, and once finished, he'll also help the software engineers with the development of our game. 
+
+### Change on the Maze 
+
+Initially, we coded our maze as a sprite. But thanks to the assembly course, we realized that if we left our maze in sprite, we'd have trouble making the characters collide. 
+
+We've decided to code the maze in ascii code. And we succeeded, but it took a long time. So here's a picture of our maze in ascii code, once finished. 
+
+<br><img src="image/mazeascii.png"></br>
