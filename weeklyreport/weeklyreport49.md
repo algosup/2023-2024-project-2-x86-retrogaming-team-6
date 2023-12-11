@@ -44,6 +44,8 @@ In the meantime, the QA will continue drafting its test plan, as described above
 
 The project manager will then write all the documents he's supposed to hand in, and once finished, he'll also help the software engineers with the development of our game. 
 
+*Raphael Descamps*
+
 ### Change on the Maze 
 
 Initially, we coded our maze as a sprite. But thanks to the assembly course, we realized that if we left our maze in sprite, we'd have trouble making the characters collide. 
@@ -54,6 +56,10 @@ We've decided to code the maze in ascii code. And we succeeded, but it took a lo
 
 The image above represents our maze for the prototype due on 12/11/2023. But this is not our final maze. 
 
+*Rémy Charles*
+
 ### QA Test Plan
 
-Our QA, has finished writing and editing his test plan. His test plan will enable us to test our prototype and our final version, to avoid as many errors and problems as possible on our game. 
+Our QA, has finished writing and editing his test plan. His test plan will enable us to test our prototype and our final version, to avoid as many errors and problems as possible on our game.
+
+*Manech Laguens* 
