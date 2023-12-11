@@ -51,3 +51,12 @@ Initially, we coded our maze as a sprite. But thanks to the assembly course, we 
 We've decided to code the maze in ascii code. And we succeeded, but it took a long time. So here's a picture of our maze in ascii code, once finished. 
 
 <br><img src="image/mazeascii.png"></br>
+
+The image above represents our maze for the prototype due on 12/11/2023. But this is not our final maze. 
+
+
+
+### QA Test Plan
+
+Our QA, has finished writing and editing his test plan. His test plan will enable us to test our prototype and our final version, to avoid as many errors and problems as possible on our game. 
+
