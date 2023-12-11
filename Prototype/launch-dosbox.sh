@@ -13,7 +13,7 @@ echo "Built Successfully! ✅"
 
 ROOT_DIR=$(dirname "$0")
 BIN_DIR="$binDir"
-DOSBOX_BIN="/opt/homebrew/bin/dosbox"
+DOSBOX_BIN="dosbox"
 CONFIG_LOC="$ROOT_DIR"
 
 "$DOSBOX_BIN" -c "MOUNT c $BIN_DIR" -c "C:" -c "keyb fr" -c "main.com"
