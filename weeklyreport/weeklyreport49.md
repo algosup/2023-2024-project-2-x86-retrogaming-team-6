@@ -63,3 +63,11 @@ The image above represents our maze for the prototype due on 12/11/2023. But thi
 Our QA, has finished writing and editing his test plan. His test plan will enable us to test our prototype and our final version, to avoid as many errors and problems as possible on our game.
 
 *Manech Laguens* 
+
+### Next week's schedule 
+
+* Our junior software engineers have to bring our prototype forward for delivery on Monday 12/112023. 
+
+* We have to start drafting our oral and our slide show in two weeks' time. 
+
+* More specifically, we need to make progress on the ghosts' code, i.e. their movements and powers. 
