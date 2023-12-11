@@ -9,5 +9,4 @@
 | :-------------- |
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> 
 
-### <br> Prototype Progress        
-
+### <br> Prototype Progress       
