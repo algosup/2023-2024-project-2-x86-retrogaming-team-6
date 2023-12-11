@@ -54,9 +54,6 @@ We've decided to code the maze in ascii code. And we succeeded, but it took a lo
 
 The image above represents our maze for the prototype due on 12/11/2023. But this is not our final maze. 
 
-
-
 ### QA Test Plan
 
 Our QA, has finished writing and editing his test plan. His test plan will enable us to test our prototype and our final version, to avoid as many errors and problems as possible on our game. 
-
