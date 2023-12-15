@@ -50,4 +50,6 @@ The project manager will then write all the documents he's supposed to hand in, 
 
 Here are the tasks we would like to realize during the upcoming week.
 
-* 
+* We really need to make progress on the project and the game's develoments, such as colisions. 
+
+* We'd better get started on the slideshow and the lyrics for each team member. 
