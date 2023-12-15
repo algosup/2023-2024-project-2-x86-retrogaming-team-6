@@ -1,14 +1,6 @@
 # Functional Specification Team-6
 
-| | |
-| ----- | ----- |
-| Author | Thibaud Marlier|
-| Team | Team 6 |
-| Reviewers | Rémy CHARLES, Manech LAGUENS |
-| Created on | 11/06/2023 |
-| Last updated | 11/13/2023 |
-
-### Table of content : 
+### Table of content:   
 <details><summary> Click to expand </summary>
 
 - [Functional Specification Team-6](#functional-specification-team-6)
@@ -106,8 +98,8 @@ The objectives of this document are to provide an overview of the project and wh
 ### 3.2 - Non-goals
 - Multiplayer: a 2 player mode won't be on the final game.
 - Sales: The game will not be developed for commercial purposes; it will be created solely for enjoyment and entertainment.
-- Additional game modes: except from the other maze design, there won't be other gamemodes added to the game as we don't want to get too far of the maze action game genre. 
-- Unentertainment: the game must be entertaining and not boring.
+- Additional game modes: except from the other maze design, there won't be other gamemodes added to the game as we don't want to get too far of the maze action game genre.     
+- bore: the game must be entertaining and not boring.
 - Implement new physics: too time consuming and won't fit the x86 architecture.
 
 ## 4 - Functional Requirements
@@ -118,10 +110,9 @@ In this section, we will go down the functional requirements of this project, it
 | --- | --- |
 | **Level progression**| Once the player has collected all the pellets available in the maze, a new level will appear, and bonus points will be awarded to the player. |
 | **Player movement** | The player must be able to control its character. |
-| **Ghost AI** | Ghosts have to follow a specific pattern that will be created by the developers. |
 | **Pellet collection** | The character has to collect pellet in order to win the game, and not forget the "Power Pellets" that gives the ability to eat the Ghosts to the player. |
 | **Maze Design** | The layout will be based on the original Pac-Man® game. The maze dimension will be the same as the original one from Pac-Man® |
-| **Scoring System** | Points will be determined based on the original Pac-Man® game point system.  |
+| **Scoring System** | Points will be determined based on the original Pac-Man® game point system.  This means that each pellet will give 10 points to the player. A power pellet is worth 50 points. And for each ghosts eaten under power pellet effect:  200 points for one ghost, 400 for two, 800, for three and 1600 for all of them.   |
 | **Game States** | The game will include a start menu with "Start Game," "Rules," "Options," and "Credits" buttons.  |
 | **User Interface** | We will recreate the original User Interface of Pac-Man®.  
 | **Audio** | The famous "wakka-wakka" sound that plays when the character eats a pellet will be added to the game. The song playing when you get caught by a ghost will be implemented. We will add the game-over and the level up sounds. |
@@ -131,7 +122,49 @@ In this section, we will go down the functional requirements of this project, it
 | **High Scores** | We will include the original leaderboard, that stores the high scores of the player. |
 | **Game Settings** | Audio settings could be tweaked by the player in the setting section. |
 | **Pause button** | Player should be able to pause the game. |
-| **Life system**| The player starts the game with 3 lives, each 10 000  points, the player earns an additional life. |      
+| **Life system**| The player starts the game with 3 lives, each 10 000  points, the player earns an additional life.|
+
+**Ghost AI:**  
+**Blinky:**  
+Blinky starts outside of the ghost house. He is seen as the first threat.  
+Blinky targeting method is quite simple he targets the current position of the main character.  
+Moreover, his speed increases by 5% and his behavior in Scatter mode changes based on the number of dots remaining.  
+![Blinky Targeting](https://media.gameinternals.com/pacman-ghosts/blinky-targeting.png) 
+
+**Pinky:**  
+Pinky starts inside the ghost house. He exits immediately. He's nicknamed the "ambusher".  
+His targeting scheme attemps to move him to the place where Pac-Man is going. Pinky looks at Pac-man's current position and orientation and select the location four tiles straight ahead.
+However when Pac-man is facing upwards, an overflow error causes the targeted location to be four tiles to the left of pacman and four tiles infrom of him.  
+![Pinky Targeting](https://media.gameinternals.com/pacman-ghosts/pinky-targeting2.png)  
+![Pinky Targeting2](https://media.gameinternals.com/pacman-ghosts/pinky-targeting.png)  
+
+**Inky:**  
+Inky remains inside the ghost house for a short period of time on the first level, until Pacman managed at least 30 of the dots. Inky's behaviour is hard to predict because he's the only one of the ghosts that uses a factor other than Pacman's.  
+Inky uses both Pacman's position/facing as well as Blinky's position.  
+Firstly we start by selecting the position two tiles in front of pacman and then drawa  vector from Blinky's position and then double the lenght of the vector. And, voila, you've got Inky's target.   
+So, if Blinky is close to Pacman then so will be Inky.    
+
+![Inky Targeting](https://media.gameinternals.com/pacman-ghosts/inky-targeting.png)  
+
+
+**Clyde:**  
+He's the last to leav the ghost house and doesn't exit in the first level until over 1/3 of the dots have been eaten.
+he first calculates his distance from Pac-Man. If he is farther than eight tiles away, his targeting is identical to Blinky's, using Pac-Man's current tile as his target. However, as soon as his distance to Pac-Man becomes less than eight tiles, Clyde's target is set to the same tile as his fixed one in Scatter mode, just outside the bottom-left corner of the maze.   
+![Clyde Targeting](https://media.gameinternals.com/pacman-ghosts/clyde-targeting2.png)  
+![Clyde Targeting1](https://media.gameinternals.com/pacman-ghosts/clyde-targeting.png)  
+![Clyde Targeting2](https://media.gameinternals.com/pacman-ghosts/clyde-targeting3.png)   
+The combination of these two methods has the overall effect of Clyde alternating between coming directly towards Pac-Man, and then changing his mind and heading back to his corner whenever he gets too close. On the diagram above, the X marks on the path represent the points where Clyde's mode switches. If Pac-Man somehow managed to remain stationary in that position, Clyde would indefinitely loop around that T-shaped area. As long as the player is not in the lower-left corner of the maze, Clyde can be avoided completely by simply ensuring that you do not block his "escape route" back to his corner. While Pac-Man is within eight tiles of the lower-left corner, Clyde's path will end up in exactly the same loop as he would eventually maintain in Scatter mode. 
+
+**Collision:**  
+All four ghosts aren't able to cross the walls and so does Pacman, all the characters must follow the designed path without clipping into the walls nor going through them.
+
+**Maze:**  
+![Alt text](<image (11)-1.png>)  
+Pacman starting location can be seen up above, it starts at the middle of the fourth row.  
+**Red cross:** Blinky's initial position, starts outside of the ghost house.  
+**Pink, Orange and Light Blue crosses:** Initial Pinky's, Clyde's and Inky's location, they are starting inside of the ghost house.  
+**Pellets:** There are 213 pellets on the maze.  
+**Power pellets:** There are 4 power pellets scattered on the maze. Whenever Pacman eats a power pellet, the ghosts will enter the vulnerable mode, Pacman can now eat the Ghosts taht will try to flee him. 
 
 ### 4.2 - New Game Mechanics
 #### 4.2.1 - Essential new game mechanics 
@@ -143,7 +176,7 @@ We will prioritize the implementation of these new mechanics into the game.
 | **New maze design** | Implementation of a new maze that will be into a different section of the original maze design (like a second gamemode). |
 | **Character's color**| Adding new color customization to the main character of the game, the player must be able to choose it. |
 | **Game state** | Changing the UI and the maze design, obligates us to create whole new game states. |
-| **New Bonuses** | Implementing the concept of the original bonuses that appears each level (cherry, peach...), but we will add our own spice to it. |
+| **New Bonuses** | Implementing the concept of the original bonuses that appears each level (cherry, peach...) |
 | **Leaderboard** | Providing the ability to the player to score his high scores into a leaderboard.|
 | **Rule section**  | Adding a rule section in the menu to explain new players what the rules of the game are. |
 
