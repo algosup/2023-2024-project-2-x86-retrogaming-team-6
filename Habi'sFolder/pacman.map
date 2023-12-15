@@ -1,0 +1,95 @@
+
+- NASM Map file ---------------------------------------------------------------
+
+Source file:  pacman.asm
+Output file:  C:\Users\HabiCAILLEAU\Documents\pacman.com
+
+-- Symbols --------------------------------------------------------------------
+
+---- Section .text ------------------------------------------------------------
+
+Real              Virtual           Name
+             106               106  gameloop
+             145               145  waitloop
+             182               182  draw_pacman
+             18A               18A  draw_pacman.eachLine
+             197               197  draw_ghost12
+             19F               19F  draw_ghost12.eachLine
+             1AC               1AC  draw_ghost34
+             1B4               1B4  draw_ghost34.eachLine
+             1C1               1C1  printSprite
+             1CF               1CF  eachLine
+             1D8               1D8  right
+             1F4               1F4  right.reverse
+             1FB               1FB  left
+             217               217  left.reverse
+             21E               21E  up
+             23A               23A  up.reverse
+             241               241  down
+             25D               25D  down.reverse
+             264               264  waitForKey
+             270               270  quit
+             274               274  clearScreen
+
+---- Section .data ------------------------------------------------------------
+
+Real              Virtual           Name
+             284               284  yPosPac
+             286               286  xPosPac
+             288               288  yVelocityPac
+             28A               28A  xVelocityPac
+             28C               28C  directionPac
+             28D               28D  currentPacmanSprite
+             291               291  yPosBlinky
+             293               293  xPosBlinky
+             295               295  yVelocity
+             297               297  xVelocity
+             299               299  directionBl
+             29A               29A  currentBlinkySprite
+             29E               29E  yPosInky
+             2A0               2A0  xPosInky
+             2A2               2A2  yVelocityInky
+             2A4               2A4  xVelocityInky
+             2A6               2A6  directionIn
+             2A7               2A7  currentInkySprite
+             2AB               2AB  yPosClyde
+             2AD               2AD  xPosClyde
+             2AF               2AF  yVelocityClyde
+             2B1               2B1  xVelocityClyde
+             2B3               2B3  directionCl
+             2B4               2B4  currentClydeSprite
+             2B8               2B8  yPosPinky
+             2BA               2BA  xPosPinky
+             2BC               2BC  yVelocityPinky
+             2BE               2BE  xVelocityPinky
+             2C0               2C0  directionPi
+             2C1               2C1  currentPinkySprite
+             2C5               2C5  yPosPellet
+             2C7               2C7  xPosPellet
+             2C9               2C9  points
+             2CA               2CA  points_str
+             2CB               2CB  msg
+             2D4               2D4  newline
+             2D7               2D7  pacman_right_1
+             317               317  pacman_down_1
+             357               357  pacman_up_1
+             397               397  pacman_left_1
+             3D7               3D7  blinky_right_1
+             417               417  blinky_left_1
+             457               457  blinky_down_1
+             497               497  blinky_up_1
+             4D7               4D7  inky_right_1
+             517               517  inky_left_1
+             557               557  inky_down_1
+             597               597  inky_up_1
+             5D7               5D7  pinky_right_1
+             617               617  pinky_left_1
+             657               657  pinky_down_1
+             697               697  pinky_up_1
+             6D7               6D7  clyde_right_1
+             717               717  clyde_left_1
+             757               757  clyde_down_1
+             797               797  clyde_up_1
+             7D7               7D7  mazeSprite
+            E017              E017  pellet
+
