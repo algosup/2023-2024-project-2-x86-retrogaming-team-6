@@ -43,3 +43,19 @@ This week, the Program Manager and Le techlead will be working in cohesion with 
 In the meantime, the QA will continue drafting its test plan, as described above. 
 
 The project manager will then write all the documents he's supposed to hand in, and once finished, he'll also help the software engineers with the development of our game. 
+
+### Examen oral 
+
+We've started writing our plan for our oral exam. 
+
+In addition, we've also started writing the lyrics for each team member. 
+
+But we also started to find the template for our slideshow and to start the first pages of our slideshow. 
+
+### Learning Assembly and Code 
+
+Over the weekend, our junior software engineers began developing the character colisions. 
+
+This means that when our pac man wants to turn but there's a wall, he won't be able to. 
+
+They are also about the development of ghosts and their movements. Because our ghosts have to move on their own, and some have powers such as following the pac man.
