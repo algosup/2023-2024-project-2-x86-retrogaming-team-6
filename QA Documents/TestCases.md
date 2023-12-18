@@ -202,4 +202,14 @@ Actual result |
 | Status | To test |
 | Priority | Low
 
+ Test Case ID      |         18           |
+|-------------------|--------------------|
+| Name | Music and sounds|
+| Description| Verify that music and sounds are working without no errors |
+| Pre-conditions| Start the game |
+| Steps| Wait for the music to start|
+| Expected result| The music plays|  
+Actual result |
+| Status | To test |
+| Priority | Low
 
