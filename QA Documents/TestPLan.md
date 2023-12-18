@@ -161,7 +161,7 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
 
 The following table shows the most important features and their current progress. It will be updated during the test phase to keep track of the progress.
 
-| Aspect               | Validation Criteria                                | Validation Status   | Comment (ask thibauD)    |
+| Aspect               | Validation Criteria                                | Validation Status   | Comment     |
 |----------------------|----------------------------------------------------|---------------------|-----------------|
 | Collision            | Correctly working collision between Pac-Man and walls        | In progress             |                 |
 |                      | Appropriate interaction between Pac-Man and ghosts  | In progress         |                 |
