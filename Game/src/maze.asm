@@ -345,7 +345,6 @@ move_right:
         jmp .moveLoop                 ; Continue the loop for moving right
 
 
-
     .stopMovement:
         ; Collision detected, reset direction and return to main loop
         mov word [direction], 0

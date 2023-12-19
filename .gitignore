@@ -3,7 +3,6 @@
 *.obj
 *.exe
 *.dll
-*.com
 *.bin
 *.out
 
@@ -43,7 +42,6 @@
 *.ilk
 
 # Build Folders (keep bin/)
-bin/
 obj/
 
 # Backup & Temporary files
