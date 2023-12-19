@@ -48,7 +48,7 @@
 | Priority | High
 
 
- Test Case ID      |         4          |
+ Test Case ID      |         5          |
 |-------------------|--------------------|
 | Name | Move up                 |
 | Description|  Pac-Man must move upwards   |
@@ -59,7 +59,7 @@
 | Status | To test |
 | Priority | High
 
- Test Case ID      |         5          |
+ Test Case ID      |         6          |
 |-------------------|--------------------|
 | Name | Move down                 |
 | Description|  Pac-Man must move downwards   |
@@ -71,7 +71,7 @@
 | Priority | High
 
 
- Test Case ID      |         6          |
+ Test Case ID      |         7          |
 |-------------------|--------------------|
 | Name | Wall collisions                 |
 | Description|  Pac-Man and the ghosts must be stopped by the walls   |
@@ -82,7 +82,7 @@
 | Status | To test |
 | Priority | High
 
- Test Case ID      |         7          |
+ Test Case ID      |         8          |
 |-------------------|--------------------|
 | Name | Collisions between Pac-Man and the ghosts                |
 | Description|  Pac-Man dies when he touches a ghost   |
@@ -94,7 +94,7 @@
 | Priority | High
 
 
-Test Case ID      |         8            |
+Test Case ID      |         9            |
 |-------------------|--------------------|
 | Name | Collisions between Pac-Man and the ghosts |
 | Description| When Pac-Man eats a power pellet, he can eat the ghosts   |
@@ -107,7 +107,7 @@ Test Case ID      |         8            |
 
  
 
- Test Case ID      |         9            |
+ Test Case ID      |         10            |
 |-------------------|--------------------|
 | Name | Game Over |
 | Description| When Pac-Man runs out of lives, the game stops   |
@@ -119,7 +119,7 @@ Test Case ID      |         8            |
 | Priority | High
 
 
- Test Case ID      |         10            |
+ Test Case ID      |         11            |
 |-------------------|--------------------|
 | Name | Next level |
 | Description| When Pac-Man eats every dots, he moves to the next level   |
@@ -131,7 +131,7 @@ Test Case ID      |         8            |
 | Priority | High
 
 
- Test Case ID      |         11            |
+ Test Case ID      |         12            |
 |-------------------|--------------------|
 | Name | Score |
 | Description| The score increases when Pac-Man eats a dot   |
@@ -143,7 +143,7 @@ Test Case ID      |         8            |
 | Priority | High
 
 
- Test Case ID      |         12            |
+ Test Case ID      |         13            |
 |-------------------|--------------------|
 | Name | Increase lives |
 | Description| Pac-Man earns a life every 10K points won   |
@@ -155,47 +155,61 @@ Test Case ID      |         8            |
 | Priority | Medium
 
 
- Test Case ID      |         13            |
+ Test Case ID      |         14            |
 |-------------------|--------------------|
 | Name | Tunnels |
 | Description| When Pac-Man enters in a tunnel, he's teleported in the other one   |
 | Pre-conditions| Start the game |
 | Steps| Go through a tunnel|
-| Expected result|Pac-Man is teleported on the opposite side of the map|  |
-| Status | To test |
+| Expected result|Pac-Man is teleported on the opposite side of the map |
+Actual result  |  
+| Status | To test | 
 | Priority | Medium
 
 
- Test Case ID      |         14           |
+ Test Case ID      |         15           |
 |-------------------|--------------------|
 | Name | Bonuses |
 | Description| When Pac-Man eats a bonus, the score increases  |
 | Pre-conditions| Start the game |
 | Steps| Eat a bonus fruit|
-| Expected result|Pac-Man earns point as he eats bonuses|  |
-| Status | To test |
-| Priority | Low
-
-
- Test Case ID      |         15           |
-|-------------------|--------------------|
-| Name | Ghosts' scatter mode|
-| Description| Verify ghosts behaviour when in scatter mode |
-| Pre-conditions| Start the game |
-| Steps| Wait for the ghosts to change behaviour|
-| Expected result| The ghosts are in scatter mode|  |
+| Expected result|Pac-Man earns point as he eats bonuses| 
+Actual result | 
 | Status | To test |
 | Priority | Low
 
 
  Test Case ID      |         16           |
 |-------------------|--------------------|
+| Name | Ghosts' scatter mode|
+| Description| Verify ghosts behaviour when in scatter mode |
+| Pre-conditions| Start the game |
+| Steps| Wait for the ghosts to change behaviour|
+| Expected result| The ghosts are in scatter mode| 
+Actual result |
+| Status | To test |
+| Priority | Low
+
+
+ Test Case ID      |         17           |
+|-------------------|--------------------|
 | Name | Ghosts' chase mode|
 | Description| Verify ghosts behaviour when in chase mode |
 | Pre-conditions| Start the game |
 | Steps| Wait for the ghosts to change behaviour|
-| Expected result| The ghosts are in chase mode|  |
+| Expected result| The ghosts are in chase mode|  
+Actual result |
 | Status | To test |
 | Priority | Low
 
+ Test Case ID      |         18           |
+|-------------------|--------------------|
+| Name | Music and sounds|
+| Description| Verify that music and sounds are working without no errors |
+| Pre-conditions| Start the game |
+| Steps| Wait for the music to start|
+| Expected result| The music plays|  
+Actual result |
+| Status | To test |
+| Priority | Low
 
