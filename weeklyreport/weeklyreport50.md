@@ -10,13 +10,13 @@
 | **Raphaël Descamps** <img src="https://ca.slack-edge.com/T019N8PRR7W-U05TNB290FJ-abc72bbf0d47-512" width="50px" align=center> 
 
 
-### <br> Examen oral 
+### <br> Oral Exam  
 
-We've started writing our plan for our oral exam. 
+We started writing our plan for our oral exam. 
 
-In addition, we've also started writing the lyrics for each team member. 
+In addition, we also started writing the oral notes for each team member.
 
-But we also started to find the template for our slideshow and to start the first pages of our slideshow. 
+Furthermore, we found a nice template for our slideshow so we were able to start the slideshow. 
 
 *Raphaël Descamps & Manech Laguens* 
 
@@ -26,7 +26,7 @@ Over the weekend, our junior software engineers began developing the character c
 
 This means that when our pac man wants to turn but there's a wall, he won't be able to. 
 
-They are also about the development of ghosts and their movements. Because our ghosts have to move on their own, and some have powers such as following the pac man.
+They are also working on the development of the ghosts and their movements, since our ghosts have to move on their own.
 
 *Junior Software Engineer, Thibaud Marlier & Rémy Charles*
 
@@ -38,4 +38,4 @@ Here are the tasks we would like to realize during the upcoming week.
 
 * We should make a bar with the score if we have time. 
 
-* Finish writing our oral exam and then finish the slideshow of this oral exam to have time to practice before the big day. 
+* We must finish the writing and the slideshow for the oral exam, the earlier we're done, the more we will have time to practice for the big day. 
