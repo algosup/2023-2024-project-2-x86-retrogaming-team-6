@@ -15,10 +15,11 @@
 
 section .data
 
+
 section .bss
 
 ;------------------------------------------------------
 
 section .text
-start:
-    call maze
+
+call maze
