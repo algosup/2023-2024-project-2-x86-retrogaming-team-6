@@ -1,5 +1,5 @@
-Testing plan V5:
-last updated: 12/04/23 
+Testing plan V8:
+last updated: 12/19/23 
 
 
 ## Table of content : 
@@ -149,8 +149,7 @@ When Pac-Man eats a dot, the score should move accordingly and the dot must vani
 
  ## 3. Flaws tracking. 
     
-   To keep an eye on every errors, we will use Githubs issues to keep track on a case-by-case basis. By doing this, we will be able to access every issue that occured during the project. Here is an example: 
-
+   To keep an eye on every errors, we will use Githubs issues to keep track on a case-by-case basis. By doing this, we will be able to access every issue that occured during the project. 
  
 
  ## 4. Environment.
