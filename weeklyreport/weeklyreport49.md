@@ -1,3 +1,4 @@
+
 # Weekly Report Team 6 : Week 49
 
 <br>
@@ -67,3 +68,7 @@ Our QA, has finished writing and editing his test plan. His test plan will enabl
 * We have to start drafting our oral and our slide show in two weeks time. 
 
 * More specifically, we need to make progress on the ghosts' code, i.e. their movements and powers. 
+
+The project manager will then write all the documents he's supposed to hand in, and once finished, he'll also help the software engineers with the development of our game. 
+
+*Raphaël Descamps* 
