@@ -1,5 +1,5 @@
-Testing plan V9:
-last updated: 12/20/23 
+Testing plan V8:
+last updated: 12/19/23 
 
 
 ## Table of content : 
@@ -177,7 +177,7 @@ The following table shows the most important features and their current progress
 | User Interface       | Clarity and readability of on-screen information    | In progress         |                 |
 |                      | Ease of navigation through menus                     | In progress             |                 |
 
-
+      
 
 # X. Testing methodology. 
  
