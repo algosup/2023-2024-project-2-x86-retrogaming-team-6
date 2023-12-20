@@ -22,7 +22,7 @@ last updated: 12/19/23
 ______________
 
 This testing plan is made to check the quality and the functionality of the Pac-Man game in a PC environment. The tests are made to make sure that the game is efficient in every way and that the player can enjoy the game.
-
+ 
 
 Validation of the key features, performance,  UI, audiovisual and stability of the game. The game must be challenging, but not too hard. 
 
@@ -177,7 +177,7 @@ The following table shows the most important features and their current progress
 | User Interface       | Clarity and readability of on-screen information    | In progress         |                 |
 |                      | Ease of navigation through menus                     | In progress             |                 |
 
-      
+
 
 # X. Testing methodology. 
  
