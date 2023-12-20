@@ -1,19 +1,41 @@
 Testing plan V8:
 last updated: 12/19/23 
 
-
 ## Table of content : 
 
 <details><summary>Click to expand</summary>
 
 - [I. Unitary testing.](#i-unitary-testing)
+  - [1. Pac-Mans movements.](#1-pac-mans-movements)
+  - [2. Collisions with the walls and with the points.](#2-collisions-with-the-walls-and-with-the-points)
+  - [3. Ghosts behavior.](#3-ghosts-behavior)
 - [II. Integration testing.](#ii-integration-testing)
+  - [1. Pac-Mans movements with the dots.](#1-pac-mans-movements-with-the-dots)
+  - [2. Interactions between Pac-Man and the ghosts.](#2-interactions-between-pac-man-and-the-ghosts)
+  - [3. Level transitions and screen menu.](#3-level-transitions-and-screen-menu)
+  - [4. Power-ups effects on Pac-Man and the ghosts.](#4-power-ups-effects-on-pac-man-and-the-ghosts)
 - [III. System testing.](#iii-system-testing)
+  - [1. Game stability.](#1-game-stability)
+  - [2. Game fluidity.](#2-game-fluidity)
 - [IV. Display check.](#iv-display-check)
-- [V. Update testing.](#v-update-testing) 
+  - [1. Maze check.](#1-maze-check)
+  - [2. Characters check.](#2-characters-check)
+  - [3. UI check.](#3-ui-check)
+  - [4. Animation check and visual effects.](#4-animation-check-and-visual-effects)
+- [V. Update testing.](#v-update-testing)
+  - [1. Backups.](#1-backups)
+  - [2. New features testing and backwards compatibility.](#2-new-features-testing-and-backwards-compatibility)
 - [VI. Documentation and test reporting requirements.](#vi-documentation-and-test-reporting-requirements)
+  - [1. Documentation.](#1-documentation)
+    - [1.1 Test plan.](#11-test-plan)
+    - [1.2 Traceability table.](#12-traceability-table)
+  - [2. Test reporting requirements.](#2-test-reporting-requirements)
 - [VII. Testing schedule.](#vii-testing-schedule)
 - [VIII. Testing tools.](#viii-testing-tools)
+  - [1. Hardware.](#1-hardware)
+  - [2. Software.](#2-software)
+  - [3. Flaws tracking.](#3-flaws-tracking)
+  - [4. Environment.](#4-environment)
 - [IX. Validation criteria and status.](#ix-validation-criteria-and-status)
 - [X. Testing methodology.](#x-testing-methodology)
 
