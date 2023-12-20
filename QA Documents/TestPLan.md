@@ -184,20 +184,20 @@ The following table shows the most important features and their current progress
 
 | Aspect               | Validation Criteria                                | Validation Status   | Comment     |
 |----------------------|----------------------------------------------------|---------------------|-----------------|
-| Collision            | Correctly working collision between Pac-Man and walls        | In progress             |                 |
+| Collision            | Correctly working collision between Pac-Man and walls        |  Working properly  |                 |
 |                      | Appropriate interaction between Pac-Man and ghosts  | In progress         |                 |
-| Movement             | Smooth Pac-Mans movements                         | In progress         |                 |
-|                      | Responsiveness and accuracy of commands             | In progress         |                 |
-| Game Mechanics       | Efficient collection of pac-dots                    | In progress         |                 |
+| Movement             | Smooth Pac-Mans movements                         | Working properly         |                 |
+|                      | Responsiveness and accuracy of commands             | Partially done        |  Done, but stackable commands     |
+| Game Mechanics       | Efficient collection of pac-dots                    | Working properly         | |
 |                      | Pursuit and evasion mechanisms of ghosts            | In progress           |                 |
 | Graphics             | Clear and representative maze display               | In progress             |                 |
 |                      | Appealing visuals for characters and game elements  | In progress         |                 |
 | Audio                | Clear and coherent sound effects                    | Optional           |   Will be done if everything else is done               |
 |                      | Accompanying music                        | Optional            |              Will be done if everything else is done   |
-| Controls             | Easy grasp for new players                          | In progress             |                 |
+| Controls             | Easy grasp for new players                          | Done| Bug reported                 |
 |                      | Adaptation of controls to gaming platforms          | In progress             |                 |
 | User Interface       | Clarity and readability of on-screen information    | In progress         |                 |
-|                      | Ease of navigation through menus                     | In progress             |                 |
+|                      | Ease of navigation through menus                     | Optional|                 |
 
 
 
