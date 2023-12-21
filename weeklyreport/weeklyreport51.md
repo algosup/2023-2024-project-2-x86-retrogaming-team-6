@@ -25,9 +25,9 @@ We have completed the collisions for the characters in our game. But there are s
 
 Our developers have managed to make the ghosts move. Unfortunately, only one moves at a time, so they're trying to solve this problem. 
 
-We've abandoned the score idea for lack of time. 
+We abandoned the score idea due to the lack of time. 
 
-*Rémy Charles & Junior Software Engineer*
+*Rémy Charles & Habi Cailleau*
 
 ### QA Test 
 
