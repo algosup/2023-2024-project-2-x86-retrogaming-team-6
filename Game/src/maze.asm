@@ -32,12 +32,16 @@
 section .data
 
 direction dw 0                 ; 0 = No movement, 1 = Right, 2 = Left, 3 = Up, 4 = Down
+directionChanged db 0          ; 0 = No change, 1 = Changed
+isDirectionFeasible db 0       ; 0 = Not feasible, 1 = Feasible
+
+canMoveRight db 0      ; 0 for no, 1 for yes
+canMoveLeft db 0       ; 0 for no, 1 for yes
+canMoveUp db 0         ; 0 for no, 1 for yes
+canMoveDown db 0       ; 0 for no, 1 for yes
 
 
-canMoveUp db 0
-canMoveDown db 0
-canMoveLeft db 0
-canMoveRight db 0
+collision db 0                 ; 0 = No collision, 1 = Collision
 
 yPosPacTile dw 0               ; Pacman's Y tile position
 
@@ -87,6 +91,10 @@ keyPressed resb 1
 keyReleased resb 1
 xPosPac resw 1                 ; Pacman's starting X coordinate
 yPosPac resw 1                  ; Pacman's starting Y coordinate
+newKeyPress resb 1              ; Stores the most recent key press
+xPosPacTile resw 1              ; Pacman's starting X tile position
+
+;===============================================================================
 
 ; Text Segment
 section .text
@@ -101,11 +109,11 @@ maze:
     ; After the maze is drawn, draw Pacman at the spawn point
     mov ax, [yPosPac]    ; Get Pacman's Y pixel position
     mov bx, [xPosPac]    ; Get Pacman's X pixel position
-    call draw_pacman_at_position   ; Draw Pacman at the specified position
 
     call Maze
 
-mazeloop:
+
+mazeloop: 
 
     ; Handle user input and movement
     call handle_user_input
@@ -250,14 +258,10 @@ Maze:
 
 ;===============================================================================
 
-; Function: Handle User Input
 handle_user_input:
-    ; Clear previous direction
-    mov word [direction], 0
-
     ; Check for key press
-    mov ah, 0x01  ; BIOS function to check if a key has been pressed
-    int 0x16      ; Call BIOS interrupt for keyboard
+    mov ah, 0x01
+    int 0x16      ; Check if a key has been pressed
     jz .noKeyPress ; Jump if no key press
 
     ; Read the key press
@@ -273,6 +277,7 @@ handle_user_input:
     je .setUp
     cmp al, 115 ; 's' key for down
     je .setDown
+    jmp .endInput
 
 .setRight:
     mov word [direction], 1
@@ -293,64 +298,55 @@ handle_user_input:
 
 ;-------------------------------------------------------------------------------
 
+;-------------------------------------------------------------------------------
+; Subroutine: Move Right
+; Moves Pac-Man to the right if possible, and updates the sprite accordingly.
+;-------------------------------------------------------------------------------
+
 move_right:
-    ; Begin a loop for continuous movement
     .moveLoop:
-        ; Calculate the position 8 pixels ahead for collision check (infront)
+        ; Check for a new direction key press
+        call check_new_direction_press
+        cmp byte [directionChanged], 1
+        je .changeDirection
+
+        ; Predict the next position to the right
         mov ax, [yPosPac]             ; Current Y position
         mov bx, [xPosPac]             ; Current X position
-        add bx, 8                     ; Predict next position by 8 pixels
-
-        ; Convert predicted position to maze index
-        mov dx, bx
-        shr dx, 3                     ; Convert X pixel to tile coordinate
-        mov cx, ax
-        shr cx, 3                     ; Convert Y pixel to tile coordinate
-        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
-        add cx, dx                    ; Add X tile coordinate to get maze index
-        mov si, ASCII_Maze
-        add si, cx                    ; SI points to the tile in the maze
+        add bx, 1                     ; Move 1 pixel to the right
 
         ; Check for collision with a wall
-        cmp byte [si], WALL
-        je .stopMovement              ; If it's a wall, stop movement
+        call check_collision_right    ; Assuming this checks [yPosPac] and [xPosPac] positions
+        cmp byte [collision], 1
+        je .stopMovement              ; If collision, stop movement
 
-        ; Update Pacman's position pixel by pixel
-        mov bx, [xPosPac]
-        add bx, 1                     ; Move only 1 pixel to the right
+        ; Update Pacman's position
         mov [xPosPac], bx             ; Update X position
 
-        ; Clear Pacman's old sprite
-        mov ax, [old_YPOS]
-        mov bx, [old_XPOS]
-        call clear_sprite_at_position
-
-        ; Store the new position as the old position for the next loop
-        mov ax, [yPosPac]
-        mov [old_YPOS], ax
-        mov bx, [xPosPac]
-        mov [old_XPOS], bx
-
-        ; Draw Pacman's new sprite at the new position
-        mov ax, [yPosPac]
-        mov bx, [xPosPac]
-        call draw_pacman_at_position
-
-        ; Insert a delay for animation smoothness
-        mov cx, 35000                ; Adjust the delay as needed
-        .delayLoop:
-            nop
-            loop .delayLoop
+        ; Render new position and delay
+        call update_sprite_and_delay  ; Update the sprite and insert delay
 
         jmp .moveLoop                 ; Continue the loop for moving right
 
+    .changeDirection:
+        ; Direction has changed, exit current loop to handle new direction
+        jmp mazeloop
 
     .stopMovement:
         ; Collision detected, reset direction and return to main loop
         mov word [direction], 0
         jmp mazeloop
-
-
+        
+;-------------------------------------------------------------------------------
+; This code assumes that the following are defined and implemented properly:
+; - check_direction_feasibility
+; - check_new_direction_press
+; - update_sprite_and_delay
+; - mazeloop label as the main loop of the game
+; - canMoveRight byte that indicates if moving right is possible
+; - directionChanged byte that indicates if a direction change has occurred
+; - direction word that indicates the current direction of movement
+;-------------------------------------------------------------------------------
 ;-------------------------------------------------------------------------------
 
 move_left:
@@ -525,8 +521,297 @@ move_down:
         mov word [direction], 0
         jmp mazeloop
 
+;-------------------------------------------------------------------------------
 
 ;-------------------------------------------------------------------------------
+; Subroutine: Check Collision Right
+; Checks if moving to the right from Pacman's current position will hit a wall.
+; Input: None (uses global variables for Pacman's position)
+; Output: Sets collision flag (1 if there is a wall to the right, 0 otherwise)
+;-------------------------------------------------------------------------------
+
+check_movement_feasibility:
+    call check_collision_right
+    call check_collision_left
+    call check_collision_up
+    call check_collision_down
+    ret
+
+
+check_collision_right:
+    pusha                       ; Save all registers
+    
+    mov ax, [yPosPac]           ; Get current Y position of Pacman
+    mov bx, [xPosPac]           ; Get current X position of Pacman
+    add bx, TILE_WIDTH          ; Predict the next X position (to the right)
+    shr bx, 3                   ; Convert X pixel to tile coordinate
+    shr ax, 3                   ; Convert Y pixel to tile coordinate
+
+    ; Calculate index for ASCII_Maze array
+    imul ax, MAZERLIMIT         ; Convert Y tile to index
+    add ax, bx                  ; Add X offset to index
+    mov si, ASCII_Maze
+    add si, ax                  ; SI points to the tile in the maze
+
+    ; Check for a wall
+    cmp byte [si], WALL
+    je .collision               ; If wall, set collision flag
+
+    mov byte [collision], 0          ; No collision
+    popa                        ; Restore all registers
+    ret
+
+.collision:
+    mov byte [collision], 1          ; Collision detected
+    popa                        ; Restore all registers
+    mov byte [canMoveRight], al
+    ret
+
+check_collision_left:
+    pusha                       ; Save all registers
+    
+    mov ax, [yPosPac]           ; Get current Y position of Pacman
+    mov bx, [xPosPac]           ; Get current X position of Pacman
+    sub bx, TILE_WIDTH          ; Predict the next X position (to the left)
+    shr bx, 3                   ; Convert X pixel to tile coordinate
+    shr ax, 3                   ; Convert Y pixel to tile coordinate
+
+    ; Calculate index for ASCII_Maze array
+    imul ax, MAZERLIMIT         ; Convert Y tile to index
+    add ax, bx                  ; Add X offset to index
+    mov si, ASCII_Maze
+    add si, ax                  ; SI points to the tile in the maze
+
+    ; Check for a wall
+    cmp byte [si], WALL
+    je .collision               ; If wall, set collision flag
+
+    mov byte [collision], 0          ; No collision
+    popa                        ; Restore all registers
+    ret
+
+.collision:
+    mov byte [collision], 1          ; Collision detected
+    popa                        ; Restore all registers
+    mov byte [canMoveLeft], al
+    ret
+
+check_collision_up:
+    pusha                       ; Save all registers
+    
+    mov ax, [yPosPac]           ; Get current Y position of Pacman
+    mov bx, [xPosPac]           ; Get current X position of Pacman
+    sub ax, TILE_WIDTH          ; Predict the next Y position (upwards)
+    shr bx, 3                   ; Convert X pixel to tile coordinate
+    shr ax, 3                   ; Convert Y pixel to tile coordinate
+
+    ; Calculate index for ASCII_Maze array
+    imul ax, MAZERLIMIT         ; Convert Y tile to index
+    add ax, bx                  ; Add X offset to index
+    mov si, ASCII_Maze
+    add si, ax                  ; SI points to the tile in the maze
+
+    ; Check for a wall
+    cmp byte [si], WALL
+    je .collision               ; If wall, set collision flag
+
+    mov byte[collision], 0          ; No collision
+    popa                        ; Restore all registers
+    ret
+
+.collision:
+    mov byte [collision], 1          ; Collision detected
+    popa                        ; Restore all registers
+    mov byte[canMoveUp], al
+    ret
+
+check_collision_down:
+    pusha                       ; Save all registers
+    
+    mov ax, [yPosPac]           ; Get current Y position of Pacman
+    mov bx, [xPosPac]           ; Get current X position of Pacman
+    add ax, TILE_WIDTH          ; Predict the next Y position (downwards)
+    shr bx, 3                   ; Convert X pixel to tile coordinate
+    shr ax, 3                   ; Convert Y pixel to tile coordinate
+
+    ; Calculate index for ASCII_Maze array
+    imul ax, MAZERLIMIT         ; Convert Y tile to index
+    add ax, bx                  ; Add X offset to index
+    mov si, ASCII_Maze
+    add si, ax                  ; SI points to the tile in the maze
+
+    ; Check for a wall
+    cmp byte [si], WALL
+    je .collision               ; If wall, set collision flag
+
+    mov byte [collision], 0          ; No collision
+    popa                        ; Restore all registers 
+    ret
+
+.collision:
+    mov byte [collision], 1          ; Collision detected
+    popa                        ; Restore all registers
+    mov byte [canMoveDown], al
+    ret
+
+;-------------------------------------------------------------------------------
+
+clear_input_buffer:
+    ; Vider le tampon de saisie
+    mov ah, 0x0C ; Fonction BIOS pour vider le tampon du clavier
+    mov al, 0    ; Sous-fonction pour lire le prochain caractère
+    int 0x21     ; Appel d'interruption du DOS
+    ret
+
+;-------------------------------------------------------------------------------
+
+check_new_direction_press:
+    pusha                           ; Save registers
+    mov     ah, 01h                 ; Function: Check for keystroke
+    int     16h                     ; Call keyboard interrupt
+    jz      no_new_key_press        ; Jump if no key press
+
+    ; Read the key press
+    mov     ah, 00h                 ; Function: Get keystroke
+    int     16h                     ; Call keyboard interrupt
+    mov     [newKeyPress], al       ; Store new key press for direction change
+
+    ; Check if the new direction is feasible before changing
+    call    check_direction_feasibility
+
+    ; Change direction based on key press if the move is feasible
+    cmp     word [newKeyPress], 'd'      ; Compare with 'd' for right
+    je      right_feasible
+    cmp     word [newKeyPress], 'a'      ; Compare with 'a' for left
+    je      left_feasible
+    cmp     word [newKeyPress], 'w'      ; Compare with 'w' for up
+    je      up_feasible
+    cmp     word [newKeyPress], 's'      ; Compare with 's' for down
+    je      down_feasible
+
+    jmp     no_new_key_press
+
+right_feasible:
+    cmp     byte [canMoveRight], 1
+    jne     no_new_key_press
+    mov     word [direction], 1
+    mov     byte [directionChanged], 1
+    jmp     change_done
+
+left_feasible:
+    cmp     byte [canMoveLeft], 1
+    jne     no_new_key_press
+    mov     word [direction], 2
+    mov     byte [directionChanged], 1
+    jmp     change_done
+
+up_feasible:
+    cmp     byte [canMoveUp], 1
+    jne     no_new_key_press
+    mov     word [direction], 3
+    mov     byte [directionChanged], 1
+    jmp     change_done
+
+down_feasible:
+    cmp     byte [canMoveDown], 1
+    jne     no_new_key_press
+    mov     word [direction], 4
+    mov     byte [directionChanged], 1
+    jmp     change_done
+
+no_new_key_press:
+    mov     byte [directionChanged], 0
+
+change_done:
+    popa                            ; Restore registers
+    ret
+
+;-------------------------------------------------------------------------------
+
+update_sprite_and_delay:
+    ; Clear Pacman's old sprite
+    mov ax, [old_YPOS]
+    mov bx, [old_XPOS]
+    call clear_sprite_at_position
+
+    ; Store the new position as the old position for the next loop
+    mov ax, [yPosPac]
+    mov [old_YPOS], ax
+    mov bx, [xPosPac]
+    mov [old_XPOS], bx
+
+    ; Draw Pacman's new sprite at the new position
+    mov ax, [yPosPac]
+    mov bx, [xPosPac]
+    call draw_pacman_at_position
+
+    ; Insert a delay for animation smoothness
+    mov cx, 35000
+    .delayLoop:
+        nop
+        loop .delayLoop
+
+    ret
+
+;-------------------------------------------------------------------------------
+
+; Subroutine: Check Direction Feasibility
+; Checks if moving in the current direction is possible (i.e., no wall is present)
+; Input: None (uses global variables)
+; Output: Sets the canMove flags (canMoveUp, canMoveDown, canMoveLeft, canMoveRight)
+
+check_direction_feasibility:
+    ; Save current position
+    mov ax, [yPosPacTile]
+    mov bx, [xPosPacTile]
+    
+    ; Check Up
+    dec ax
+    call check_wall_collision
+    mov [canMoveUp], al
+    
+    ; Restore position and Check Down
+    mov ax, [yPosPacTile]
+    inc ax
+    call check_wall_collision
+    mov [canMoveDown], al
+
+    ; Restore position and Check Left
+    mov ax, [yPosPacTile]
+    mov bx, [xPosPacTile]
+    dec bx
+    call check_wall_collision
+    mov [canMoveLeft], al
+
+    ; Restore position and Check Right
+    inc bx
+    call check_wall_collision
+    mov [canMoveRight], al
+    
+    ; Restore registers if needed and return
+    ret
+
+check_wall_collision:
+    push ax
+    push bx
+    
+    ; Convert tile position to index
+    imul ax, MAZERLIMIT
+    add ax, bx
+    add ax, ASCII_Maze  ; Point to the ASCII_Maze with the offset
+    
+    ; Check for wall
+    mov si, ax          ; Move the content of AX to SI
+    cmp byte [si], WALL ; Compare the byte at memory location SI with WALL
+
+    sete al  ; Set AL to 1 if there is a wall, otherwise 0
+    
+    pop bx
+    pop ax
+    ret
+
+;-------------------------------------------------------------------------------
+
 
 ;-------------------------------------------------------------------------------
 
@@ -580,7 +865,6 @@ draw_pacman_at_position:
 
     ret
 
-
 ;-------------------------------------------------------------------------------
 
 checkKeyPress:
@@ -598,7 +882,6 @@ checkKeyPress:
     cmp al, 100 ; Move right
     je move_right
     ret
-
 
 ;===============================================================================
 
