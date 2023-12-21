@@ -67,32 +67,32 @@ PowerPellet:
 ; ---------------------------------------------------------------------------
 ; initialize data for Blinky
 
-yVelocityBlinky dw 320            ; to go from one line to another
-xVelocityBlinky dw 1              ; horizontal speed
 directionBl db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_blinky dw 0
+old_YPOS_blinky dw 0
+direction dw 0
 
 currentBlinkySprite dd blinky_right_1 ; the current sprite to be displayed
 ; ---------------------------------------------------------------------------
 ; initialize data for Inky
 
-yVelocityInky dw 320            ; to go from one line to another
-xVelocityInky dw 1              ; horizontal speed
 directionIn db 'R'            ; Current direction (R, L, U, D)
-
+old_XPOS_Inky dw 0
+old_YPOS_Inky dw 0
 currentInkySprite dd inky_right_1 ; the current sprite to be displayed
 ; ---------------------------------------------------------------------------
 ; Initialize data for Clyde
-yVelocityClyde dw 320            ; to go from one line to another
-xVelocityClyde dw 1              ; horizontal speed
-directionCl db 'R'            ; Current direction (R, L, U, D)
 
+directionCl db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_Clyde dw 0
+old_YPOS_Clyde dw 0
 currentClydeSprite dd clyde_right_1 ; the current sprite to be displayed
 ; ---------------------------------------------------------------------------
 ; Initialize data for Pinky
-yVelocityPinky dw 320            ; to go from one line to another   
-xVelocityPinky dw 1              ; horizontal speed
-directionPi db 'R'            ; Current direction (R, L, U, D)
 
+directionPi db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_Pinky dw 0
+old_YPOS_Pinky dw 0
 currentPinkySprite dd pinky_right_1 ; the current sprite to be displayed
              ; the starting x coordinate of the sprite
 ; ---------------------------------------------------------------------------
@@ -322,15 +322,26 @@ ASCII_Maze:
 section .bss
 yPosBlinky resw 1
 xPosBlinky resw 1
+yVelocityBlinky resw 320            ; to go from one line to another
+xVelocityBlinky resw 1              ; horizontal speed
 
 yPosInky resw 1
 xPosInky resw 1
+yVelocityInky resw 320
+xVelocityInky resw 1
  
 yPosClyde resw 1
 xPosClyde resw 1 
+yVelocityClyde resw 320            ; to go from one line to another
+xVelocityClyde resw 1              ; horizontal speed
 
 yPosPinky resw 1
-xPosPinky resw 1 
+xPosPinky resw 1
+yVelocityPinky resw 320            ; to go from one line to another   
+xVelocityPinky resw 1              ; horizontal speed 
+
+counter resd 1
+
  
 section .text
  
@@ -342,12 +353,13 @@ section .text
 	
     gameloop:
     mov al, 0FFh
-
+	
     ; display blinky
 	call find_Blinky_spawn
 	mov ax, [yPosBlinky]
 	mov bx, [xPosBlinky]
 	call draw_Blinky_at_position
+	
 
     ; display inky
 	call find_Inky_spawn
@@ -368,6 +380,7 @@ section .text
 	mov bx, [xPosPinky]
     call draw_Pinky_at_position
 	
+	
 	;waitting...
     mov cx, 0xFFFF
     waitloop1:
@@ -381,53 +394,1335 @@ section .text
     mov cx, 0x0001
     waitloop4:
     loop waitloop4
-    
-	
+
 ;--------------------------------
-	;change the position
-    ; Change position
-	
-	mov bx, [xPosBlinky]
-	add bx, [xVelocityBlinky]
-	mov [xPosBlinky], bx
-	cmp word [xPosBlinky],320 - SPRITEW
-	jbe .noflip_blinky
-    neg word [xVelocityBlinky]
-	jmp .noflip_blinky
 
-.noflip_blinky:
-	
-	mov bx, [xPosInky]
-    add bx, [yVelocityInky]
-    mov [xPosInky], bx
-	cmp word [yPosInky],200 + SPRITEH
-	jbe .noflip_inky
-	neg word [yVelocityInky]
-	.noflip_inky:
-	
-	mov bx, [xPosClyde]
-    sub bx, [yVelocityClyde]
-    mov [xPosClyde], bx
-	cmp word [yPosClyde],SPRITEH - 200
-	jbe .noflip_clyde
-    sub bx, [yVelocityClyde]
-	.noflip_clyde:
 
-	
-	mov bx, [xPosPinky]
-    add bx, [xVelocityPinky]
-    mov [xPosPinky], bx
-	cmp word [xPosPinky],320 - SPRITEW
-	jbe .noflip_pinky
-    neg word [xVelocityPinky]
-	jmp .noflip_pinky
-	
-	;change direction
+;mouv:
+;call mouv_Blinky
+;call mouv_Inky
+;call mouv_Clyde
+;call mouv_Pinky
 
-	.noflip_pinky:
-		jmp gameloop
+
+
+mouv_Blinky:
+call move_left
+call move_right_haut
+call rep_Blinky
+rep_Blinky:
+call move_up
+call move_left
+call move_up
+call move_left
+call move_down
+call move_right
+jmp mouv_Inky
+
+
+move_right:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosBlinky]             ; Get current Y position
+        mov bx, [xPosBlinky]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
 		
+		
+		mov bx, [xPosBlinky]
+		add bx, 1
+		mov [xPosBlinky], bx
+        ; Update Pacman's position
+        mov [xPosBlinky], bx             ; Update X position
+		
+		mov ax, [old_YPOS_blinky]
+        mov bx, [old_XPOS_blinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPac in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosBlinky]    ; Move yPosPac to ax
+        mov [old_YPOS_blinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPac in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosBlinky]    ; Move xPosPac to bx
+        mov [old_XPOS_blinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pacman's new sprite at the new position
+        mov ax, [yPosBlinky]              ; Get current Y position
+        mov bx, [xPosBlinky]              ; Get current X position
+        call draw_Blinky_at_position   ; Call subroutine to draw Pacman at new position
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+	ret
 	
+move_right_haut:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosBlinky]             ; Get current Y position
+        mov bx, [xPosBlinky]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		
+		mov bx, [xPosBlinky]
+		add bx, 1
+		mov [xPosBlinky], bx
+        ; Update Pacman's position
+        mov [xPosBlinky], bx             ; Update X position
+		
+		mov ax, [old_YPOS_blinky]
+        mov bx, [old_XPOS_blinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPac in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosBlinky]    ; Move yPosPac to ax
+        mov [old_YPOS_blinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPac in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosBlinky]    ; Move xPosPac to bx
+        mov [old_XPOS_blinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pacman's new sprite at the new position
+        mov ax, [yPosBlinky]              ; Get current Y position
+        mov bx, [xPosBlinky]              ; Get current X position
+        call draw_Blinky_at_position   ; Call subroutine to draw Pacman at new position
+		call move_up
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+	ret	
+
+	
+move_down:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosBlinky]             ; Get current Y position
+		mov bx, [xPosBlinky]             ; Get current X position
+        add ax, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov ax, [yPosBlinky]
+		add ax, 1
+		mov [yPosBlinky], ax
+		mov [yPosBlinky], ax             ; Update Y position	
+		
+		mov ax, [old_YPOS_blinky]
+        mov bx, [old_XPOS_blinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPac in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosBlinky]    ; Move yPosPac to ax
+        mov [old_YPOS_blinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPac in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosBlinky]    ; Move xPosPac to bx
+        mov [old_XPOS_blinky], bx   ; Move bx to old_XPOS
+		
+
+        ; Draw Pacman's new sprite at the new position
+        mov ax, [yPosBlinky]              ; Get current Y position
+        mov bx, [xPosBlinky]              ; Get current X position
+        call draw_Blinky_at_position   ; Call subroutine to draw Pacman at new position
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time*
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+        
+	ret
+		
+		
+move_up:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Blinky's next pixel position
+        mov ax, [yPosBlinky]             ; Get current Y position
+		mov bx, [xPosBlinky]             ; Get current X position
+        sub ax, 1                     ; Decrement Y position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		
+		mov ax, [yPosBlinky]
+		sub ax, 1
+		mov [yPosBlinky], ax
+		mov [yPosBlinky], ax             ; Update Y position
+		
+		mov ax, [old_YPOS_blinky]
+        mov bx, [old_XPOS_blinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+
+        ; Store yPosBlinky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosBlinky]    ; Move yPosBlinky to ax
+        mov [old_YPOS_blinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosBlinky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosBlinky]    ; Move xPosBlinky to bx
+        mov [old_XPOS_blinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Blinky's new sprite at the new position
+        mov ax, [yPosBlinky]              ; Get current Y position
+        mov bx, [xPosBlinky]              ; Get current X position
+        call draw_Blinky_at_position   ; Call subroutine to draw Blinky at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+		
+			jmp .moveLoop    ; Continue the loop for moving up
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+		
+	ret
+
+move_left:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosBlinky]             ; Get current Y position
+        mov bx, [xPosBlinky]             ; Get current X position
+        sub bx, 1                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosBlinky]
+		sub bx, 1
+		mov [xPosBlinky], bx
+        ; Update Pacman's position
+        mov [xPosBlinky], bx             ; Update X position
+
+		mov ax, [old_YPOS_blinky]
+        mov bx, [old_XPOS_blinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPac in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosBlinky]    ; Move yPosPac to ax
+        mov [old_YPOS_blinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPac in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosBlinky]    ; Move xPosPac to bx
+        mov [old_XPOS_blinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pacman's new sprite at the new position
+        mov ax, [yPosBlinky]              ; Get current Y position
+        mov bx, [xPosBlinky]              ; Get current X position
+        call draw_Blinky_at_position   ; Call subroutine to draw Pacman at new position
+
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+	ret
+		
+		
+
+		
+;---------------------------------------
+
+mouv_Inky:
+call move_up_Inky
+call move_left_Inky
+call move_right_down_Inky
+call rep_Inky
+rep_Inky:
+call move_left_Inky
+call move_up_Inky
+call move_right_Inky
+call move_down_Inky
+call move_right_Inky
+call move_up_Inky
+call move_left_Inky
+call move_down_Inky
+call move_left_Inky
+call move_down_Inky
+jmp mouv_Clyde
+
+
+move_up_Inky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Blinky's next pixel position
+        mov ax, [yPosInky]             ; Get current Y position
+		mov bx, [xPosInky]             ; Get current X position
+        sub ax, 1                     ; Decrement Y position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		
+		mov ax, [yPosInky]
+		sub ax, 1
+		mov [yPosInky], ax
+		mov [yPosInky], ax             ; Update Y position
+		
+		mov ax, [old_YPOS_Inky]
+        mov bx, [old_XPOS_Inky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+
+        ; Store yPosBlinky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosInky]    ; Move yPosBlinky to ax
+        mov [old_YPOS_Inky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosBlinky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosInky]    ; Move xPosBlinky to bx
+        mov [old_XPOS_Inky], bx   ; Move bx to old_XPOS
+
+        ; Draw Blinky's new sprite at the new position
+        mov ax, [yPosInky]              ; Get current Y position
+        mov bx, [xPosInky]              ; Get current X position
+        call draw_Inky_at_position   ; Call subroutine to draw Blinky at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+		
+			jmp .moveLoop    ; Continue the loop for moving up
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+	ret
+	
+	move_left_Inky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosInky]             ; Get current Y position
+        mov bx, [xPosInky]             ; Get current X position
+        sub bx, 1                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosInky]
+		sub bx, 1
+		mov [xPosInky], bx
+        ; Update Pacman's position
+        mov [xPosInky], bx             ; Update X position
+
+		mov ax, [old_YPOS_Inky]
+        mov bx, [old_XPOS_Inky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPac in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosInky]    ; Move yPosPac to ax
+        mov [old_YPOS_Inky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPac in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosInky]    ; Move xPosPac to bx
+        mov [old_XPOS_Inky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pacman's new sprite at the new position
+        mov ax, [yPosInky]              ; Get current Y position
+        mov bx, [xPosInky]              ; Get current X position
+        call draw_Inky_at_position   ; Call subroutine to draw Pacman at new position
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+	ret
+	
+	move_down_Inky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosInky]             ; Get current Y position
+        mov bx, [xPosInky]             ; Get current X position
+        add ax, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+        mov ax, [yPosInky]
+        add ax, 1
+        mov [yPosInky], ax
+        mov [yPosInky], ax             ; Update Y position	
+		
+        mov ax, [old_YPOS_Inky]
+        mov bx, [old_XPOS_Inky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPac in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosInky]    ; Move yPosPac to ax
+        mov [old_YPOS_Inky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPac in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosInky]    ; Move xPosPac to bx
+        mov [old_XPOS_Inky], bx   ; Move bx to old_XPOS
+		
+
+        ; Draw Pacman's new sprite at the new position
+        mov ax, [yPosInky]              ; Get current Y position
+        mov bx, [xPosInky]              ; Get current X position
+        call draw_Inky_at_position   ; Call subroutine to draw Pacman at new position
+		
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time*
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+        
+    ret
+
+move_right_down_Inky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosInky]             ; Get current Y position
+        mov bx, [xPosInky]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosInky]
+		add bx, 1
+		mov [xPosInky], bx
+        ; Update Inky's position
+        mov [xPosInky], bx             ; Update X position
+		
+		mov ax, [old_YPOS_Inky]
+        mov bx, [old_XPOS_Inky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosInky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosInky]    ; Move yPosInky to ax
+        mov [old_YPOS_Inky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosInky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosInky]    ; Move xPosInky to bx
+        mov [old_XPOS_Inky], bx   ; Move bx to old_XPOS
+
+        ; Draw Inky's new sprite at the new position
+        mov ax, [yPosInky]              ; Get current Y position
+        mov bx, [xPosInky]              ; Get current X position
+        call draw_Inky_at_position   ; Call subroutine to draw Inky at new position
+		call move_down_Inky
+		
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+    ret
+	
+move_right_Inky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosInky]             ; Get current Y position
+        mov bx, [xPosInky]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosInky]
+		add bx, 1
+		mov [xPosInky], bx
+        ; Update Inky's position
+        mov [xPosInky], bx             ; Update X position
+		
+		mov ax, [old_YPOS_Inky]
+        mov bx, [old_XPOS_Inky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosInky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosInky]    ; Move yPosInky to ax
+        mov [old_YPOS_Inky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosInky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosInky]    ; Move xPosInky to bx
+        mov [old_XPOS_Inky], bx   ; Move bx to old_XPOS
+
+        ; Draw Inky's new sprite at the new position
+        mov ax, [yPosInky]              ; Get current Y position
+        mov bx, [xPosInky]              ; Get current X position
+        call draw_Inky_at_position   ; Call subroutine to draw Inky at new position
+		
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+    ret
+;---------------------------------------
+mouv_Clyde:
+call move_up_Clyde
+call move_right_Clyde
+call move_down_Clyde
+call move_left_Clyde
+jmp mouv_Pinky
+
+
+
+move_up_Clyde:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Clyde's next pixel position
+        mov ax, [yPosClyde]             ; Get current Y position
+		mov bx, [xPosClyde]             ; Get current X position
+        sub ax, 1                     ; Decrement Y position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		
+		mov ax, [yPosClyde]
+		sub ax, 1
+		mov [yPosClyde], ax
+		mov [yPosClyde], ax             ; Update Y position
+		
+		mov ax, [old_YPOS_Clyde]
+        mov bx, [old_XPOS_Clyde]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+
+        ; Store yPosClyde in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosClyde]    ; Move yPosClyde to ax
+        mov [old_YPOS_Clyde], ax   ; Move ax to old_YPOS
+
+        ; Store xPosClyde in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosClyde]    ; Move xPosClyde to bx
+        mov [old_XPOS_Clyde], bx   ; Move bx to old_XPOS
+
+        ; Draw Clyde's new sprite at the new position
+        mov ax, [yPosClyde]              ; Get current Y position
+        mov bx, [xPosClyde]              ; Get current X position
+        call draw_Clyde_at_position   ; Call subroutine to draw Clyde at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+		
+		jmp .moveLoop    ; Continue the loop for moving up
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+	ret
+
+move_left_Clyde:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Clyde's next pixel position
+        mov ax, [yPosClyde]             ; Get current Y position
+        mov bx, [xPosClyde]             ; Get current X position
+        sub bx, 1                     ; Decrement X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosClyde]
+		sub bx, 1
+		mov [xPosClyde], bx
+        ; Update Clyde's position
+        mov [xPosClyde], bx             ; Update X position
+
+		mov ax, [old_YPOS_Clyde]
+        mov bx, [old_XPOS_Clyde]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosClyde in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosClyde]    ; Move yPosClyde to ax
+        mov [old_YPOS_Clyde], ax   ; Move ax to old_YPOS
+
+        ; Store xPosClyde in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosClyde]    ; Move xPosClyde to bx
+        mov [old_XPOS_Clyde], bx   ; Move bx to old_XPOS
+
+        ; Draw Clyde's new sprite at the new position
+        mov ax, [yPosClyde]              ; Get current Y position
+        mov bx, [xPosClyde]              ; Get current X position
+        call draw_Clyde_at_position   ; Call subroutine to draw Clyde at new position
+
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving left
+
+        ; Continue the loop for moving left
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+	ret
+	
+
+move_left_down_Clyde:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Clyde's next pixel position
+        mov ax, [yPosClyde]             ; Get current Y position
+        mov bx, [xPosClyde]             ; Get current X position
+        sub bx, 1                     ; Decrement X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosClyde]
+		sub bx, 1
+		mov [xPosClyde], bx
+        ; Update Clyde's position
+        mov [xPosClyde], bx             ; Update X position
+
+		mov ax, [old_YPOS_Clyde]
+        mov bx, [old_XPOS_Clyde]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosClyde in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosClyde]    ; Move yPosClyde to ax
+        mov [old_YPOS_Clyde], ax   ; Move ax to old_YPOS
+
+        ; Store xPosClyde in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosClyde]    ; Move xPosClyde to bx
+        mov [old_XPOS_Clyde], bx   ; Move bx to old_XPOS
+
+        ; Draw Clyde's new sprite at the new position
+        mov ax, [yPosClyde]              ; Get current Y position
+        mov bx, [xPosClyde]              ; Get current X position
+        call draw_Clyde_at_position   ; Call subroutine to draw Clyde at new position
+		call move_down_Clyde
+
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving left
+
+        ; Continue the loop for moving left
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+
+	ret
+	
+
+move_down_Clyde:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Clyde's next pixel position
+        mov ax, [yPosClyde]             ; Get current Y position
+		mov bx, [xPosClyde]             ; Get current X position
+        add ax, 8                    ; Increment Y position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov ax, [yPosClyde]
+		add ax, 1
+		mov [yPosClyde], ax             ; Update Y position	
+		
+		mov ax, [old_YPOS_Clyde]
+        mov bx, [old_XPOS_Clyde]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosClyde in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosClyde]    ; Move yPosClyde to ax
+        mov [old_YPOS_Clyde], ax   ; Move ax to old_YPOS
+
+        ; Store xPosClyde in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosClyde]    ; Move xPosClyde to bx
+        mov [old_XPOS_Clyde], bx   ; Move bx to old_XPOS
+		
+
+        ; Draw Clyde's new sprite at the new position
+        mov ax, [yPosClyde]              ; Get current Y position
+        mov bx, [xPosClyde]              ; Get current X position
+        call draw_Clyde_at_position   ; Call subroutine to draw Clyde at new position
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time*
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving down
+
+        ; Continue the loop for moving down
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+        
+	ret
+	
+	
+move_right_Clyde:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Clyde's next pixel position
+        mov ax, [yPosClyde]             ; Get current Y position
+        mov bx, [xPosClyde]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosClyde]
+		add bx, 1
+		mov [xPosClyde], bx
+        ; Update Clyde's position
+        mov [xPosClyde], bx             ; Update X position
+		
+		mov ax, [old_YPOS_Clyde]
+        mov bx, [old_XPOS_Clyde]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosClyde in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosClyde]    ; Move yPosClyde to ax
+        mov [old_YPOS_Clyde], ax   ; Move ax to old_YPOS
+
+        ; Store xPosClyde in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosClyde]    ; Move xPosClyde to bx
+        mov [old_XPOS_Clyde], bx   ; Move bx to old_XPOS
+
+        ; Draw Clyde's new sprite at the new position
+        mov ax, [yPosClyde]              ; Get current Y position
+        mov bx, [xPosClyde]              ; Get current X position
+        call draw_Clyde_at_position   ; Call subroutine to draw Clyde at new position
+		
+		 .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+        ; Continue the loop for moving right
+        jmp .moveLoop
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+		jmp move_down
+
+	ret
+
+
+;--------------------------------------
+mouv_Pinky:
+    call move_up_Pinky
+	call move_right_Pinky
+	call move_up_Pinky
+	call move_right_Pinky
+	call move_down_Pinky
+	call move_left_Pinky
+	jmp mouv_Blinky
+	
+
+
+move_up_Pinky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Pinky's next pixel position
+        mov ax, [yPosPinky]             ; Get current Y position
+        mov bx, [xPosPinky]             ; Get current X position
+        sub ax, 1                     ; Decrement Y position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+
+        mov ax, [yPosPinky]
+        sub ax, 1
+        mov [yPosPinky], ax
+        mov [yPosPinky], ax             ; Update Y position
+
+        mov ax, [old_YPOS_Pinky]
+        mov bx, [old_XPOS_Pinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPinky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosPinky]    ; Move yPosPinky to ax
+        mov [old_YPOS_Pinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPinky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosPinky]    ; Move xPosPinky to bx
+        mov [old_XPOS_Pinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pinky's new sprite at the new position
+        mov ax, [yPosPinky]              ; Get current Y position
+        mov bx, [xPosPinky]              ; Get current X position
+        call draw_Pinky_at_position   ; Call subroutine to draw Pinky at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving up
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+    ret
+
+move_right_down_Pinky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+	
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosPinky]             ; Get current Y position
+        mov bx, [xPosPinky]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+		
+		mov bx, [xPosPinky]
+		add bx, 1
+		mov [xPosPinky], bx
+        ; Update Inky's position
+        mov [xPosPinky], bx             ; Update X position
+		
+		mov ax, [old_YPOS_Pinky]
+        mov bx, [old_XPOS_Pinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosInky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosPinky]    ; Move yPosInky to ax
+        mov [old_YPOS_Pinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosInky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosPinky]    ; Move xPosInky to bx
+        mov [old_XPOS_Pinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Inky's new sprite at the new position
+        mov ax, [yPosPinky]              ; Get current Y position
+        mov bx, [xPosPinky]              ; Get current X position
+        call draw_Pinky_at_position   ; Call subroutine to draw Inky at new position
+		call move_down_Pinky
+
+		
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+		neg word [direction]
+		call move_down_Pinky
+
+    ret
+
+	move_left_Pinky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosPinky]             ; Get current Y position
+        mov bx, [xPosPinky]             ; Get current X position
+        sub bx, 1                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+
+        mov bx, [xPosPinky]
+        sub bx, 1
+        mov [xPosPinky], bx
+        ; Update Pinky's position
+        mov [xPosPinky], bx             ; Update X position
+
+        mov ax, [old_YPOS_Pinky]
+        mov bx, [old_XPOS_Pinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPinky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosPinky]    ; Move yPosPinky to ax
+        mov [old_YPOS_Pinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPinky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosPinky]    ; Move xPosPinky to bx
+        mov [old_XPOS_Pinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pinky's new sprite at the new position
+        mov ax, [yPosPinky]              ; Get current Y position
+        mov bx, [xPosPinky]              ; Get current X position
+        call draw_Pinky_at_position   ; Call subroutine to draw Pinky at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving left
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+    ret
+	
+	
+
+move_down_Pinky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosPinky]             ; Get current Y position
+        mov bx, [xPosPinky]             ; Get current X position
+        add ax, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        mov dx, bx           ; Get current X position
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+
+        mov ax, [yPosPinky]
+        add ax, 1
+        mov [yPosPinky], ax
+        mov [yPosPinky], ax             ; Update Y position
+
+        mov ax, [old_YPOS_Pinky]
+        mov bx, [old_XPOS_Pinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPinky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosPinky]    ; Move yPosPinky to ax
+        mov [old_YPOS_Pinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPinky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosPinky]    ; Move xPosPinky to bx
+        mov [old_XPOS_Pinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pinky's new sprite at the new position
+        mov ax, [yPosPinky]              ; Get current Y position
+        mov bx, [xPosPinky]              ; Get current X position
+        call draw_Pinky_at_position   ; Call subroutine to draw Pinky at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time*
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving down
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+    ret
+
+
+	
+move_right_Pinky:
+    ; Begin a loop for continuous movement
+    .moveLoop:
+
+        ; Calculate Pacman's next pixel position
+        mov ax, [yPosPinky]             ; Get current Y position
+        mov bx, [xPosPinky]             ; Get current X position
+        add bx, 8                     ; Increment X position by 1 pixel
+
+        ; Convert this pixel position to maze index
+        mov dx, bx
+        shr dx, 3                     ; Convert X pixel to tile coordinate
+        mov cx, ax
+        shr cx, 3                     ; Convert Y pixel to tile coordinate
+        imul cx, MAZERLIMIT           ; Convert Y tile coordinate to row index
+        add cx, dx                    ; Add X tile coordinate to get maze index
+        mov si, ASCII_Maze
+        add si, cx                    ; SI points to the tile in the maze
+
+        ; Check for collision
+        cmp byte [si], 1           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+        cmp byte [si], 9           ; Check if the next position is a wall
+        je .stopMovement              ; Stop movement if it's a wall
+
+        mov bx, [xPosPinky]
+        add bx, 1
+        mov [xPosPinky], bx
+        ; Update Pinky's position
+        mov [xPosPinky], bx             ; Update X position
+
+        mov ax, [old_YPOS_Pinky]
+        mov bx, [old_XPOS_Pinky]
+        call clear_sprite_at_position  ; Call subroutine to clear sprite at old position
+
+        ; Store yPosPinky in a register (e.g., ax) and then move it to old_YPOS
+        mov ax, [yPosPinky]    ; Move yPosPinky to ax
+        mov [old_YPOS_Pinky], ax   ; Move ax to old_YPOS
+
+        ; Store xPosPinky in a register (e.g., bx) and then move it to old_XPOS
+        mov bx, [xPosPinky]    ; Move xPosPinky to bx
+        mov [old_XPOS_Pinky], bx   ; Move bx to old_XPOS
+
+        ; Draw Pinky's new sprite at the new position
+        mov ax, [yPosPinky]              ; Get current Y position
+        mov bx, [xPosPinky]              ; Get current X position
+        call draw_Pinky_at_position   ; Call subroutine to draw Pinky at new position
+
+        .delayLoop:
+        nop              ; No-operation; does nothing but consumes time
+        loop .delayLoop  ; Decrease CX and loop until CX is 0
+
+        ; [Rest of the movement logic]
+
+        jmp .moveLoop    ; Continue the loop for moving right
+
+    .stopMovement:
+        ; Collision detected, stop moving and reset direction
+        neg word [direction]
+
+    ret
+;--------------------------------------
 
     ; this loop is to slow down the animation
     mov cx, 50000
@@ -597,6 +1892,26 @@ find_Pinky_spawn:
 	
 ; ---------------------------------------------------------------------------
 
+clear_sprite_at_position:
+    ; Assuming ax = Y position, bx = X position
+    ; and each sprite is 8x8 pixels
+    mov di, ax
+    imul di, 320     ; Convert Y position to row index in video memory
+    add di, bx       ; Add X position to get the exact memory location
+    mov ax, 0A000h   ; VGA video memory segment
+    mov es, ax
+    mov cx, 8        ; Height of the sprite
+
+.clear_row:
+    push cx
+    mov cx, 8        ; Width of the sprite
+    mov al, 0        ; Background color index (e.g., 0 for black)
+    rep stosb        ; Draw 8 pixels of the background color
+    pop cx
+    add di, 320 - 8  ; Move to the next row
+    loop .clear_row
+
+    ret
 
 ; ---------------------------------------------------------------------------
 ;the_functions:
