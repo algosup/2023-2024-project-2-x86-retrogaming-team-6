@@ -33,4 +33,19 @@ D n addition, to finish our technical specification, our developers need to make
 
 We've decided to get a head start on each of our respective tasks to get a little more involved in the assembly to help our developers start creating our version of Pac Man. 
 
-### 
+### Maze issues 
+
+At the start of our game's development, we began coding our maze in sprite. 
+
+But unfortunately we had to change the code of our maze. We decided to code it in ASCII, as this will enable us to better manage character collisions on the maze walls in the future. 
+
+### Coding game issue 
+
+During the 6-week project, the whole team worked to make the best version of the Pac Man game. 
+
+Unfortunately, this was due to a lack of understanding of the assembly and a lack of skills.  We didn't manage to make the Pac Man version we wanted. 
+
+So we had to put aside some of the game's features when we wanted to add them. For example, we didn't have time to add a score bar, or to add player lives. 
+Nor did we have time to add powers or behaviors to the game's ghosts. 
+
+So we concentrated on the most important parts of the game to create a Pac Man-like game. 
