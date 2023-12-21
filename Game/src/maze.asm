@@ -31,29 +31,60 @@
 ; Data Segment
 section .data
 
+; initialize data for Blinky
+
+directionBl db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_blinky dw 0
+old_YPOS_blinky dw 0
+direction dw 0
+
+currentBlinkySprite dd blinky_right_1 ; the current sprite to be displayed
+; ---------------------------------------------------------------------------
+; initialize data for Inky
+
+directionIn db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_Inky dw 0
+old_YPOS_Inky dw 0
+currentInkySprite dd inky_right_1 ; the current sprite to be displayed
+; ---------------------------------------------------------------------------
+; Initialize data for Clyde
+
+directionCl db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_Clyde dw 0
+old_YPOS_Clyde dw 0
+currentClydeSprite dd clyde_right_1 ; the current sprite to be displayed
+; ---------------------------------------------------------------------------
+; Initialize data for Pinky
+
+directionPi db 'R'            ; Current direction (R, L, U, D)
+old_XPOS_Pinky dw 0
+old_YPOS_Pinky dw 0
+currentPinkySprite dd pinky_right_1 ; the current sprite to be displayed
+             ; the starting x coordinate of the sprite
+
 direction dw 0                 ; 0 = No movement, 1 = Right, 2 = Left, 3 = Up, 4 = Down
 directionChanged db 0          ; 0 = No change, 1 = Changed
 isDirectionFeasible db 0       ; 0 = Not feasible, 1 = Feasible
 
-canMoveRight db 0      ; 0 for no, 1 for yes
-canMoveLeft db 0       ; 0 for no, 1 for yes
-canMoveUp db 0         ; 0 for no, 1 for yes
-canMoveDown db 0       ; 0 for no, 1 for yes
+	canMoveRight db 0      ; 0 for no, 1 for yes
+	canMoveLeft db 0       ; 0 for no, 1 for yes
+	canMoveUp db 0         ; 0 for no, 1 for yes
+	canMoveDown db 0       ; 0 for no, 1 for yes
 
 
-collision db 0                 ; 0 = No collision, 1 = Collision
+	collision db 0                 ; 0 = No collision, 1 = Collision
 
-yPosPacTile dw 0               ; Pacman's Y tile position
+	yPosPacTile dw 0               ; Pacman's Y tile position
 
-currentSprite dw 0
-xPos dw 0
-yPos dw 0
-old_XPOS dw 0
-old_YPOS dw 0
+	currentSprite dw 0
+	xPos dw 0
+	yPos dw 0
+	old_XPOS dw 0
+	old_YPOS dw 0
 
-xVelocityPac dw 1                ; Pacman's horizontal speed
-yVelocityPac dw 320             ; Pacman's vertical speed (for line changes)
-currentPacmanSprite dd Pacman    ; Current sprite of Pacman
+	xVelocityPac dw 1                ; Pacman's horizontal speed
+	yVelocityPac dw 320             ; Pacman's vertical speed (for line changes)
+	currentPacmanSprite dd Pacman    ; Current sprite of Pacman
 ASCII_Maze: 
     db 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 
     db 9, 9, 9, 9, 9, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 9, 9, 9, 9
@@ -87,6 +118,28 @@ ASCII_Maze:
 
 ; BSS Segment
 section .bss
+
+yPosBlinky resw 1
+xPosBlinky resw 1
+yVelocityBlinky resw 320            ; to go from one line to another
+xVelocityBlinky resw 1              ; horizontal speed
+
+yPosInky resw 1
+xPosInky resw 1
+yVelocityInky resw 320
+xVelocityInky resw 1
+ 
+yPosClyde resw 1
+xPosClyde resw 1 
+yVelocityClyde resw 320            ; to go from one line to another
+xVelocityClyde resw 1              ; horizontal speed
+
+yPosPinky resw 1
+xPosPinky resw 1
+yVelocityPinky resw 320            ; to go from one line to another   
+xVelocityPinky resw 1              ; horizontal speed 
+
+counter resd 1
 keyPressed resb 1
 keyReleased resb 1
 xPosPac resw 1                 ; Pacman's starting X coordinate
@@ -898,3 +951,659 @@ clearScreen:
 quit:                       ; If escape key is pressed, jump to label 'exit'
     mov ah, 4ch                 ; DOS function to exit program
     int 21h                     ; Call DOS interrupt
+
+
+find_Blinky_spawn:
+    mov bx, 0                ; Start index for scanning the maze array
+    mov cx, MAZERLIMIT       ; Total number of tiles in a row
+    mov dx, MAZEBLIMIT       ; Total number of rows in the maze
+	jmp .find_spawn_loop_Blinky
+
+.find_spawn_loop_Blinky:
+    ; Check if current tile is the spawn point (ASCII value 5)
+    cmp byte [ASCII_Maze + bx], BLINKY
+    je .found_spawn_Blinky
+    ; Move to the next tile
+    inc bx
+    ; Check if we reached the end of a row
+    dec cx
+    jnz .find_spawn_loop_Blinky
+    ; Move to the next row
+    mov cx, MAZERLIMIT
+    dec dx
+    jnz .find_spawn_loop_Blinky
+    ; If spawn point not found, you can handle it here
+    ; For now, just hang (or add error handling)
+    jmp $
+
+.found_spawn_Blinky:
+    xor dx, dx            ; Clear dx for division
+    mov ax, bx            ; Copy index to ax for division
+    mov cx, MAZERLIMIT    ; Move MAZERLIMIT to the CX register
+    div cx                ; ax = bx / cx, dx = bx MOD cx
+    ; ax now contains the Y coordinate in tiles
+    ; dx now contains the X coordinate in tiles
+    shl ax, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    shl dx, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    mov [yPosBlinky], ax     ; Store Y pixel position
+    mov [xPosBlinky], dx     ; Store X pixel position
+    ret
+	
+	
+	
+	
+find_Inky_spawn:
+    mov bx, 0                ; Start index for scanning the maze array
+    mov cx, MAZERLIMIT       ; Total number of tiles in a row
+    mov dx, MAZEBLIMIT       ; Total number of rows in the maze
+	jmp .find_spawn_loop_Inky
+
+.find_spawn_loop_Inky:
+    ; Check if current tile is the spawn point (ASCII value 7 for Inky)
+    cmp byte [ASCII_Maze + bx], INKY
+    je .found_spawn_Inky
+    ; Move to the next tile
+    inc bx
+    ; Check if we reached the end of a row
+    dec cx
+    jnz .find_spawn_loop_Inky
+    ; Move to the next row
+    mov cx, MAZERLIMIT
+    dec dx
+    jnz .find_spawn_loop_Inky
+    ; If spawn point not found, you can handle it here
+    ; For now, just hang (or add error handling)
+    jmp $
+
+.found_spawn_Inky:
+    xor dx, dx            ; Clear dx for division
+    mov ax, bx            ; Copy index to ax for division
+    mov cx, MAZERLIMIT    ; Move MAZERLIMIT to the CX register
+    div cx                ; ax = bx / cx, dx = bx MOD cx
+    ; ax now contains the Y coordinate in tiles
+    ; dx now contains the X coordinate in tiles
+    shl ax, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    shl dx, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    mov [yPosInky], ax     ; Store Y pixel position
+    mov [xPosInky], dx     ; Store X pixel position
+    ret
+
+	
+	
+	
+	
+
+find_Clyde_spawn:
+    mov bx, 0                ; Start index for scanning the maze array
+    mov cx, MAZERLIMIT       ; Total number of tiles in a row
+    mov dx, MAZEBLIMIT       ; Total number of rows in the maze
+	jmp .find_spawn_loop_Clyde
+
+.find_spawn_loop_Clyde:
+    ; Check if current tile is the spawn point (ASCII value 8 for Clyde)
+    cmp byte [ASCII_Maze + bx], CLYDE
+    je .found_spawn_Clyde
+    ; Move to the next tile
+    inc bx
+    ; Check if we reached the end of a row
+    dec cx
+    jnz .find_spawn_loop_Clyde
+    ; Move to the next row
+    mov cx, MAZERLIMIT
+    dec dx
+    jnz .find_spawn_loop_Clyde
+    ; If spawn point not found, you can handle it here
+    ; For now, just hang (or add error handling)
+    jmp $
+
+.found_spawn_Clyde:
+    xor dx, dx            ; Clear dx for division
+    mov ax, bx            ; Copy index to ax for division
+    mov cx, MAZERLIMIT    ; Move MAZERLIMIT to the CX register
+    div cx                ; ax = bx / cx, dx = bx MOD cx
+    ; ax now contains the Y coordinate in tiles
+    ; dx now contains the X coordinate in tiles
+    shl ax, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    shl dx, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    mov [yPosClyde], ax     ; Store Y pixel position
+    mov [xPosClyde], dx     ; Store X pixel position
+    ret
+
+	
+	
+	
+	
+find_Pinky_spawn:
+    mov bx, 0                ; Start index for scanning the maze array
+    mov cx, MAZERLIMIT       ; Total number of tiles in a row
+    mov dx, MAZEBLIMIT       ; Total number of rows in the maze
+	jmp .find_spawn_loop_Pinky
+
+.find_spawn_loop_Pinky:
+    ; Check if current tile is the spawn point (ASCII value 9 for Pinky)
+    cmp byte [ASCII_Maze + bx], PINKY
+    je .found_spawn_Pinky
+    ; Move to the next tile
+    inc bx
+    ; Check if we reached the end of a row
+    dec cx
+    jnz .find_spawn_loop_Pinky
+    ; Move to the next row
+    mov cx, MAZERLIMIT
+    dec dx
+    jnz .find_spawn_loop_Pinky
+    ; If spawn point not found, you can handle it here
+    ; For now, just hang (or add error handling)
+    jmp $
+
+.found_spawn_Pinky:
+    xor dx, dx            ; Clear dx for division
+    mov ax, bx            ; Copy index to ax for division
+    mov cx, MAZERLIMIT    ; Move MAZERLIMIT to the CX register
+    div cx                ; ax = bx / cx, dx = bx MOD cx
+    ; ax now contains the Y coordinate in tiles
+    ; dx now contains the X coordinate in tiles
+    shl ax, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    shl dx, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    mov [yPosPinky], ax     ; Store Y pixel position
+    mov [xPosPinky], dx     ; Store X pixel position
+    ret
+
+	
+	
+; ---------------------------------------------------------------------------
+
+clear_sprite_at_position:
+    ; Assuming ax = Y position, bx = X position
+    ; and each sprite is 8x8 pixels
+    mov di, ax
+    imul di, 320     ; Convert Y position to row index in video memory
+    add di, bx       ; Add X position to get the exact memory location
+    mov ax, 0A000h   ; VGA video memory segment
+    mov es, ax
+    mov cx, 8        ; Height of the sprite
+
+.clear_row:
+    push cx
+    mov cx, 8        ; Width of the sprite
+    mov al, 0        ; Background color index (e.g., 0 for black)
+    rep stosb        ; Draw 8 pixels of the background color
+    pop cx
+    add di, 320 - 8  ; Move to the next row
+    loop .clear_row
+
+    ret
+
+; ---------------------------------------------------------------------------
+;the_functions:
+
+draw_Blinky_at_left:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [blinky_left_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Blinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Blinky
+
+    ret
+	
+	draw_Blinky_at_down:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [blinky_down_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Blinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Blinky
+
+    ret
+
+draw_Blinky_at_up:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [blinky_up_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Blinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Blinky
+
+    ret
+	
+draw_Blinky_at_right:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [blinky_right_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Blinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Blinky
+
+    ret	
+;--------------------------------------------------
+	
+draw_Clyde_at_left:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [clyde_left_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Clyde:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Clyde
+
+    ret
+	
+	draw_Clyde_at_right:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [clyde_right_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Clyde:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Clyde
+
+    ret
+	
+	draw_Clyde_at_up:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [clyde_up_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Clyde:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Clyde
+
+    ret
+	
+	draw_Clyde_at_down:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [clyde_down_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Clyde:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Clyde
+
+    ret
+;----------------------------------------------------------------	
+	
+	draw_Inky_at_left:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [inky_left_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Inky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Inky
+
+    ret
+
+	draw_Inky_at_right:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [inky_right_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Inky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Inky
+
+    ret
+	
+		draw_Inky_at_down:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [inky_down_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Inky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Inky
+
+    ret
+	
+		draw_Inky_at_up:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [inky_up_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Inky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Inky
+
+    ret
+
+;--------------------------------------------------------------	
+	draw_Pinky_at_right:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [pinky_right_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Pinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Pinky
+
+    ret
+	
+	draw_Pinky_at_left:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [pinky_left_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Pinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Pinky
+
+    ret
+	
+	draw_Pinky_at_up:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [pinky_up_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Pinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Pinky
+
+    ret
+	
+	draw_Pinky_at_down:
+    ; Assuming ax = Y position, bx = X position
+
+    ; Calculate the starting address in video memory
+    mov di, ax                ; DI = Y position
+    imul di, 320              ; Convert Y position to row index in video memory
+    add di, bx                ; Add X position to get the exact memory location
+
+    ; Set segment to video memory (VGA Mode 13h)
+    mov ax, 0A000h
+    mov es, ax
+
+    ; Point SI to Pacman's sprite data
+    lea si, [pinky_down_1]
+
+    ; Draw the sprite 8x8 pixels
+    mov cx, 8                 ; Sprite height
+.draw_row_Pinky:
+    push cx
+    mov cx, 8                 ; Sprite width
+    rep movsb                 ; Copy sprite data to video memory
+    pop cx
+    add di, 320 - 8           ; Move to the next row
+    loop .draw_row_Pinky
+
+    ret
+
+find_Blinky_spawn:
+    mov bx, 0                ; Start index for scanning the maze array
+    mov cx, MAZERLIMIT       ; Total number of tiles in a row
+    mov dx, MAZEBLIMIT       ; Total number of rows in the maze
+	jmp .find_spawn_loop_Blinky
+
+.find_spawn_loop_Blinky:
+    ; Check if current tile is the spawn point (ASCII value 5)
+    cmp byte [ASCII_Maze + bx], BLINKY
+    je .found_spawn_Blinky
+    ; Move to the next tile
+    inc bx
+    ; Check if we reached the end of a row
+    dec cx
+    jnz .find_spawn_loop_Blinky
+    ; Move to the next row
+    mov cx, MAZERLIMIT
+    dec dx
+    jnz .find_spawn_loop_Blinky
+    ; If spawn point not found, you can handle it here
+    ; For now, just hang (or add error handling)
+    jmp $
+
+.found_spawn_Blinky:
+    xor dx, dx            ; Clear dx for division
+    mov ax, bx            ; Copy index to ax for division
+    mov cx, MAZERLIMIT    ; Move MAZERLIMIT to the CX register
+    div cx                ; ax = bx / cx, dx = bx MOD cx
+    ; ax now contains the Y coordinate in tiles
+    ; dx now contains the X coordinate in tiles
+    shl ax, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    shl dx, 3             ; Multiply by 8 to convert tile coordinates to pixels
+    mov [yPosBlinky], ax     ; Store Y pixel position
+    mov [xPosBlinky], dx     ; Store X pixel position
+    ret    
