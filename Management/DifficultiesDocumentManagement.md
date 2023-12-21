@@ -19,7 +19,7 @@ So we decided, at the very beginning of the project in the first week, to put in
 
 Our problem with DOSBox was that we didn't understand how it worked with NASM. And especially how to run our code on DOSBox. 
 
-So we did some research on NASM and discovered that there were several assemblers like NASM. We found some older, non-updated assemblers like TASM and MASM. 
+So we did some research about NASM and discovered that there were several assemblers like NASM. We found some older, non-updated assemblers like TASM and MASM. 
 
 So we did some research and in our computer science classes we learned to use NASM. What's more, NASM is the most recent assembler still in use today. 
 
@@ -37,7 +37,7 @@ To overcome all these problems, we decided to buy the paid version of asperite. 
 
 Week three has just begun, we're due to hand in our prototype on December 11th and our developers are struggling to get started on the game code. 
 
-D n addition, to finish our technical specification, our developers need to make progress on the game code. Moreover, the technical specification is due on December 27, so we're a little behind schedule. 
+In addition, to finish our technical specification, our developers need to make progress on the game code. Moreover, the technical specification is due on December 27, so we're a little behind schedule. 
 
 We've decided to get a head start on each of our respective tasks to get a little more involved in the assembly to help our developers start creating our version of Pac Man. 
 
@@ -51,9 +51,9 @@ But unfortunately we had to change the code of our maze. We decided to code it i
 
 During the 6-week project, the whole team worked to make the best version of the Pac Man game. 
 
-Unfortunately, this was due to a lack of understanding of the assembly and a lack of skills.  We didn't manage to make the Pac Man version we wanted. 
+Unfortunately, due to a lack of understanding of assembly and a lack of skills, we didn't manage to make the Pac-Man version we wanted. 
 
-So we had to put aside some of the game's features when we wanted to add them. For example, we didn't have time to add a score bar, or to add player lives. 
+Thus, we decided to put aside some of the games features that we initially wanted to add. For example, we threw the score bar and the player lives away.
 Nor did we have time to add powers or behaviors to the game's ghosts. 
 
 So we concentrated on the most important parts of the game to create a Pac Man-like game. 
