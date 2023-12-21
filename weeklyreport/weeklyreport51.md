@@ -15,6 +15,8 @@ For this last week of the project. We have finished our slide show which will be
 
 In addition, each team member is learning their lines and practicing on their own. We've also booked a practice hour in the amphitheatre to get ready for the Friday show. 
 
+*All Team*
+
 ### Learning Assembly and Code 
 
 The developers are in the process of finalizing the last changes that can still be made before our presentation. 
@@ -25,8 +27,10 @@ Our developers have managed to make the ghosts move. Unfortunately, only one mov
 
 We've abandoned the score idea for lack of time. 
 
+*Rémy Charles & Junior Software Engineer*
+
 ### QA Test 
 
 Our QA is still testing the game as soon as a new feature becomes available. And reports on any problems he finds during testing. 
 
-a
+*Manech Laguens*
