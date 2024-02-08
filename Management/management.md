@@ -49,4 +49,3 @@ The following link gives you access to our team's Gantt. This Gantt allows you t
 Here's a document listing all the problems and solutions we encountered during the project. 
 
 * [Difficulties](../Management/DifficultiesDocumentManagement.md)
-
